@@ -1,0 +1,63 @@
+\documentclass[pdftex,10pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\setlength{\parskip}{1.5ex plus 0.5ex minus 0.2ex}
+\begin{document}
+
+
+Percus-Yevick is a expansion in densities and direct correlations that gives an expression for the pair distribution function.  This can be used in equations that give the internal energy and the pressure.  Its an approximation and it does well in the limit of low density and aslo with harsh drops in potential at edges of particles.  Cn be used to get thermodynic values - pressure, internal energy, and compressibility, and the different ways to get these yield different results, which is bad and is a result of the approximate nature.
+
+Big connection between the scaled particle theory and the PY equation.  The PY equation of state gotten through the compressibility route is the same as the scaled particle result when considering hard spheres.
+
+The scaled particle theory is closely related to the FMT.  It comes out of looking at the work involved in creating a cavity within a fluid of hard spheres in the two limits of large radius and small radius, and using some thermo to figure what this would be in a few ways, and then relating this work energy into a pressure equation of state.  In the process a limit of cavity size with R approaching zero is looked at, and in fact a negative cavity is allowed for.  They demand first order continuoesness at this limit.  The fact that they use the derivative of the cavity sphere in this shows a subtle connection between scaled particle theory and Rosenfeld's FMT.  FMT used weight functions in the fundemental measures that are derivatives of a the step function fundemental measure densities.  So derivative of sphere size (that the delta function represents)The pressure is in this equation related to the packing fraction.  This is gotten to taking the form of the equation and setting the radius of the cavity to that of the spheres, so as if you're putting another sphere in the fluid.  The packing fraction becomes a natural variable.
+
+The Carnahan starling equation also gives pressure in terms of packing fractions.  The scaled particle theory equation of state sort of looks like the Carnahan equation of state but I'm not sure how strong the connection is.  The Carnahan comes out of a way to approximate the coeffecients of the virial expansion for the pressure in the direct correlation expansion.  Going through the mayer functions, then going through the diagrammtic stuff and coming out with a virial expansion.
+
+FMT
+
+Rosenfeld made a natural extension of packing fraction for inhomogenous situations since for the above theories the best equations were using density in terms of packing fraction. So natural extension for local packing frraction (to cover inhomogeneous) is the first (step function) fundemental measure.
+\begin{align}
+  n_3(\mathbf{r}) =
+  \int d^3\mathbf{r}'\rho_i(\mathbf{r}')\Theta(\sigma/2-|\mathbf{r}-\mathbf{r}'|)
+\end{align}
+
+Can be interprested as the probablity that a sphere is overlapping any position that you pick out. One constraint that you place on the density is that you can't have this be greater than one anywhere.  And actually further because for hard spheres close packed it doesn't even get up to one everywhere.  So if you have almost one somewhere that needs to be compensated outside of that area.  Interesting about this form is that the density is defined locally close but away from the point r.  So you can have $\rho(\mathbf{r})=0$ but not have $\eta(\mathbf{r})=0$.  Uses the step function, the delta function, and the delta function times the vector directions to make fundemnental measures that you can describe the free energy functional with.  Then there's units consideration that give you the basic form of any free energy functional made of these, and then the actual form ultimately comes from making the low density limit fit for the free energy and then also reproducing the perckic yevic equation of state leads to the first formulation for the terms involving the fundemental measures that when added give you the free energy.
+
+Results of FMT:
+
+Better than WDA for hards spheres against walls, particularly in producing density oscillations away from walls.  Reproduces interlayer spacing better for high densities, showing better description of sharp qualities of hard spheres.  Actually just very natural extension to hard sphere mixtures, since fundemental measures are all based on spheres of radius R.  One problem is that the overlapping delta functions from those measures create divergences, and small changes in the way functionals are put together can be the difference between infinite energies.  Example is crystal.  For longest time, as guassian atom positions become delta functions, free energy diverges.
+
+Does better at 0D cavities, which they define as having a radius of less than a sphere and within the total $n_3$ is less than one.  One density distribution that fits this is just rho filling up just the sphere with constaant density that integrates to less than one.  Anyway, FMT does better for this.
+
+I guess there's an original FMT and a DI-FMT, difference has something to do with tensors versus vectors, i think.  Use Carnahan Sterling equation to 'plug in' to FMT.  Using th carnahan starling to plug into the DI-FMT is used by Roth et al to get the White Bear functional.  It works better up against walls, but further away the DI-FMT or orginal is better, White Bear also does poorly once becomes crystals, the DI-FMT does better.
+
+
+
+additive or non-additive mixtures:  additive mixtures of hard spheres means that for interactions between particles, both have hard core radii and they just add like you'd think.  Non-additive means that based on which two species are interacting, the radius of interaction is not simply the two different radii added up.  Could be less or more.  Certain chemical mixtures will act like this.
+
+chapter 7.5.7 in Density Functional Theories for Hard Particle Systems' by Tarazona is very good about the different FMTs and their results.
+
+Local density approximation LDA:  For whatever functional you're talking about, normally free energy, local density approx says that it will be an integral of free energy density terms defined at each $\mathbf{r}$ that is only dependent on $\rho(\mathbf{r})$ definied at $\mathbf{r}$.  In other words it is not a functional.  Every bit is only dependent on the local density.
+
+surface tension defined as :
+\begin{align}
+\gamma=\frac{1}{A}(\Omega-\Omega_{bulk})
+\end{align}
+or the difference between the total and bulk grand potentials, devided by the surface area.  In a sense the left over energy that's in the surface.
+
+keep reading the Gross paper to see how he deals with surface tension, and then also look at his results.
+
+Introduction to Yu and Wus paper acts as a good check off of things to know about.
+
+
+Read White Bear and add to presnetation
+
+need to look up and understand compressibility.  SAFT gets this to agree well with Monte-Carlo.
+Paper I'm reading defines it as $Z=P/(\rho RT)$
+
+\end{document}

@@ -1,0 +1,84 @@
+\documentclass[double,12pt]{beavtex}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsfonts,amscd}%-----amscd for "Commutative %Diagrams"
+%% \usepackage{graphicx}% Include figure files
+%% \usepackage{placeins}
+%% \usepackage{float} % make figures be in perfect spot
+%% \usepackage{latexsym}
+%% \usepackage[mathscr]{eucal}%------call-in: \mathscr{ } (only upper-case)
+%% \usepackage{eufrak}%--------------call-in: \mathfrak{ }(upper & lower case)
+
+%% \usepackage{bm}% bold math
+%% \usepackage{amsmath}
+%% \usepackage{amssymb}
+%% \usepackage{color}
+
+%% \usepackage{subfigure}
+%% \usepackage{cite} % needed to use hyphens for citing multiple references
+
+%% \usepackage{rotating}
+
+
+
+\input{preamble.tex}
+
+\renewcommand{\chaptername}{}
+\newcommand{\rr}{\textbf{r}}
+\newcommand{\iF}{\mathcal{F}}
+\newcommand{\rh}{\rho^{(1)}}
+\title{cDFT and MinD}
+\author{Jeff B. Schulte}
+\degree{Doctor of Philosophy}
+\doctype{Dissertation}
+\department{Physics}
+\depttype{Department}
+\depthead{Chair}
+\major{Physics}
+\advisor{David Roundy}
+\submitdate{December 7, 2014}
+\commencementyear{2014}
+\abstract{\input{abstract.tex}}
+\acknowledgements{\input{acknowledgements.tex}}
+
+\begin{document}
+
+\maketitle
+
+\mainmatter
+
+\begingroup
+\let\clearpage\relax
+\begin{center}
+%% \large
+%% Branching Random Walk and Probability Problems
+%% from Physics and Biology
+%% \normalsize
+%% \end{center}
+\chapter{Introduction}
+\input{introduction.tex}
+\endgroup
+
+%\chapter{Introduction}
+%\input{introduction.tex}
+\rr
+hello
+\chapter{Introduction to cDFT papers}
+\input{dft-intro.tex}
+
+\chapter{Correlation Functionat Contact}
+\input{contact-corr.tex}
+
+\chapter{Introduction to MinD Paper}
+\input{protein-intro.tex}
+
+\chapter{Conclusion}
+\input{conclusion.tex}
+
+\bibliography{THESIS}{}
+\bibliographystyle{unsrt}
+
+
+\appendix
+\chapter{First stuff in the appendix}
+\input{appendix.tex}
+\end{document}

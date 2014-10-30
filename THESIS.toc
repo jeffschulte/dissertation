@@ -1,0 +1,15 @@
+\contentsline {chapter}{\numberline {1}Introduction}{1}
+\contentsline {chapter}{\numberline {2}Introduction to cDFT papers}{1}
+\contentsline {section}{\numberline {2.1}Classical Density Functional Theory}{1}
+\contentsline {section}{\numberline {2.2}Introduction to SAFT and explanation of first free energy term}{7}
+\contentsline {section}{\numberline {2.3}Virial Equation, Mayer functions, and the Carnahan Starling Equation}{11}
+\contentsline {section}{\numberline {2.4}Fundemental Meaure Theory and the White Bear intrinsic free energy functional}{14}
+\contentsline {section}{\numberline {2.5}The convolution theorem}{19}
+\contentsline {section}{\numberline {2.6}Contact Value Theorem}{21}
+\contentsline {section}{\numberline {2.7}Remaining terms in SAFT}{25}
+\contentsline {chapter}{\numberline {3}Correlation Functionat Contact}{25}
+\contentsline {chapter}{\numberline {4}Introduction to MinD Paper}{25}
+\contentsline {chapter}{\numberline {5}Conclusion}{25}
+\contentsline {chapter}{Bibliography}{25}
+\contentsline {chapter}{Appendix}{26}
+\contentsline {app}{\numberline {A}First stuff in the appendix}{26}
