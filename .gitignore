@@ -4,3 +4,9 @@
 *.lot
 *.pdf
 *.toc
+*.bbl
+*.blg
+*.loaf
+*.loat
+*.loap
+*~
