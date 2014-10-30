@@ -301,15 +301,15 @@ inhomogeneous and homogeneous fluids.
 
 \section{Virial Equation, Mayer functions, and the Carnahan Starling Equation}
 
-The second term in the SAFT intrinsic free energy functional, $f_{hard~sphere}$, is also a
-reference term and is used in many other functionals besides the one
-described here.  I'll introduce the term and the theory behind it in
-some detail below because it is so widely used and, more importantly,
-because an understanding of the ideas involved is neccesary for an
-understanding of our own work.  Before describing the term itself,
-however, I'll explain here some important things that lead up to this
-theory, namely the Virial equation, Mayer functions, and the Carnahan
-Starling Equation.
+The second term in the SAFT intrinsic free energy functional,
+$f_{hard~sphere}$, is also a reference term and is used in many other
+functionals besides the one described here.  I'll introduce the term
+and the theory behind it in some detail in the next section because it
+is so widely used and, more importantly, because an understanding of
+the ideas involved is neccesary for an understanding of our own work.
+Before describing the term itself, however, I'll explain here some
+important things that lead up to this theory, namely the Virial
+equation, Mayer functions, and the Carnahan Starling Equation.
 
 The Virial Equation applies to homogeneous fluids.  It equates a
 thermodynamic, intensive quantity (likes the pressure) with an
@@ -406,12 +406,50 @@ state here because we use it in the first chapter.
 
 
 
-\section{Fundemental Meaure Theory and the White Bear intrinsic free energy functional}
+\section{$F_{hard~sphere}$, Fundemental Meaure Theory, and White Bear}
 
-Some of the intial attempts to get around this included expanding
-this local free energy in powers of dereivitives of the density with
-respect to positions (but maybe not mention this?).  Also some of
-the initial attempts included what was called weighted density
+We now return to analyzing the terms within SAFT:
+\begin{align}
+  F_{SAFT} = F_{ideal} + F_{hard~sphere} + F_{other terms}
+\end{align}
+
+Remember that $F_{ideal}$, because it treats particles that do not
+interact with one another, can be described as an intagral of a purely
+local free energy function over the volume of the system.  In fact,
+this one term addresses any aspect of the system that is
+non-interactive, in the sense that every other term in $F_{SAFT}$ is
+designed to specifically deal with a different type of potential
+interaction among the particles.  Thus, $F_{ideal}$ is in a sense the
+most basic reference term in the system.  However, as I've explained
+above, the seconds term, $F_{hard~sphere}$, which we will describe here,
+is also considered to be a reference system.
+
+The potential interaction it describes is based on the fact that every
+particle has at it's core a 'hard-core' repulsion to any other
+particle.  In other words, as two particles approach each other in
+space, there is a sudden, sharp spike in potential that prevents the
+two particles from 'overlapping'.  The forces here can be complicated,
+deriving from nuclear forces and the exclusion principle, but our
+classical theories seek to approximate these in simple ways.  The
+$F_{hard~sphere}$ potential formulation that we use is not the only
+way to address this.  The Leonard-Jones potential, for example,
+another widely used potential energy description, approximates the
+repulsion with a positive term porportional to $\frac{1}{r^{12}}$.
+
+The hard sphere potential interaction is characterised by an
+impenetrable spherical volume that is centered at the particles'
+position.  The potential between two of these hard spheres is:
+\begin{align}
+  v(r) &= \infty,~~ r < r_A + r_B \\
+  &= 0,~~ r > r_A + r_B
+\end{align}
+where $r$ is the distance between the two particles, and $r_A$ and
+$r_B$ are the radii of the two particles.
+
+Some of the intial attempts to get around this included expanding this
+local free energy in powers of dereivitives of the density with
+respect to positions (but maybe not mention this?).  Also some of the
+initial attempts included what was called weighted density
 approximation
 
 A weighted density $\bar{\rho}$ is created through a convolution of
@@ -436,7 +474,7 @@ the ideal free energy term (described below),
 
 
 Fundemental measure Theory, creatd by Rosenfeld in 1989, is based on
-convolutions, but represents a considerable departure. 
+convolutions, but represents a considerable departure.
 
 Percis-Yevik have an involved derivation of an equation of state,
 which once again allows one to write thermodynamic properties in terms
@@ -450,9 +488,22 @@ equations can be reformulated in terms of combinations of convolutions
 of weighting functions that are constructed to describe the geometric
 properties of spheres.  He then discovered that for inhomogeneous
 systems, he could write down the intrinsic free energy in terms of
-convolutions of densities in a way so that as the system approached
-the homogeneous limit, the correct terms for the Perkis-Yevik
-homogeneous density expansion are be reproduced.
+convolutions of densities with these weighting functions in such a way
+that the Percis-Yevik correlation functions were reproduced.  In his
+derivation, the intrinsic free energy neccesarily has the form:
+\begin{align}
+  \label{eq:F-FMT-form}
+  \iF^{ex}[\rho^{(1)}] = \int \Phi^{ex}({n_i(\rr')})d\rr'
+\end{align}
+It's a function of fundemamental measures evaluated at the point
+$\rr$.  Dimensional analysis throughout the derivation places further
+restrictions on the form of Eq.~\ref{eq:F-FMT-form}, but at the end of
+the day there is still some freedom in how the functional is designed.
+As I said before, the Perkis-Yevik derivation yields an equation of
+state, which can related the Free energy to the density in the
+homogeneous limit.  In the original formulation, Rosenfeld chose to
+design his functional so that it reproduces this equation in the limit
+of a homogeneous fluid.
 
  It originates
 from the fact that the mayer function that goes into describing the
