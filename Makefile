@@ -10,8 +10,8 @@ clean: rm -f THESIS.pdf
 ALL_FIGURES = \
 	pictureprotein.jpg \
 
-THESIS.pdf: THESIS.tex dft-intro.tex protein-intro.tex abstract.tex \
-	contact-corr.tex conclusion.tex introduction.tex acknowledgements.tex \
+THESIS.pdf: THESIS.tex dft-intro.tex protein-intro.tex abstract.tex contact-corr.tex THESIS.bib \
+	saft-water.tex pair-dist.tex conclusion.tex introduction.tex acknowledgements.tex figs/short-range-fit-parameters.tex \
 	${ALL_FIGURES}
 	echo ${ALL_FIGURES}
 	pdflatex THESIS.tex && bibtex THESIS && pdflatex THESIS.tex && pdflatex THESIS.tex

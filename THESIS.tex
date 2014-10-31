@@ -1,6 +1,7 @@
 \documentclass[double,12pt]{beavtex}
 \usepackage{graphicx}
-\usepackage{amsmath,amssymb,amsfonts,amscd}%-----amscd for "Commutative %Diagrams"
+\usepackage{amsmath,amssymb,amsfonts,amscd,array,dcolumn}%-----amscd for "Commutative %Diagrams"
+\usepackage{subcaption} % provides subfigure
 %% \usepackage{graphicx}% Include figure files
 %% \usepackage{placeins}
 %% \usepackage{float} % make figures be in perfect spot
@@ -68,10 +69,20 @@
 hello
 \chapter{Introduction to cDFT papers}
 \input{dft-intro.tex}
-
-\chapter{Correlation Functionat Contact}
+\clearpage
+\newpage
+\chapter{Contact Distribution Function}
 \input{contact-corr.tex}
-
+\clearpage
+\newpage
+\chapter{Improved Association Term in SAFT DFT for water}
+\input{saft-water.tex}
+\clearpage
+\newpage
+\chapter{Pair Distribution Function}
+\input{pair-dist.tex}
+\clearpage
+\newpage
 \chapter{Introduction to MinD Paper}
 \input{protein-intro.tex}
 
