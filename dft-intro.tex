@@ -430,108 +430,54 @@ particle.  In other words, as two particles approach each other in
 space, there is a sudden, sharp spike in potential that prevents the
 two particles from 'overlapping'.  The forces here can be complicated,
 deriving from nuclear forces and the exclusion principle, but our
-classical theories seek to approximate these in simple ways.  The
-$F_{hard~sphere}$ potential formulation that we use is not the only
-way to address this.  The Leonard-Jones potential, for example,
-another widely used potential energy description, approximates the
-repulsion with a positive term porportional to $\frac{1}{r^{12}}$.
+classical theories seek to approximate these in simple ways.  
 
 The hard sphere potential interaction is characterised by an
-impenetrable spherical volume that is centered at the particles'
-position.  The potential between two of these hard spheres is:
+impenetrable spherical volume that is centered at a particles'
+position.  The potential between two of these hard spheres discontinuously jumps from zero to infinity when the
+spheres are a distance apart that is equal to their combined radii:
 \begin{align}
   v(r) &= \infty,~~ r < r_A + r_B \\
   &= 0,~~ r > r_A + r_B
 \end{align}
 where $r$ is the distance between the two particles, and $r_A$ and
-$r_B$ are the radii of the two particles.
+$r_B$ are the radii of the two particles.  This hard sphere potential that we use is not the only commonly used method for treating the hard-core repulsion between particles.  The Leonard-Jones potential,
+for example, another widely used potential energy description, approximates the
+repulsion with a positive term porportional to $\frac{1}{r^{12}}$
 
-Some of the intial attempts to get around this included expanding this
-local free energy in powers of dereivitives of the density with
-respect to positions (but maybe not mention this?).  Also some of the
-initial attempts included what was called weighted density
-approximation
 
-A weighted density $\bar{\rho}$ is created through a convolution of
-the $\rh$:
+
+Once we decide upon a form for the potential, we must turn to the much more difficult step of designing a free energy functional that is appropriate for hard sphere particles.  One of the first methods by which people attempted to deal with these interactions (not limited to hard spheres) was to modify the form of the local density approximation free energy discussed above, 
 \begin{align}
+  \iF_{local~density}[\rho^{(1)}] = \int f(\rho^{(1)}) d\rr
+\end{align}
+to incorporate information about the particle densities immediately surrounding each point.  They did this by redefining the density at each point to be a convolution of the surrounding density with a weighting function:
+\begin{align}
+  \label{eq:convolution-of-density}
   \bar{\rho}(\rr) = \int w(|\rr-\rr'|) \rh(\rr') d\rr'
 \end{align}
-and then the intrinsic free energy is defined as
+and then integrating this density over space to get the total free energy, in the same fashion (NOT THE SAME LOOK AT EQUATION) as the local density approximation:
 \begin{align}
   \iF[\rh] = \int \frac{f^{ex}(\bar{\rho})}{\bar{\rho}} \rh(\rr') d\rr'
 \end{align}
+Eq.~\ref{eq:convolution-of-density} allows one to shape the approximately interaction, in a sense, by changing the structure of the weighting function.  For example, if one were to choose for the weighting function the step function $\Theta(|\rr-\rr'|)$, than the modified density would incorporate in an equal way all the density within a sphere surrounding the particle.  This is an extremely simple example of a weighted density approximation.  Practical theories formulated in this manner become very complicated.  We introduce it here so that the reader knows what it is and also because the central idea described by Eq.~\ref{eq:convolution-of-density} is used in FMT as well. 
 
-
-This hard sphere reference is described by an interaction
-potential that discontinuously jumps from zero to infinity when the
-spheres are within a certain range (the diameter of the hard
-sphere).  This reference system potential is meant to approximate
-the 'hard core' repulsions that are common to all particles.  It
-seems to dos some stuff well (WHAT DOES IT DO WELL) Together with
-the ideal free energy term (described below),
-
-
-
-Fundemental measure Theory, creatd by Rosenfeld in 1989, is based on
-convolutions, but represents a considerable departure.
-
-Percis-Yevik have an involved derivation of an equation of state,
-which once again allows one to write thermodynamic properties in terms
-of densities for homogeneous systems.  Comparing this theory (and
-using properties of correlation functions, which we will once again
-not get into) with the derivations of another theory call Scaled
-Particle Theory, which once again we will not explain but will say
-that it has to do with a system of spheres where one sphere is slowly
-growing, Rosenfeld recognized that the density sides of these
-equations can be reformulated in terms of combinations of convolutions
-of weighting functions that are constructed to describe the geometric
+Fundamental Measure Theory, created by Rosenfeld in 1989, also defines the free energy in terms of a series of convolutions of densities, but it is a considerable departure from the weighted density approximation theories.  It is based on an involved derivation worked out by Perkis and Yevik in (YEAR) of an equation of state for a homogeneous fluid.   Like the derivation of the Virial Expansion and Carnahan-Starling Equation discussed above, this derivation also dealt with correlation functions and ultimately expressed thermodynamic properties in terms of homogeneous density.  Comparing this theory with the derivations of another theory call Scaled
+Particle Theory, which once again I will not explain but will say
+that it has to do conceptually with a system of spheres and a growing cavity in which they are not allowed to go, Rosenfeld recognized that the density sides of the Perkis-Yevick 
+equations can be reformulated in terms of convolutions
+of functions that are constructed to describe the geometric
 properties of spheres.  He then discovered that for inhomogeneous
 systems, he could write down the intrinsic free energy in terms of
-convolutions of densities with these weighting functions in such a way
-that the Percis-Yevik correlation functions were reproduced.  In his
-derivation, the intrinsic free energy neccesarily has the form:
+convolutions of densities with these functions in such a way
+that the Percis-Yevik correlation equations were reproduced in the limit of homogeneous density.  The derivation is certainly an involved (and brilliant) one, and there is actually another derivation to get to the same place introduced by (TARAZONA? ) in (YEAR) that is thought by some to be more elegant.  However I don't use any ideas that are directly pulled from these derivations in my work, besides those that can be taken from the general characteristics (spherical nature) of the resulting Free Energy functional.   
+
+The result of all this is an intrinsic free energy which neccasarily has the form:
 \begin{align}
   \label{eq:F-FMT-form}
-  \iF^{ex}[\rho^{(1)}] = \int \Phi^{ex}({n_i(\rr')})d\rr'
+  \iF_{hard~sphere}[\rho^{(1)}] = \int \Phi({n_i(\rr')})d\rr'
 \end{align}
-It's a function of fundemamental measures evaluated at the point
-$\rr$.  Dimensional analysis throughout the derivation places further
-restrictions on the form of Eq.~\ref{eq:F-FMT-form}, but at the end of
-the day there is still some freedom in how the functional is designed.
-As I said before, the Perkis-Yevik derivation yields an equation of
-state, which can related the Free energy to the density in the
-homogeneous limit.  In the original formulation, Rosenfeld chose to
-design his functional so that it reproduces this equation in the limit
-of a homogeneous fluid.
-
- It originates
-from the fact that the mayer function that goes into describing the
-virial expansions can itself be deconvolved into a sum of products of
-convolutions of weighting functions that are designed with geometry of
-the hard sphere in mind.(should probably describe the virial equation
-before this, actually).  The resulting expression for the excess free
-energy (excess to the ideal free energy) can be formaulted in terms of
-a series of closely related fundemental measures, that also reflect
-the geometry of the hard sphere reference system.  They are the
-following:
-
-The White Bear free
-energy is thus
-\begin{equation}
-A_\textit{HS}[n] = k_B T \int \left(\Phi_1(\rr) + \Phi_2(\rr) + \Phi_3(\rr)\right) d\rr \; ,
-\end{equation}
-with integrands
-\begin{align}
-\Phi_1 &= -n_0 \ln\left( 1 - n_3\right) \label{eq:Phi1}\\
-\Phi_2 &= \frac{n_1 n_2 - \mathbf{n}_{V1} \cdot\mathbf{n}_{V2}}{1-n_3} \\
-\Phi_3 &= (n_2^3 - 3 n_2 \mathbf{n}_{V2} \cdot \mathbf{n}_{V2}) \frac{
-  n_3 + (1-n_3)^2 \ln(1-n_3)
-}{
-  36\pi n_3^2\left( 1 - n_3 \right)^2
-} , \label{eq:Phi3}
-\end{align}
-using the fundamental measures
+The integrand $\Phi$ here is a local function of $n_i(\rr)$, which are the non-local convolutions of density with sphere-like weighting functions discussed above.  In FMT they are referred to as 'fundamental measures'.  They are defined as:
 \begin{align}
   n_3(\rr) &= \int n(\rr') \Theta(\sigma/2 -\left|\rr - \rr'\right|)
   d\rr' \label{eq:FMn3} \\
@@ -543,73 +489,29 @@ using the fundamental measures
   n_1 &= \frac{n_2}{2\pi \sigma} , \quad
   n_0 = \frac{n_2}{\pi \sigma^2} \label{eq:FMrest}
 \end{align}
+We can see the spherical nature of the theory by inspecting the $n_i$.  The $n_3(\rr)$ weighting function is a step function that is designed so that the density is integrated over the volume of a sphere of radius $\sigma/2$, but will make no contributions outside of this sphere.  $n_2$ only allows for integration of densities on the surface of a sphere, but incorporates no density within or outside of it.  $n_{2V}$ is a vector version of $n_2$, and the others are different versions of the same, modified to have different units. 
+  
+The form of $\Phi({n_i(\rr)})$ is restricted to a certain extent by dimensional analysis (the units of each term have to be right!) throughout the derivation, but even given this the theory allows for a certain amount of freedom in it's design.  Since his derivation of FMT was originally based on concepts in the Perkis-Yevik derivation of the equation of state, Rosenfeld constructed the form of his functional so that in the limit of homogeneous density, the free energy of the system approaches that given by the Perkis-Yevik equation of state.  
 
-where $\delta$ is the direc delta function and $\Theta$ is the
-Heavyside step function.
+While the theory has been a resounding success (MAYBE MENTION HOW SUCCESSFUL IN BEGINNING OF SECTION), the use of the Perkis-Yevik equation of state as the underlying, homogeneous limit equation causes some problems.  For the hard sphere fluid this equation predicts a pressure that is too high as bulk freezing tempuratures are approached.  At the same time, the construction of FMT obeys a theorem called the 'contact value theorem,' which states that the pressure at a wall is equal to the temperature multiplied by the density in contact with that wall, $p=kT\rho_{contact}$.  This theorem is very important to our own work and I will discuss it in detail below, but I mention it now to say that the Perkis-Yevik equation consequently overestimates the density at contact at  freezing bulk temperatures.  This is problematic, since much of the reason we use classical density functional theory in analyzing inhomogeneous fluids in the first place is to estimate what happens at walls! 
 
+In (YEAR) Roth et al addressed this issue in their version of FMT which they named 'White Bear', anecdotally after a pub that they frequented while writing the theory.  They keep the same general form of Rosenfeld's FMT but adjust it so that in the limit of homogeneous density it's free energy approaches that of the Mansoori-Carnahan-Starling-Leland equation, a modified version of the Carnahan-Starling equation of state, which we discussed above and which we use directly in our own work.  The Carnahan-Starling is more accurate in limiting cases than the Perkis-Yevik, so that the White Bear hard-sphere free energy functional, $F_{hard~sphere}$, is overall a more accurate one.  It is therefore the hard sphere free energy reference system that we choose to use in our own work.   
 
+Below is the entire energy functional written in terms of the fundamental measure, $n_i(\rr)$:
+\begin{equation}
+F_\textit{hard~sphere}[n] = k_B T \int \left(\Phi_1(\rr) + \Phi_2(\rr) + \Phi_3(\rr)\right) d\rr \; ,
+\end{equation}
+with integrands
+\begin{align}
+\Phi_1 &= -n_0 \ln\left( 1 - n_3\right) \label{eq:Phi1}\\
+\Phi_2 &= \frac{n_1 n_2 - \mathbf{n}_{V1} \cdot\mathbf{n}_{V2}}{1-n_3} \\
+\Phi_3 &= (n_2^3 - 3 n_2 \mathbf{n}_{V2} \cdot \mathbf{n}_{V2}) \frac{
+  n_3 + (1-n_3)^2 \ln(1-n_3)
+}{
+  36\pi n_3^2\left( 1 - n_3 \right)^2
+} , \label{eq:Phi3}
+\end{align}
 
-Fundemental Measure theory comes out of a similar result of the
-Percus-Yevick equation of state and the result of scaled particle
-theory
-
-There are very accurate equatio
-
-I think do introduction to what the fundemental theory does, here,
-with the weighted densities based on geometry.
-
-Based on the geometry of particles in question.  Can deal with
-mixtures...  Below we will describe in more detail the White Bear
-functional, which is what we use for our term that approximated hard
-spheres.
-
-The derivation of Fundmental Measure Theory is inspired by a
-similarity between the results of a homogenous theory called scaled
-particle theory and an equation of state called the Perkis Yevik
-equation.  I won't explain the derivation, but we will mention some
-things about the Perkis Yevik equation
-
-When constructing a functional theory that will be appropriate for
-inhomogenous fluids, Rosenfeld had the freedom to dictate what the
-functional would say in the limit of a homogenous fluid.  A great deal
-of work has been done with homogenous fluids and fluids mixtures.
-This work results in equations of state, which relate thermodynamic
-properties of homogenous fluids such as free energy pressure or free
-energy to the density.  Rosenfeld chose to build up his intrinsic free
-energy functional so that in the limit of homogenous distribution it
-approached that given by the Percus-Yevik equation of state.  This is
-a successful equation of state.
-
-The result was the very successful Fundemental Measure Theory (in what
-ways was it successful?)
-
-Later Roth et al. created there own fundemental measure functional
-that is in the limit of homogeneous density approaches not the Percis
-Yevik equation but instead the Carnahan-Starling equation of state.
-They do so because for the hard sphere fluid at high densities,
-approaching freezing, the pressure is over estimated in Percis Yevik.
-FMT follows the contact theorem, that $\rho_w= \beta p$ where $\rho_w$
-is the contact density of spheres in contact with a hard wall, which
-means that this value is consequently overestimated.  White Bear
-people keep many of the ideas in place, but replace the Percus-Yevik
-underlying equation of state to that of
-Mansoori-Carnahan-Starling-Leland: (reference below) As a consequence,
-the White Bear functional is extremely successful in predicting the
-density profiles of inhomogenous collections of hard spheres
-(examples?).
-
-The diagramatic expression approach gives the virial equation and it's
-exact in low-density limit
-
-
-The percis-Yevik equation of state that the original FMT is based on
-is not the low density limit, say that the excess free energy function
-istelf is built so that the thermodynamic equation of state of hard
-spheres is that given by the Perkis-Yevik equation of state.
-
-This is the FMT that we use in out functionals so it is the one that
-we will briefly describe.  Fill the first part of this out a bit more,
-ore just explain more how you'd be able to get these things.
 
 \section{The convolution theorem}
 
