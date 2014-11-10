@@ -1,77 +1,72 @@
+
 Talk about why need functionals to deal with inhomogenous situations.
 Then talk about how functional deriviatives are taken.
 
 \section{Classical Density Functional Theory}
 
 A classical statistical ensemble is a collection of an arbitrary
-number of classical systems that have the same macroscopic properties
-and internal restrictions, but have positions and momenta that are
-otherwise distributed randomly.  (SOMETHING about how large number
-systems yield thermodynamic averages) In the canonical ensemble, the
-number of particles $N$, the total volume of the system $V$, and the
-tempurature $T$ are taken as constant.  In this ensemble the free
+number of classical systems of particles that have the same
+macroscopic properties and internal restrictions, but have positions
+and momenta that are otherwise distributed randomly.  In the canonical
+ensemble, the number of particles $N$, the total volume of the system
+$V$, and the tempurature $T$ are constant.  In this ensemble the free
 energy, defined as $F = U - TS$, where $U$ is the internal energy and
-$S$ is the entropy of the system, is minimized in thermodynamic
+$S$ is the entropy of the system, is at a minimum in thermodynamic
 equilibrium. In the grand canonical ensemble, the number of particles
 is allowed to vary while $V$, $T$ and the chemical potential $\mu$ are
-held constant.  In this ensemble it is the grand potential, defined as
-$\Omega = F - \mu N$, that is minimized in thermodynamic equilibrium.
+constant.  In this ensemble it is the grand potential, defined as
+$\Omega = F - \mu N$, that is at a minimum in thermodynamic
+equilibrium.
 
 In the case of inhomogenous fluids, a treatment of the inhomogenous
-external potential $\phi(\rr)$ restricts the particles in the system
-and takes the place of the volume $V$ in the thermodynamic equations.
-In such a system, a change in the internal energy is given by
+external potential $\phi(\rr)$ restricts the positions of the
+particles in the system and stands in the place of the volume $V$ in
+the thermodynamic equations.  In such a system, a change in the
+internal energy is
 \begin{align}
-  \delta U = T\delta S + \int \rho^{(1)}\delta \phi(\rr)d(\rr) + \mu \delta N
+  \delta U = T\delta S + \int \rho^{(1)}(\rr)\delta \phi(\rr)d(\rr) + \mu \delta N
 \end{align}
-
-$\rho^{(1)}$ here is the one particle density.  This is the low particle
-limit of the n-particle density of the grand canonical ensemble,
-defined as
+where $\rho^{(1)}$ is the 'one particle density'.
+$\rho^{(1)}(\rr)d\rr$ is the average number of particles at $\rr$
+within a volume $d\rr$.  One can calculate $\rho^{(1)}(\rr)$ by taking
+the one-particle limit of the n-particle density of the grand
+canonical ensemble,
 \begin{align}
   \label{eq:n-particle-density}
   \rho_N^{(n)}(\rr^n)=\frac{1}{\Xi}\sum^{\infty}_{N=n}\frac{exp(N\beta \mu)}{\Lambda^3 (N-n)!} \
-  \int exp(-\beta V_N)d\rr^{(N-n)}
+  \int exp(-\beta V_N)d\rr^{(N-n)}.
 \end{align}
-where the spatial integral of the Boltzmann factor is taken over all
-the potential positions of the particles \emph{other} than the $n$
-particles at positions $\rr^n$, and $V_N$ is the total interaction
-potential between all of the particles in the system.  In keeping with
-the basic construction of a statistical mechanical probability, the
-integrations of Boltzmann factors of the possible states are divided
-by the partition function $\Xi$ of a grand canonical ensemble:
+$\rho_N^{(n)}(\rr^n)$ has the general form of a statistical mechanical
+probability, with an integration over possible states of Boltzmann
+factors divided by the grand canonical partition function,
 \begin{align}
-  \Xi = \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int\int exp(\beta \mathcal{H})d\rr^Nd\mathbf{p}^N
+  \Xi = \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int\int exp(\beta \mathcal{H})d\rr^Nd\mathbf{p}^N.
 \end{align}
-The $n=1$ limit of Eq.~\ref{eq:n-particle-density} is defined so that
-$\rho^{(1)}d\rr$ is the average number of particles in within a volume
-$d\rr$.  The $exp(N\beta \mu)$ term in Eq.~\ref{eq:n-particle-density}
-accounts for the chemical potential's regulation of the average number
-of particles in the system.  When implementing density functional
-theory, one adjusts $\mu$ in order to restrict the system average
-number of particles contained within the system, defined as:
+$V_N$ in Eq.~\ref{eq:n-particle-density} is the total interaction
+potential between all of the particles in the system, and the spatial
+integral is taken over all the potential positions of the particles
+\emph{other} than the $n$ particles at positions $\rr^n$.  The
+$exp(N\beta \mu)$ term accounts for the chemical potential's
+regulation of the average number of particles in the system.  When
+implementing density functional theory, one adjusts $\mu$ in order to
+restrict the system's average number of particles,
 \begin{align}
-  \rho_N^{(1)}(\rr)d\rr = \langle N \rangle
+  \int_{system} \rho_N^{(1)}(\rr)d\rr = \langle N \rangle
 \end{align}
+to be a desired value.
 
-
-In the grand canonical ensemble, the probability density
-$f_0(\rr^N,\mathbf{p}^N;N)$ is defined so that
+The probability density, which is closely related to the n-particles
+density, is $f_0(\rr^N,\mathbf{p}^N;N)$.
 $f_0(\rr^N,\mathbf{p}^N;N)d\rr^N$ is the probability that there are
 $N$ particles in the system and that those particles are found within
 the infinitesimal range of positions $\rr^N$ and momenta
 $\mathbf{p}^N$.  It's definition is
-\begin{align} \label{eq:prob-density}
+\begin{align}
+  \label{eq:prob-density}
   \mathit{f}_0(\rr^N,\mathbf{p}^N;N) = \frac{exp(-\beta(\mathcal{H}-N\mu))}{\Xi}
 \end{align}
-where
-\begin{align}
-  \Xi = \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int\int exp(\beta \mathcal{H})d\rr^Nd\mathbf{p}^N
-\end{align}
-is the partition function of the grand canonical
-ensemble. Eq.~\ref{eq:prob-density} is structured as the boltzmann
-constant with an energy argument comprised of the Hamiltonian and
-chemical potential, divided by the grand partitian function.
+where $\Xi$ is once again the partition
+function.
 
 Classical Density Functional Theory assumes that the Hamiltonian can
 be split into linearly combined parts:
@@ -81,17 +76,17 @@ be split into linearly combined parts:
 The three terms on the right are the kinetic energy, potential
 interaction between particles, and external potential, respectively.
 The kinetic energy is a function of only the momenta of the particles,
-and the two potentials soley on their positions.
+and the two potentials of only their positions.
 
 Substituing this for the Hamiltonian term in Eq.~\ref{eq:prob-density}
 and taking the natural logarithm, we have:
 \begin{align}
-  \label{log-of-f}
+  \label{eq:log-of-f}
   \ln \mathit{f}_0 = \beta\Omega - \beta K_N - \beta V_N - \beta \Phi_N + N\beta \mu
 \end{align}
 where we have used the relation
 \begin{align}
-  \Omega = -k_BT\ln\Xi
+  \Omega = -k_BT\ln\Xi,
 \end{align}
 which is the basic connection between thermodynamics and statistical
 mechanics in the grand canonical ensemble.
@@ -115,12 +110,13 @@ Eq.~\ref{eq:log-of-f} results in the equation
 The thermodynamic definition of the grand potential gives us $F =
 \Omega + \mu N$.  From this we can see that the right hand side of
 Eq.~\ref{eq:intrinsic-free-two} is analougous to the free energy of
-the inhomogenous system minus the part given by the external
-potetnial.  We call this function the 'intrinsic free energy' $\iF$
-since it addresses the interactions between the particles within the
-system:
+the inhomogenous system minus the energy due to the external
+potential.  We call this function the 'intrinsic free energy' $\iF$
+since it only includes the interaction energy between the particles
+within the system:
 
 \begin{align}
+  \label{eq:intrinsic-free-three}
   \iF = \Omega - \int \rho^{(1)}(\rr)\phi(\rr)d\rr + \mu \int \rho^{(1)}(\rr)d\rr \
   = \langle K_N + V_N + k_BT \ln \mathit{f}_0 \rangle
 \end{align}
@@ -131,167 +127,141 @@ a one-to-one relation between the external potential function and the
 equilibrium density profile $\rho^{(1)}$ at thermodynamic equilibrium.
 The grand canonical density function $f_0$ (Eq.~\ref{eq:prob-density})
 for a given function $V_N$, $\mu$, and $T$ is a function of only the
-external potential, so that the right hand side of
-Eq.~\ref{eq:intrinsic-free-two} is a function of only the external
-potential and therefore also of only $\rho^{(1)}$.  Thus the intrinsic
-free energy $\iF$ is a functional of only $\rho^{(1)}$.
+external potential, so as a result it is completely determined by
+$\rho^{(1)}$.  $V_N$ is also wholly determined by $\rho^{(1)}$ and
+$K_N$ is determined by tempurature.  Thus the right hand side of
+Eq.~\ref{eq:intrinsic-free-three} is a function of only the external
+potential and therefore also of only $\rho^{(1)}$, which means that
+for a given $\mu$, $T$, and defined function $V_N$, $\iF$ is wholly
+determined by $\rho^{(1)}$.
 
-We can therefore write:
+Thanks to all of this, we can write
 \begin{align}
   \Omega_{\phi}[n] = \iF[n] + \int n(\rr)\phi(\rr)d\rr - \mu\int n(\rr)d\rr
 \end{align}
-When $\Omega_{\phi}[n]$ is minimized, then it is the grand potential
-of the system, and the density profile $n(\rr)$ of the system is the
-density profile of thermodynamic equilibrium.
+where $n(\rr)$ is a density profile that we will adjust systematically
+in order to minimize $\Omega_{\phi}[n]$.  When $\Omega_{\phi}[n]$ is
+minimized, it becomes the minimized grand potential of the system, and
+the density profile $n(\rr)$ of the system is the density profile in
+thermodynamic equilibrium, $\rho^{(1)}$.  It is finding this density
+profile in thermodynamic equilibrium, and then the properties that can
+be derived from it, that is the ultimate goal of Classical Density
+Functional Theory.  Throughout the rest of this dissertation I will be
+using $n(\rr)$ to refer to the particle density of the system, and the
+reader should understand that it is a function that is meant to be
+adjusted in order to minimize the grand potential energy function.
 
-The first step in Classical Density Functional Theory is to design the
-functional form of the intrinisic free energy $iF$, which is
-conceptually equal to the free energy ignoring the external potential.
-We then set the tempurature $T$, chemical potential $\mu$, and
-external potential $\phi(\rr)$, and adjust the density profile until
-we have found the global minimum of this grand potential.  The result
-is the density and grand potential in equilibrium.
-
-
-(the statistical average of $V_N$
-depends on $\rho^{(1)}$ since $V_N$ initially defined by $V_N(r^N)$ in
-Eq.~\ref{eq:hamiltonian}, so a function of positions of particles, so
-statistical average version is above).
-
-Is the configuration integral, it's the potential's contribution to the partitionn function
-
-This is the functional version of grand potential, dependent upon
-$n(\rr)$, not neccesarily the equilibrium $n(\rr)$, and this will be
-minimized in the case of thermodynamic equilibrium.
-\begin{align}
-  \Omega_{\phi}[n] = \iF[n] + \int n(\rr)\phi(\rr)d\rr - \mu\int n(\rr)d\rr
-\end{align}
+We begin the process of Classical Density Functional Theory by
+designing the functional form of the intrinisic free energy $\iF$.
+This is the major theoretical part of the process.  We then decide
+upon an external potential $\phi(\rr)$ that defines the external
+restrictions of the system, set the tempurature $T$ and chemical
+potential $\mu$, and systematically adjust the density profile until
+we have found the global minimum of this grand potential.  I won't
+discuss the process of finding the density profile that minimizes the
+grand potential in this dissertation, primarily because the algorithms
+that do this were all in place before I joined the lab!  My work is
+centered around the first part of the process, namely constructing the
+functional form of $\iF$.
 
 
 
-canonical ensemble:
-\begin{align}
-  F = U - TS
-\end{align}
-
-
-grand canonical ensemble:
-\begin{align}
-  \Omega = F - N \mu
-\end{align}
-
-The second term on the right hand side normally vanishes, since the
-external potential is usually a wall, so either infinity or zero, and
-if it's infinity, than $n(\rr)$ there is zero.
-
-
-
-
-%% \begin{figure}\caption{Smart figure}
-%% \end{figure}
-
-%% \begin{table}\caption{Smart table}
-%% \end{table}
-
-%% \section{a section}
-%% I am referencing a figure~\ref{fig:fig-ref}
-
-%% \section{a different section}
-I am citing a source~\cite{huang2003dynamic}
 \clearpage
 \newpage
-
-Important to note that the functional your minimizing is not the grand
-potential until its minimized
 
 
 
 \section{Introduction to SAFT and explanation of first free energy term}
 
+\fixme{do more of an introduction to SAFT, taken from papers}
 
-Work on classical Density Functional Theory for fluids involves
-creating intrinsic density functionals of the density profile.  These
-are comprised of a sum of terms that individually address different
-conceptual aspects of the system.   terms that treat different types
-of interaction between particles are added to terms that describe
-reference system.  For example, the functional for the version of SAFT
-that we use in our work, is defined as
+Work on Classical Density Functional Theory for inhomogeneous fluids
+involves creating the intrinsic free energy functional of the density
+profile, $\iF[n]$.  This is comprised of a sum of terms that
+individually address different conceptual aspects of the system.
+Terms that treat different types of interaction between particles are
+added to a term that describes the reference system.  The functional
+that we use in our work is called the Statistical Associating Fluid
+Theory or SAFT free energy, and it is broken into the following terms:
 
 \begin{align}
-  iF_{SAFT} = F_{ideal} + F_{hard sphere} + F_{something}
+  \iF_{SAFT} = F_{ideal} + F_{hard sphere} + F_{dispersion} + F_{association}
 \end{align}
-
-We will discuss in much more detail the meaning of these terms below,
+We will discuss the meaning of these terms below in much more detail,
 but write it down now to illustrate the general structure of the total
 functional.
 
 
-While our contributions described in the next chapters could certainly
-be applied to many different types of fluid functionals, we
-specifically worked towards improving the very popular SAFT versions
-functionals in current development.  Indeed in one of the papers
-described, we use the function we've created within a SAFT functional
-to test it's affect upon the results of the that functional.
-Therefore while describing the general background and origin of the
-ideas we use, I'll speak directly to the build up of the SAFT
-functional, the pieces of which (developed and verified by others) and
-the general structure are found in many other functionals.
+Although we work specifically with the very popular SAFT functionals
+in current development, our contributions described in the next
+chapters are applicable to many different types of fluid functionals.
+The next chapter details a function that we've created, the
+distribution function at contact $g_\sigma(\rr)$, which treats
+correlations between particles within a system, while the following
+chapter discusses it's use within a specific SAFT functional and it's
+effect upon that functional's results.  The chapter after that
+introduces another function, the pair distribution function
+$g^{(2)}_{HS}(\rr_1,\rr_2)$, that is closely related to the first.
+It's important for the reader to recognize that while we discuss these
+functions in terms of their place within the SAFT free energy, they
+and their conceptual founding are useful to other Classical Density
+Functional Theories.
 
 
-The first two terms, $F_{ideal}$ and $F_{hard sphere}$
-define the reference system.  The rest of the terms address different
-approximations of interactions (which we describe below).  In in
-homogenous fluids, each one of these terms is itself a functional of
-the density profile.
 
-Many times different approaches will use the same reference systems
-and even the exact functional form of the reference system free energy
-terms while, when treating other forms of interaction, will use
-different conceptual models and implementation in order to construct
-those terms.  SAFT itself departs from other theories in it's last
-three terms.  The first 'ideal' term it uses is ubiquitous, and the
-second is a particularly common reference system for fluids.  I give a
-detailed introduction to the particular functional that we use for it
-below (that of the White Bear free energy), because while we don't
-actually modify it in our implementation of inhomogenous SAFT, we do
-draw heavily from its ideas when creating the function that we do.
+The first two terms, $F_{ideal}$ and $F_{hard~sphere}$, are typically
+thought of as the functional's reference system terms.  The
+$F_{ideal}$ is ubiquitous, and treats particles that have no
+interactions between them.  While the $F_{hard~sphere}$ term does
+treat particle interactions, the type of interaction it treats is so
+basic and simple that this term is also seen as a reference term and
+is incorporated into many very different functionals.  I give a
+detailed introduction to the particular functional that we use for the
+$F_{hard~sphere}$ term below (that of the White Bear free energy),
+because while we don't actually modify it in our implementation of
+inhomogenous SAFT, we do draw heavily from its ideas when creating our
+functions.  The rest of the terms in $\iF$ address different types of
+interactions between particles.  SAFT itself departs from other
+theories in these last two terms.  In inhomogenous fluids, each one of
+these terms is itself a functional of the density profile.
+
 
 The first term in the SAFT functional is the ideal free energy term
-$F_{ideal}$.  This term treats a system of particles that do not
-interact with eachother.  This is an obvious place to start if one is
-to build the description of particle interaction terms upon a
-reference system.  It's lack of interaction actually causes this term
-to be the only one that we can construct exactly, with no
-approximations.  To see why, we point out that a system of non
-interacting spheres is able to satisfy the local density apporximation
-(only here it is not an approximation!)  The local density
-approximation states that a free energy functional can be written as
-an integral of a completely local function of the density profile.
-For example,
+$F_{ideal}$, and it treats a system of particles that do not interact
+with eachother.  This is an obvious place to start if one is to build
+the description of particle interaction terms upon a reference system.
+It's lack of interaction actually causes this term to be the only one
+that we can construct exactly, with no approximations.  To see why, we
+point out that a system of non-interacting particles is able to
+satisfy what is usually called the the local density approximation
+(although we shouldn't call it this here because for non-interacting
+particles it's not an approximation!)  The idea is that the free
+energy functional can be written as an integral of a completely local
+function of the density profile:
 \begin{align}
-  \iF_{local~density}[\rho^{(1)}] = \int f(\rho^{(1)}) d\rr
+  \iF_{local~density}[n] = \int f(n(\rr)) d\rr
 \end{align}
+where $f(n(\rr))$ is the free energy per unit volume of a homogenoues
+fluid at a density $n(\rr)$.  In essence, each bit of volume becomes
+it's own thermodynamic system, with a free energy equal that of a
+homogenous density of particles at the local density, and the free
+energies from all the bits of volume are added up to get the total.
+The construction neglects any interaction between the particles, so
+that any spatial variation in the density will be due entirely to the
+varying external potential.  As an approximation for interacting
+fluids, it does in fact apply to external potentials that modulate the
+density slowly over space, much more slowly than correlation lengths.
+It has thus been used in the past to construct entire intrinsic free
+energy functionals beyond the reference $F_{ideal}$ term (cite).  It
+breaks breaks down rather quickly, however, near hard walls for
+interacting systems, where often the spheres will stack up in 'layers'
+(should see some figure) and the local densities become greater than
+bulk freezing densities (cite).
 
-where $f(\rho^{(1)})$ is the free energy per unit volume of the
-homogenoues fluid at a density $\rh$.  This approximation neglects any
-interaction between the particles, so that any spatial variation in
-the density will be due entirely to the varying external potential.
-In essence, each bit of volume becomes it's own thermodynamic system,
-with a free energy equal that of a homogenous density of particles,
-and the free energies from all the bits of volume are added up to get
-the total.  This approximation has also been used to construct entire
-intrinsic free energy functional (cite). In fact it does apply to
-external potentials that modulate the density slowly over space, much
-more slowly than correlation lengths.  The approximation breaks down
-rather quickly, however, near hard walls for interacting systems,
-where often the spheres will stack up in 'layers' (should see some
-figure) and the densities are higher than bulk freezing densities
-(cite).
-
-However, the ideal term can be constructed in this fashion, so all we
-need to do is integrate the free energy of an ideal homogenous system
-at the local density.  Going back to basic thermodynamics and
-statistical mechanics, we have:
+However, $F_{ideal}$ can be constructed exactly in this integral of
+local density fashion, so all we need to do is integrate the free
+energy of an ideal homogenous system at the local density.  Going back
+to basic thermodynamics and statistical mechanics, we have:
 \begin{align}
   F = -k_BT \ln Q_N = -k_BT \ln (\frac{V}{N!\Lambda^3})
 \end{align}
@@ -300,16 +270,13 @@ thermal wavelength.  Using th Stirling approximation for $N!$, we have
 \begin{align}
 F^{id} = Nk_BT(\ln \Lambda^3 \rho - 1))
 \end{align}
-
 Taking this as the free energy per unit volume and integrating, we
 have
 \begin{align}
-  \beta \iF[\rho] = \int d\rr \rho(\rr)(\ln (\Lambda^3\rho(\rr))-1)
+  F_{ideal}[n] = \frac{1}{\beta}\int d\rr n(\rr)(\ln (\Lambda^3 n(\rr))-1)
 \end{align}
-
-Because this term is in fact an exact one for the ideal gas, it is
-ubiqitous in the use of classical density functional theory for
-inhomogeneous and homogeneous fluids.
+This will be our reference $F_{ideal}$ term, as is common within
+Clasical Density Functional Theory.
 
 \clearpage
 \newpage
