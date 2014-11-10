@@ -284,34 +284,45 @@ Clasical Density Functional Theory.
 \section{Virial Equation, Mayer functions, and the Carnahan Starling Equation}
 
 The second term in the SAFT intrinsic free energy functional,
-$f_{hard~sphere}$, is also a reference term and is used in many other
-functionals besides the one described here.  I'll introduce the term
-and the theory behind it in some detail in the next section because it
-is so widely used and, more importantly, because an understanding of
-the ideas involved is neccesary for an understanding of our own work.
-Before describing the term itself, however, I'll explain here some
-important things that lead up to this theory, namely the Virial
-equation, Mayer functions, and the Carnahan Starling Equation.
+$f_{hard~sphere}$, is generally refered to as a reference term and the
+specific functional that we use for this term is also used in many
+other density functional theories.  I'll introduce the functional and
+the theory behind it in some detail in the next section because it is
+so widely used and, more importantly, because an understanding of the
+ideas involved is neccesary for an understanding of our own work.
+Before describing the term itself, however, I'll explain in this
+section some important things that lead up to this theory, namely the
+Virial equation, Mayer functions, and the Carnahan Starling Equation.
 
 The Virial Equation applies to homogeneous fluids.  It equates a
-thermodynamic, intensive quantity (likes the pressure) with an
-expansion of the homogeneos density of the fluid.  It's standard form
-is
+thermodynamic, intensive quantity (likes the pressure) to an expansion
+of the homogeneous density of the fluid.  It's standard form is
 \begin{align}
+  \label{eq:virial-expansion}
   \frac{\beta P}{\rho} = 1 + \sum_{i=1}^{\infty}\beta_i\eta^i.
 \end{align}
-
-The expansion comes out of a formulation of the partition function
-that is most often expressed as a series of diagrams that have well
-defined rules of construction.  I won't explain the diagrams or their
-rules here, but Figure(REF) shows an example so that if the reader
-sees them somewhere she'll know what they are.  A single term (or
-diagram) in this expansion of the partition function is in fact a
-spatial integral of an integrand composed of particle densities
-multiplied by a number of what are called Mayer Functions.  To
-explain, I'll start with the partition function:
+where
 \begin{align}
-  \Xi &= \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(\beta \mathcal{H})d\rr^Nd\mathbf{p}^N \\
+  \eta = \frac{\pi \rho \sigma^3}{6}
+\end{align}
+is the 'packing fraction'.  $\sigma$ here is the diameter of the
+spherical particles of the fluid.  The packing fraction is really just
+a more convenient way to refer to the density.  We use it extensively
+throughout our work.
+
+The expansion of Eq.~\ref{eq:virial-expansion} comes out of a
+formulation of the partition function that is most often expressed as
+a series of diagrams that have well defined rules of construction.  I
+won't explain the diagrams or their rules here, but Figure(REF) shows
+an example so that if the reader sees them somewhere she'll know what
+they are.  A single term (or diagram) in this expansion of the
+partition function is in fact a spatial integral of particle densities
+multiplied by a number of what are called Mayer Functions.  I'll give
+a loose outline of an explanation here, since a basic idea of where
+this expansion comes from should be useful to the reader.  The
+derivation starts with the partition function:
+\begin{align}
+  \Xi &= \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(-\beta \mathcal{H})d\rr^Nd\mathbf{p}^N \\
   &=\sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(-\beta (V_N + \phi(\rr))d\rr^Nd\mathbf{p}^N
 \end{align}
 where $V_N$ is the interaction potential between all the particles in
@@ -328,17 +339,17 @@ superposable interactions, i.e.
 \end{align}
 where $f(i,j)=exp(-\beta v(i,j))$ is the Mayer function between two
 particles.  With the help of the diagrams, one can take the natural
-logarithm of this function to get the grand potential, and then
-derivatives to find what are called direct correlation functions
+logarithm of the partition function to get the grand potential, and
+then derivatives to find what are called direct correlation functions
 (which I won't explain here). The use of an identity yields a
-relationship between the chemical potential and the density:
+relationship between the chemical potential and the density,
 \begin{align}
-  \beta \mu = \beta \mu^{id} - \sum_{i=1}^{\infty}\beta_i\rho^i
+  \beta \mu = \beta \mu^{id} - \sum_{i=1}^{\infty}\beta_i\rho^i.
 \end{align}
-Then the use of the following relation from thermodynamics:
+Then the use of the relation from thermodynamics,
 \begin{align}
   \left(\frac{\partial P}{\partial \rho}\right)_T \
-  = \rho \left(\frac{\partial \mu}{\partial \rho}\right)_T
+  = \rho \left(\frac{\partial \mu}{\partial \rho}\right)_T,
 \end{align}
 allows one to express the pressure as
 \begin{align}
@@ -347,17 +358,15 @@ allows one to express the pressure as
 where
 \begin{align}
   \label{eq:virial-coeff}
-  \beta_i = (\frac{6}{\pi d^3})^i B_{i+1}
+  \beta_i = (\frac{6}{\pi \sigma^3})^i B_{i+1}.
 \end{align}
 
-
-(REWRITE BELOW)
-The above formulation of a thermodynamic property is useful, but it
+The virial formulation of thermodynamic properties is useful, but it
 requires an expansion of coeffients, which can be a nuisance
-computationally.  Caranahan and Starling (cite) were able to develop a
+computationally.  Carnahan and Starling (cite) were able to develop a
 rule for coefficient generation that approximates
-Eq.~\ref{eq:virial-coeff}, but that results in integers, and ones that
-one can allow for a geometric the one written above, based on and then
+Eq.~\ref{eq:virial-coeff}, but that results in integers that one can
+allow for a geometric the one written above, based on and then
 multiple terms of a The virial coefficients $\beta_i$ based on the
 procedure above are not integers, so in order to get get to a
 thermodynamic property the series must be expanded.  Carnahan Starllng
