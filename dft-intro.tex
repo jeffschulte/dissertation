@@ -307,7 +307,7 @@ where
 \end{align}
 is the 'packing fraction'.  $\sigma$ here is the diameter of the
 spherical particles of the fluid.  The packing fraction is really just
-a more convenient way to refer to the density.  We use it extensively
+a more convenient way to refer to the density, where we give each particle the volume of a sphere and think in terms of how much volume is taken up by particles as opposed to how many there are.  We use it extensively
 throughout our work.
 
 The expansion of Eq.~\ref{eq:virial-expansion} comes out of a
@@ -365,54 +365,39 @@ The virial formulation of thermodynamic properties is useful, but it
 requires an expansion of coeffients, which can be a nuisance
 computationally.  Carnahan and Starling (cite) were able to develop a
 rule for coefficient generation that approximates
-Eq.~\ref{eq:virial-coeff}, but that results in integers that one can
-allow for a geometric the one written above, based on and then
-multiple terms of a The virial coefficients $\beta_i$ based on the
-procedure above are not integers, so in order to get get to a
-thermodynamic property the series must be expanded.  Carnahan Starllng
-constructed a method that allows them to approximate each coefficient
-by a very close integer in a sysematic fashion that allows them to
-create a geometric series.  This series yields a simple, analytic
-approximation of the pressure in the homogenous fluid as a function of
-density 3.9.17
-
-
+Eq.~\ref{eq:virial-coeff}, but that results in integers that one can use to make a geometric series.  Written in its analytic form, this series is a simple, easy to use, and accurate approximation of the pressure in a homogenous fluid as a function of
+density:
 \begin{align}
   \frac{\beta P}{\rho}=\frac{1+\eta+\eta^2-\eta^3}{(1-\eta)^3}
 \end{align}
-or for the free energy:
+It also yields the free energy in the form
 \begin{align}
-  \frac{\beta F^{ex}}{N}=\frac{\eta(4-3\eta)}{(1-\eta)^2}
+  \frac{\beta F^{ex}}{N}=\frac{\eta(4-3\eta)}{(1-\eta)^2}.
 \end{align}
-
-Its is very successful in predicting pressure of homogenous hard
+This equation is specifically very successful in predicting the pressure of the homogenous hard
 sphere fluid at different densities.
-
-White Bear uses MCSL equation of state, which is the generalization to
-the multi component mixture of hard spheres of the Carnahan-Starling
-equation of state.  We describe the Carnahan-Starling equation of
-state here because we use it in the first chapter.
-
-
 
 
 
 \section{$F_{hard~sphere}$, Fundemental Meaure Theory, and White Bear}
 
-We now return to analyzing the terms within SAFT:
+\fixme{White Bear uses MCSL equation of state, which is the generalization to
+the multi component mixture of hard spheres of the Carnahan-Starling
+equation of state.}
+
+We now return to analyzing the terms that make up the SAFT free energy:
 \begin{align}
-  F_{SAFT} = F_{ideal} + F_{hard~sphere} + F_{other terms}
+  F_{SAFT} = F_{ideal} + F_{hard~sphere} +  F_{dispersion} + F_{association}.
 \end{align}
 
-Remember that $F_{ideal}$, because it treats particles that do not
-interact with one another, can be described as an intagral of a purely
-local free energy function over the volume of the system.  In fact,
+Remember that the $F_{ideal}$ term treats particles that do not
+interact with one another.  In fact,
 this one term addresses any aspect of the system that is
-non-interactive, in the sense that every other term in $F_{SAFT}$ is
+non-interactive, in the sense that every other term in $\iF_{SAFT}$ is
 designed to specifically deal with a different type of potential
 interaction among the particles.  Thus, $F_{ideal}$ is in a sense the
-most basic reference term in the system.  However, as I've explained
-above, the seconds term, $F_{hard~sphere}$, which we will describe here,
+most basic reference term in the system.  However, as I've stated 
+above, the second term, $F_{hard~sphere}$, which I will describe here,
 is also considered to be a reference system.
 
 The potential interaction it describes is based on the fact that every
@@ -441,15 +426,12 @@ approximates the repulsion with a positive term porportional to
 $\frac{1}{r^{12}}$
 
 
-
-Once we decide upon a form for the potential, we must turn to the much
-more difficult step of designing a free energy functional that is
-appropriate for hard sphere particles.  One of the first methods by
-which people attempted to deal with these interactions (not limited to
-hard spheres) was to modify the form of the local density
+After deciding upon this form for the potential, one must turn to the much
+more difficult step of designing an appropriate free energy functional.  One of the first methods by
+which people attempted to deal with these interactions,  which is actually not limited to hard spheres, was to modify the form of the local density
 approximation free energy discussed above,
 \begin{align}
-  \iF_{local~density}[\rho^{(1)}] = \int f(\rho^{(1)}) d\rr
+  F_{local~density}[n] = \int f(n(\rr)) d\rr
 \end{align}
 to incorporate information about the particle densities immediately
 surrounding each point.  They did this by redefining the density at
@@ -457,7 +439,7 @@ each point to be a convolution of the surrounding density with a
 weighting function:
 \begin{align}
   \label{eq:convolution-of-density}
-  \bar{\rho}(\rr) = \int w(|\rr-\rr'|) \rh(\rr') d\rr'
+  \bar{n}(\rr) = \int w(|\rr-\rr'|) n(\rr') d\rr'
 \end{align}
 and then integrating this density over space to get the total free
 energy, in the same fashion (NOT THE SAME LOOK AT EQUATION) as the
@@ -504,11 +486,10 @@ derivations in my work, besides those that can be taken from the
 general characteristics (spherical nature) of the resulting Free
 Energy functional.
 
-The result of all this is an intrinsic free energy which neccasarily
-has the form:
+The result of all this is an intrinsic free energy which has the form:
 \begin{align}
   \label{eq:F-FMT-form}
-  \iF_{hard~sphere}[\rho^{(1)}] = \int \Phi({n_i(\rr')})d\rr'
+  \iF_{hard~sphere}[n] = \int \Phi({n_i(\rr')})d\rr'
 \end{align}
 The integrand $\Phi$ here is a local function of $n_i(\rr)$, which are
 the non-local convolutions of density with sphere-like weighting
