@@ -1,5 +1,3 @@
-hello
-
 \newcommand{\red}[1]{{\bf \color{red} #1}}
 \newcommand{\blue}[1]{{\bf \color{blue} #1}}
 \newcommand{\green}[1]{{\bf \color{green} #1}}
@@ -16,58 +14,30 @@ hello
 \newcommand{\needsworknow}[1]{\textcolor{red}{[\emph{#1}]}}
 %\pacs{61.20.Ne, 61.20.Gy, 61.20.Ja}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-abstract
-We investigate the value of the correlation function of an
-inhomogeneous hard-sphere fluid at contact.  This
-quantity plays a critical role in Statistical Associating Fluid
-Theory (SAFT), which is the basis of a number of recently developed classical
-density functionals.  We define two averaged values for the
-correlation function at contact, and derive formulas for each of
-them from the White Bear version of the Fundamental Measure Theory
-functional, using an assumption of
-thermodynamic consistency. We test these formulas, as well as two
-existing formulas against Monte Carlo simulations, and find
-excellent agreement between the Monte Carlo data and one of our
-averaged correlation functions.
+In this chapter I'll discuss our investigation into the value of the
+distribution function of an inhomogeneous hard-sphere fluid at
+contact.  This quantity plays a critical role in SAFT.  I define two
+averaged values for the distribution function at contact, and derive
+formulas for each of them from the White Bear version of the FMT
+functional, using an assumption of thermodynamic consistency. We have
+tested these formulas, as well as two existing formulas against Monte
+Carlo simulations, and find excellent agreement between the Monte
+Carlo data and one of our averaged distribution functions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
 % The following are papers that use a SAFT-based classical DFT with at
 % least some of the terms purely local
-\newcommand\saftlocaldft{felipe2001examination, gloor2002saft,%
-  gloor2004accurate, clark2006developing, gloor2007prediction,%
-  kahl2008modified, gross2009density}
-% The following are papers that use a SAFT-based classical DFT with
-% all the terms that should be non-local being non-local.
-\newcommand\saftnonlocaldft{yu2002fmt-dft-inhomogeneous-associating,%
-  fu2005vapor-liquid-dft,bryk2006density}
 
-There has been considerable recent interest in using Statistical
-Associating Fluid Theory (SAFT) to construct classical density
-functionals to describe associating
-fluids\cite{\saftlocaldft,yu2002fmt-dft-inhomogeneous-associating,%
-  fu2005vapor-liquid-dft,bryk2006density}.  This approach has been
-successful in qualitatively describing the dependence of surface
-tension on temperature.
-%
-%% Unfortunately, most of these constructed
-%% functionals\cite{\saftlocaldft} cannot be used to study arbitrary
-%% inhomogeneous density distributions, because they use local density
-%% approximations that are only valid for densities that vary slowly over
-%% molecular length scales.
-%
-A key input to these functionals is the correlation function
-evaluated at contact, which is identical to the contact value of the cavity
-correlation function for hard spheres, and is required for both the chain and
-association terms in the SAFT free energy.  The chain term describes
-the chain formation energy in polymeric fluids, while the association
-term describes the effects of hydrogen bonding, both of which can be
-large.
-%
+A key input to the SAFT functionals is the distribution function
+evaluated at contact, which is identical to the contact value of the
+cavity correlation function for hard spheres, and is required for both
+the chain and association terms in the SAFT free energy.
+
 Yu and Wu introduced in 2002 a functional for the association term of
 the free energy, which included a functional for the contact value of
-the correlation function (described in
+the distribution function (described in
 Section~\ref{sec:yuwu})\cite{yu2002fmt-dft-inhomogeneous-associating},
 which has subsequently been used in the development of other
 SAFT-based functionals\cite{fu2005vapor-liquid-dft, bryk2006density}.
@@ -81,30 +51,30 @@ SAFT-based functionals\cite{fu2005vapor-liquid-dft, bryk2006density}.
 %% functional\cite{roth2002whitebear}.
 Two functionals for the chain contribution have recently been
 introduced, one which uses the
-correlation function of Yu and Wu\cite{bryk2006density} and another which
+distribution function of Yu and Wu\cite{bryk2006density} and another which
 introduces a new approximation for the contact value of the
-correlation function\cite{gross2009density}.
+distribution function\cite{gross2009density}.
 %% The dispersion term is long-range and thus has significant
 %% dependence on the density distribution, but because its relatively
 %% weak position dependence, is amenable to mean-field approximations.
 
-Here we will briefly describe how the contact value of the correlation
-function has been used in two of these recent papers introducing SAFT-based
-classical density functionals.  For simplicity, we
-will use our own notation to describe the work of these authors.  In
-his paper presenting a density functional based on the PCP-SAFT
-equation of state\cite{gross2009density}, Gross introduces the chain
-free energy in SAFT as
+Here I will briefly describe how the contact value of the distribution
+function has been used in two of these recent papers introducing
+SAFT-based classical density functionals.  For simplicity, I will use
+our own notation to describe the work of these authors.  In his paper
+presenting a density functional based on the PCP-SAFT equation of
+state\cite{gross2009density}, Gross introduces the chain free energy
+in SAFT as
 \begin{align}
   \frac{A_\textit{chain}}{kT} &= -(m-1) \int n(\rr) \left(\ln\left(n^A(\rr)
   g_\sigma^A(\rr) \right)-1\right) d\rr \label{eq:Achain}
 \end{align}
 where $n^A(\rr)$ is a weighted density defined in Equation~\ref{eq:nA}
-and $g_\sigma^A(\rr)$ is the local value of the correlation function at
-contact, which we define in Equation~\ref{eq:gA}.  In
-Section~\ref{sec:gross} we describe Gross's approximation for this
-function. In a paper describing a classical
-density functional for inhomogeneous associating
+and $g_\sigma^A(\rr)$ is the local value of the distribution function
+at contact, which we define in Equation~\ref{eq:gA}.  In
+Section~\ref{sec:gross} I describe Gross's approximation for this
+function. In a paper describing a classical density functional for
+inhomogeneous associating
 fluids\cite{yu2002fmt-dft-inhomogeneous-associating}, Yu and Wu define
 the association free energy as
 \begin{align}
@@ -119,49 +89,49 @@ where $X_i(\rr)$ is the fraction of interaction sites of type $i$ at
 position $\rr$ that are unoccupied, $n_0(\rr)$ is a weighted density
 defined in Equation~\ref{eq:n0}, $\zeta(\rr)$ is a nonlocal measure of
 the density gradient defined in Equation~\ref{eq:zeta}, and
-$g_\sigma^S(\rr)$ is a form of the correlation
-function at contact, which we define in Equation~\ref{eq:gS}.  In
-Section~\ref{sec:yuwu} we present the approximation to
-$g_\sigma^S(\rr)$ introduced by Yu and Wu.
-Given these differing approaches, it seems valuable to examine this
-property of the hard-sphere fluid through direct simulation, in order
-to establish the advantages and disadvantages of each approach.
+$g_\sigma^S(\rr)$ is a form of the distribution function at contact,
+which I define in Equation~\ref{eq:gS}.  In Section~\ref{sec:yuwu} I
+present the approximation to $g_\sigma^S(\rr)$ introduced by Yu and
+Wu.  Given these differing approaches, it seems valuable to examine
+this property of the hard-sphere fluid through direct simulation, in
+order to establish the advantages and disadvantages of each approach.
 
 Although these recent works have introduced approximate functionals
-for the contact value of the correlation function for an inhomogeneous
-hard-sphere fluid\cite{yu2002fmt-dft-inhomogeneous-associating,
-  gross2009density}, there has not been a study that specifically
-addresses this functional.
+for the contact value of the distribution function for an
+inhomogeneous hard-sphere
+fluid\cite{yu2002fmt-dft-inhomogeneous-associating, gross2009density},
+there had not been a study that specifically addressed this
+functional.
 %
-In this paper we introduce two definitions for the locally averaged
-correlation function of an inhomogeneous system.
+In our work we introduced two definitions for the locally averaged
+distribution function of an inhomogeneous system.
 %
 %% The first is more symmetric (which we call the $S$ case), while the
 %% second involves a sphere-centered, asymmetrical interpretation (the
 %% $A$ case).
 %
-Given these definitions, we will present a thermodynamic derivation
-for each correlation function from the free energy functional.  We
-will then discuss the correlation functions of Yu and Wu and of Gross, and
+Given these definitions, I'll present a thermodynamic derivation for
+each distribution function from the free energy functional.  I will
+then discuss the distribution functions of Yu and Wu and of Gross, and
 will end by comparing all four approximations with Monte-Carlo
 simulations of the hard-sphere fluid at a variety of hard-wall
 surfaces.
 
 
-\section{Correlation function with inhomogeneity}
+\section{Distribution function with inhomogeneity}
 
-We define our terms using the two-particle density
+I define our terms using the two-particle density
 $n^{(2)}(\rr_1,\rr_2)$, which gives the probability per unit volume
 squared of finding one particle at position $\rr_1$ and the other at
-position $\rr_2$.  The pair correlation function is defined by
+position $\rr_2$.  The pair distribution function is defined by
 \begin{align}
   g(\rr_1,\rr_2) &\equiv \frac{n^{(2)}(\rr_1,\rr_2)}{n(\rr_1)n(\rr_2)}
 \end{align}
-In a homogeneous fluid, the pair correlation only depends on the
+In a homogeneous fluid, the pair distribution only depends on the
 distance $|\rr_1-\rr_2|$ and can be expressed as a function of a
-single variable, and the contact value of the correlation function is
+single variable, and the contact value of the distribution function is
 its value when evaluated at a distance of the diameter $\sigma$.  The
-pair correlation function of an \emph{inhomogeneous} fluid is not as
+pair distribution function of an \emph{inhomogeneous} fluid is not as
 simple, but it is desirable for reasons of computational efficiency to
 construct classical density functionals using only one-center
 convolutions.  Moreover, a local function is helpful when defining
@@ -174,7 +144,7 @@ that used in Equations~\ref{eq:Aassoc}-\ref{eq:X} (which we refer to
 as $S$) and an asymmetric formulation such as that used in
 Equation~\ref{eq:Achain} (which we refer to as $A$).
 
-For the symmetric $S$ case, the correlation function at contact is
+For the symmetric $S$ case, the distribution function at contact is
 given by:
 \begin{align}
   g^S_\sigma(\rr) &= \frac{1}{n_0(\rr)^2}\int n^{(2)}(\rr - \rr', \rr
@@ -195,14 +165,18 @@ the position $\rr$.  Together, $n_0(\rr)$ and $g_\sigma^S(\rr)$ are
 used in the association free energy given in Equations~\ref{eq:Aassoc}-\ref{eq:X}.
 
 \begin{figure}
+\begin{center}
 \includegraphics[width=5cm]{figs/n0}
+\end{center}
 \caption{Set of hard spheres that are included in $n_0(\mathbf{r})$, which
   consist of those which just touch the point $\mathbf{r}$.}
 \label{fig:n0}
 \end{figure}
 
 \begin{figure}
+\begin{center}
 \includegraphics[width=7cm]{figs/nA}
+\end{center}
 \caption{Set of hard spheres that are included in $n_A(\mathbf{r})$,
   which consist of those which just touch a sphere centered at
   $\mathbf{r}$.  The dashed line illustrates the surface over which
@@ -210,7 +184,7 @@ used in the association free energy given in Equations~\ref{eq:Aassoc}-\ref{eq:X
 \label{fig:nA}
 \end{figure}
 
-In contrast, the asymmetrically averaged $A$ correlation function is
+In contrast, the asymmetrically averaged $A$ distribution function is
 given by
 \begin{align}
   g^A_\sigma(\rr) &= \frac{1}{n(\rr)n_A(\rr)}
@@ -229,7 +203,7 @@ density over spheres touching a sphere that is located at the
 position~$\rr$.  The functionals $n_A(\rr)$ and $g_\sigma^A(\rr)$ are
 used in the chain free energy given in Equation~\ref{eq:Achain}.
 
-%% In the process of defining these two averaged correlation functions,
+%% In the process of defining these two averaged distribution functions,
 %% we also defined two averaged densities, $n_0(\rr)$ and $n_A(\rr)$,
 %% which are the density of spheres available to be in
 %% contact.  In the homogeneous limit, $n_0 = n_A = n$.  It is an
@@ -249,7 +223,7 @@ used in the chain free energy given in Equation~\ref{eq:Achain}.
 %% Sections~\ref{sec:g-S} and~\ref{sec:g-A}.  We will report on the accuracy of
 %% these approximations by comparing with Monte Carlo simulations of the
 %% inhomogeneous hard-sphere fluid.  We will focus on the contact
-%% densities, rather than the correlation function itself, because these
+%% densities, rather than the distribution function itself, because these
 %% are simpler, and because they are the quantity that you want to
 %% ``average''.  i.e. if you were to average $g$ itself, you'd want to
 %% weight that average based on the density, which would mean averaging
@@ -297,8 +271,8 @@ used in the chain free energy given in Equation~\ref{eq:Achain}.
 %%   \Delta^{AB} &= g(\sigma) \kappaassoc\left( e^{\epsilonassoc/kT} -
 %%   1 \right)\label{eq:delta}
 %% \end{align}
-%% where $g(\sigma)$ is the correlation function evaluated at contact.
-%% The product of density with correlation function evaluated at contact
+%% where $g(\sigma)$ is the distribution function evaluated at contact.
+%% The product of density with distribution function evaluated at contact
 %% gives the contact density, when we combine Equations~\ref{eq:X} and
 %% \ref{eq:delta}:
 %% \begin{align}
@@ -313,53 +287,57 @@ used in the chain free energy given in Equation~\ref{eq:Achain}.
 %% by adding a perturbative correction to the contact value for a hard
 %% sphere fluid.
 
-\subsection*{Fundamental-Measure Theory}
+%% \subsection*{Fundamental-Measure Theory}
 
-We use the White Bear version of the Fundamental-Measure Theory~(FMT)
-functional~\cite{roth2002whitebear}, which describes the excess free
-energy of a hard-sphere fluid.  The White Bear functional reduces to
-the Carnahan-Starling equation of state for homogeneous systems.  It
-is written as an integral over all space of a local function of a set
-of ``fundamental measures'' $n_\alpha(\rr)$, each of which is written
-as a one-center convolution of the density.  The White Bear free
-energy is thus
-\begin{equation}
-A_\textit{HS}[n] = k_B T \int \left(\Phi_1(\rr) + \Phi_2(\rr) + \Phi_3(\rr)\right) d\rr \; ,
-\end{equation}
-with integrands
-\begin{align}
-\Phi_1 &= -n_0 \ln\left( 1 - n_3\right) \label{eq:Phi1}\\
-\Phi_2 &= \frac{n_1 n_2 - \mathbf{n}_{V1} \cdot\mathbf{n}_{V2}}{1-n_3} \\
-\Phi_3 &= (n_2^3 - 3 n_2 \mathbf{n}_{V2} \cdot \mathbf{n}_{V2}) \frac{
-  n_3 + (1-n_3)^2 \ln(1-n_3)
-}{
-  36\pi n_3^2\left( 1 - n_3 \right)^2
-} , \label{eq:Phi3}
-\end{align}
-using the fundamental measures
-\begin{align}
-  n_3(\rr) &= \int n(\rr') \Theta(\sigma/2 -\left|\rr - \rr'\right|)
-  d\rr' \label{eq:FMn3} \\
-  n_2(\rr) &= \int n(\rr') \delta(\sigma/2 -\left|\rr - \rr'\right|) d\rr' \\
-  \mathbf{n}_{2V}(\rr) &= \int n(\rr') \delta(\sigma/2 -\left|\rr - \rr'\right|) \frac{\rr-\rr'}{|\rr-\rr'|}d\rr'
-\end{align}
-\begin{align}
-  \mathbf{n}_{V1} = \frac{\mathbf{n}_{V2}}{2\pi \sigma}, \quad
-  n_1 &= \frac{n_2}{2\pi \sigma} , \quad
-  n_0 = \frac{n_2}{\pi \sigma^2} \label{eq:FMrest}
-\end{align}
+%% We use the White Bear version of the Fundamental-Measure Theory~(FMT)
+%% functional~\cite{roth2002whitebear}, which describes the excess free
+%% energy of a hard-sphere fluid.  The White Bear functional reduces to
+%% the Carnahan-Starling equation of state for homogeneous systems.  It
+%% is written as an integral over all space of a local function of a set
+%% of ``fundamental measures'' $n_\alpha(\rr)$, each of which is written
+%% as a one-center convolution of the density.  The White Bear free
+%% energy is thus
+%% \begin{equation}
+%% A_\textit{HS}[n] = k_B T \int \left(\Phi_1(\rr) + \Phi_2(\rr) + \Phi_3(\rr)\right) d\rr \; ,
+%% \end{equation}
+%% with integrands
+%% \begin{align}
+%% \Phi_1 &= -n_0 \ln\left( 1 - n_3\right) \label{eq:Phi1}\\
+%% \Phi_2 &= \frac{n_1 n_2 - \mathbf{n}_{V1} \cdot\mathbf{n}_{V2}}{1-n_3} \\
+%% \Phi_3 &= (n_2^3 - 3 n_2 \mathbf{n}_{V2} \cdot \mathbf{n}_{V2}) \frac{
+%%   n_3 + (1-n_3)^2 \ln(1-n_3)
+%% }{
+%%   36\pi n_3^2\left( 1 - n_3 \right)^2
+%% } , \label{eq:Phi3}
+%% \end{align}
+%% using the fundamental measures
+%% \begin{align}
+%%   n_3(\rr) &= \int n(\rr') \Theta(\sigma/2 -\left|\rr - \rr'\right|)
+%%   d\rr' \label{eq:FMn3} \\
+%%   n_2(\rr) &= \int n(\rr') \delta(\sigma/2 -\left|\rr - \rr'\right|) d\rr' \\
+%%   \mathbf{n}_{2V}(\rr) &= \int n(\rr') \delta(\sigma/2 -\left|\rr - \rr'\right|) \frac{\rr-\rr'}{|\rr-\rr'|}d\rr'
+%% \end{align}
+%% \begin{align}
+%%   \mathbf{n}_{V1} = \frac{\mathbf{n}_{V2}}{2\pi \sigma}, \quad
+%%   n_1 &= \frac{n_2}{2\pi \sigma} , \quad
+%%   n_0 = \frac{n_2}{\pi \sigma^2} \label{eq:FMrest}
+%% \end{align}
 
 \section{Theoretical Approaches}
+%% As stated in the Introduction \fixme{reference the intro}, we use the
+%% White Bear version of the FMT functional~\cite{roth2002whitebear}.
 
 \subsection{Homogeneous limit}
 
-In order to motivate our derivation of the correlation function at
-contact for the \emph{inhomogeneous} hard-sphere fluid, we begin by
+In order to motivate our derivation of the distribution function at
+contact for the \emph{inhomogeneous} hard-sphere fluid, I begin by
 deriving the well-known formula for $g_\sigma$ for the
 \emph{homogeneous} fluid that comes from the Carnahan-Starling free
-energy.  The contact value of the correlation function density can be
-found by using the contact-value theorem, which states that the
-pressure on any hard surface is determined by the density at contact:
+energy.  The contact value of the distribution function density can be
+found by using the contact-value theorem, discussed in the
+introduction (\fixme{intro section where introduce this}) which states
+that the pressure on any hard surface is determined by the density at
+contact:
 \begin{align}
   p_{\textit{SAS}}(\rr_c) &= k_BT n(\rr_c)
 \end{align}
@@ -394,7 +372,7 @@ spheres in the fluid.
   &= k_BT n \frac{1 - \frac{\eta}2}{(1-\eta)^3}
 \end{align}
 Using the contact-value theorem, we thus find the well-known
-correlation function evaluated at contact.
+distribution function evaluated at contact.
 \begin{align}
   g_\sigma &= \frac{1 - \frac{\eta}2}{(1-\eta)^3} \label{eq:cs-g}
 \end{align}
@@ -402,18 +380,18 @@ Extending this derivation to the inhomogeneous fluid requires that we
 find the pressure felt by the surface of particular spheres.
 
 
-\subsection{Asymmetrically averaged correlation function}\label{sec:g-A}
+\subsection{Asymmetrically averaged distribution function}\label{sec:g-A}
 
-We will begin our derivation of the locally averaged correlation
+We will begin our derivation of the locally averaged distribution
 function with the asymmetric definition of $g_\sigma^A(\rr)$ given in
 Equation~\ref{eq:gA}, which is averaged over contacts in which one of
-the two spheres is located at position~$\rr$.  This correlation
+the two spheres is located at position~$\rr$.  This distribution
 function is related to the contact density averaged over the solvent accessible surface
 of a sphere located at~$\rr$, and can thus be determined by finding
 the pressure on that surface.  We find this pressure from the change in
 free energy resulting from an infinitesimal expansion of spheres
 located at position~$\rr$.  From this pressure, we derive a
-formula for the correlation function $g_\sigma^A(\rr)$ as was done in
+formula for the distribution function $g_\sigma^A(\rr)$ as was done in
 the previous section:
 \begin{align}
   p_{\textit{SAS}}(\mathbf{r}) &= \frac{1}{n(\rr) 4\pi \sigma^2}\frac12 \frac{\delta
@@ -441,11 +419,11 @@ energy itself.
   \end{widetext}
 }
 
-\subsection{Symmetrically averaged correlation function}\label{sec:g-S}
+\subsection{Symmetrically averaged distribution function}\label{sec:g-S}
 
-We now address the symmetrically averaged correlation function, which
+We now address the symmetrically averaged distribution function, which
 is defined in Equation~\ref{eq:gS}.  This corresponds to the
-correlation function averaged for spheres \emph{touching at a given
+distribution function averaged for spheres \emph{touching at a given
   point}.  In this case, we conceptually would like to evaluate the
 pressure felt by the surface of spheres where that surface is located
 at point~$\rr$.  We can approximate this value by assuming that this
@@ -484,8 +462,8 @@ nevertheless improves the predictions of our functional $g_\sigma^S$, while at t
 same time reducing its computational cost by avoiding the need to
 calculate any additional weighted densities or convolutions.
 
-\subsection{Gross's asymmetrically averaged correlation functional}\label{sec:gross}
-One approximation for the correlation function is that of
+\subsection{Gross's asymmetrically averaged distribution functional}\label{sec:gross}
+One approximation for the distribution function is that of
 Gross\cite{gross2009density}, which is of the asymmetrically averaged
 variety ($g_\sigma^A$):
 \begin{align}
@@ -499,12 +477,12 @@ where $\bar{\eta}$ is defined as
 \end{align}
 This formula is arrived at by using the density averaged over all
 spheres that overlap a point~$\rr$ in the
-Carnahan-Starling equation for the correlation function at contact,
+Carnahan-Starling equation for the distribution function at contact,
 given in Equation~\ref{eq:cs-g}.
 
 \subsection{Yu and Wu's symmetrically averaged functional}\label{sec:yuwu}
 
-Yu and Wu developed a functional for the correlation function
+Yu and Wu developed a functional for the distribution function
 evaluated at contact which is symmetrically
 averaged~\cite{yu2002fmt-dft-inhomogeneous-associating}.  However,
 instead of using $n_0$ as the corresponding density, they use a
@@ -515,18 +493,18 @@ density given by
 \end{align}
 where the function $\zeta$ is a measure of local inhomogeneity at the
 point of contact, and has the effect of reducing this density at
-interfaces.  Because of this difference, the correlation function of
+interfaces.  Because of this difference, the distribution function of
 Yu and Wu cannot be directly compared with $g_\sigma^S$ as defined in
 Equation~\ref{eq:gS}.  Therefore in order to make a comparison we move
 the factors of $\zeta$ in Equation~\ref{eq:nYu} from the density into
-the correlation function itself.
+the distribution function itself.
 \begin{align}
   g_\sigma^\text{Yu,S} &= \zeta^2 g_\sigma^\text{Yu} \\
    &= \zeta^2\left(\frac{1}{1-n_3}
     + \frac14 \frac{\sigma n_2\zeta}{(1-n_3)^2}
     + \frac1{72} \frac{\sigma^2 n_2^2 \zeta}{(1-n_3)^3}\right)
 \end{align}
-where $g_\sigma^\text{Yu}$ is the correlation function as defined in
+where $g_\sigma^\text{Yu}$ is the distribution function as defined in
 reference~\cite{yu2002fmt-dft-inhomogeneous-associating}, and
 $g_\sigma^\text{Yu,S}$ is the function we will examine in this paper.
 
@@ -543,11 +521,11 @@ $g_\sigma^\text{Yu,S}$ is the function we will examine in this paper.
 
 %% \begin{figure}
 %%   \includegraphics[width=\columnwidth]{figs/walls-10}
-%%   \caption{Density and correlation function at a hard wall with bulk
+%%   \caption{Density and distribution function at a hard wall with bulk
 %%     filling fraction of 0.1.  In the top and middle panels are plotted
-%%     the asymmetrically averaged correlation function $g_\sigma^A$
+%%     the asymmetrically averaged distribution function $g_\sigma^A$
 %%     (defined in Equation~\ref{eq:gA}) and the symmetrically averaged
-%%     correlation function $g_\sigma^S$ (defined in
+%%     distribution function $g_\sigma^S$ (defined in
 %%     Equation~\ref{eq:gS}).  The results of Monte Carlo, our functional,
 %%     and one previously published functional\cite{gross2009density,
 %%       yu2002fmt-dft-inhomogeneous-associating} are compared in each
@@ -559,9 +537,9 @@ $g_\sigma^\text{Yu,S}$ is the function we will examine in this paper.
 \section{Comparison with simulation}\label{sec:comparison}
 
 We performed a Monte-Carlo simulation of the hard sphere fluid to
-measure the contact value of the correlation function for several
+measure the contact value of the distribution function for several
 simple inhomogeneous configurations.  For each configuration, we
-compute the mean density, and the contact values of the correlation
+compute the mean density, and the contact values of the distribution
 function, averaged as defined in Equations~\ref{eq:gA} and
 \ref{eq:gS}.  We compare these with the functionals presented in
 sections~\ref{sec:g-A} to~\ref{sec:yuwu}.  We constructed our
@@ -590,7 +568,7 @@ chose these as typical examples.
 
 %% \begin{figure}
 %%   \includegraphics[width=\columnwidth]{figs/inner-4-10}
-%%   \caption{(Color online) Density and correlation function around a hard sphere with
+%%   \caption{(Color online) Density and distribution function around a hard sphere with
 %%     diameter the same as those in the fluid, with a bulk filling
 %%     fraction of 0.1.}
 %%   \label{fig:inner-4-10}
@@ -605,16 +583,16 @@ chose these as typical examples.
   %%   (b)\includegraphics[width=8cm]{figs/inner-12-10} &
   %%   (d)\includegraphics[width=8cm]{figs/outer-16-01}
   %% \end{tabular}
-  \caption{ (Color online) Density and correlation function in systems
+  \caption{ (Color online) Density and distribution function in systems
     with a ``low density'' bulk filling fraction of 0.1.  The
     subplots each show a different system: (a) next to a flat hard wall, (b)
     around a hard sphere with an excluded diameter of $6\sigma$, (c)
     around a hard sphere with an excluded diameter of $2\sigma$, and
     (d) within a spherical cavity with an included diameter of $16\sigma$.
     In the top and middle panels of each subfigure respectively are the
-    asymmetrically averaged correlation function $g_\sigma^A$ (defined
+    asymmetrically averaged distribution function $g_\sigma^A$ (defined
     in Equation~\ref{eq:gA}) and the symmetrically averaged
-    correlation function $g_\sigma^S$ (defined in
+    distribution function $g_\sigma^S$ (defined in
     Equation~\ref{eq:gS}).  The results of Monte Carlo, our
     functional, and one previously published
     functional\cite{gross2009density,
@@ -629,7 +607,7 @@ chose these as typical examples.
 We begin by presenting our low-density results, corresponding to a
 filling fraction of 0.1, which are shown in
 Figure~\ref{fig:low-density}.  At this low density,
-the contact value of the correlation function in the bulk is only 1.3,
+the contact value of the distribution function in the bulk is only 1.3,
 indicating that correlations are indeed small and that the fluid should be
 relatively easy to model.  Indeed, the contact density at the hard
 surface is only around 50\% higher than the bulk, and the FMT
@@ -637,22 +615,22 @@ predicted density is close to indistinguishable from the true
 density for each of the four configurations, as seen in the bottom
 subpanel of each subfigure within Figure~\ref{fig:low-density}.
 
-The $g_\sigma^A$ correlation function in each configuration (plotted
+The $g_\sigma^A$ distribution function in each configuration (plotted
 in the top panel of each subfigure within Figure~\ref{fig:low-density}) is
 very flat, with only small, smooth changes as the surface is approached.
 Our functional $g_\sigma^A$ very closely matches the Monte Carlo
 predictions in each case, while that of Gross consistently
-underestimates the correlation at the interface by a significant margin.  We note that the theoretical curves
+underestimates the distribution at the interface by a significant margin.  We note that the theoretical curves
 extend into the region from which the fluid is excluded.  This value
-corresponds to the correlation function that would be observed in the
+corresponds to the distribution function that would be observed in the
 vanishingly unlikely scenario in which there was a sphere present at
 that location.  Naturally, we are unable to observe this quantity in
 our Monte Carlo simulations.
 
-The $g_\sigma^S$ correlation function (plotted
+The $g_\sigma^S$ distribution function (plotted
 in the middle panels of Figure~\ref{fig:low-density}) shows considerably more
 structure, as well as additional variation due to the curvature of the
-hard surface.  The symmetric correlation function is nonzero at
+hard surface.  The symmetric distribution function is nonzero at
 locations where spheres may touch, which for a convex hard surface
 means that $g_\sigma^S$ may be nonzero in the volume in which hard
 spheres are excluded.  In every configuration studied, the agreement
@@ -660,7 +638,7 @@ between the theoretical predictions and the Monte Carlo simulation in
 each case is very poor in the region where there should be no contacts
 at all.  Because $n_0$ is comparable to its bulk value in this region,
 this means that these functionals predict a significant number of
-contacts in the region where there should be none.  The correlation
+contacts in the region where there should be none.  The distribution
 function of Yu and Wu~\cite{yu2002fmt-dft-inhomogeneous-associating}
 and ours described in Section~\ref{sec:g-S} give similar results, with
 slightly larger errors in our prediction.
@@ -674,16 +652,16 @@ slightly larger errors in our prediction.
   %%   (b)\includegraphics[width=8cm]{figs/inner-12-40} &
   %%   (d)\includegraphics[width=8cm]{figs/outer-16-04}
   %% \end{tabular}
-  \caption{ (Color online) Density and correlation function in systems
+  \caption{ (Color online) Density and distribution function in systems
     with a ``high density'' bulk filling fraction of 0.4.  The
     subplots each show a different system: (a) next to a flat hard wall, (b)
     around a hard sphere with an excluded diameter of $6\sigma$, (c)
     around a hard sphere with an excluded diameter of $2\sigma$, and
     (d) within a spherical cavity with an included diameter of $16\sigma$.
     In the top and middle panels of each subfigure respectively are the
-    asymmetrically averaged correlation function $g_\sigma^A$ (defined
+    asymmetrically averaged distribution function $g_\sigma^A$ (defined
     in Equation~\ref{eq:gA}) and the symmetrically averaged
-    correlation function $g_\sigma^S$ (defined in
+    distribution function $g_\sigma^S$ (defined in
     Equation~\ref{eq:gS}).  The results of Monte Carlo, our
     functional, and one previously published
     functional\cite{gross2009density,
@@ -697,10 +675,10 @@ slightly larger errors in our prediction.
 
 At a higher density corresponding to a filling fraction of 0.4,
 correlations are much stronger, with the bulk contact value of the
-correlation function of 3.7, as seen in Figure~\ref{fig:high-density}.
+distribution function of 3.7, as seen in Figure~\ref{fig:high-density}.
 This results in larger oscillations in the density at the hard
 surfaces, and correspondingly more interesting behavior in the
-correlation function near the interface, as shown in the bottom panels
+distribution function near the interface, as shown in the bottom panels
 of the plots in Figure~\ref{fig:high-density}.  The density predicted
 by the White Bear functional agrees reasonably well with the
 simulation results, although not so well as it did at lower density.
@@ -708,31 +686,31 @@ The discrepancies are largest in the case of the spherical cavity
 (Figure~\ref{fig:high-density}d), in which the DFT considerably
 underestimates the range of the density oscillations.
 
-The asymmetric version of the correlation function (plotted
+The asymmetric version of the distribution function (plotted
 in the top panels of Figure~\ref{fig:high-density}) once again displays
 relatively smooth behavior with a few small
 oscillations near the interface, and a somewhat elevated value within
 a diameter of the hard surface, with the magnitude of this elevation
 somewhat different in each configuration.  As was the case at low
-density, our correlation function $g_\sigma^A$ matches very closely
+density, our distribution function $g_\sigma^A$ matches very closely
 the Monte Carlo data, reproducing quite well the structure near the
 interface in each configuration, although in the spherical cavity there is a small, but significant
 discrepancy, comparable to the discrepancy found in the density
-itself.  In each case, the correlation of Gross dramatically
-underestimates the correlation at the interface, at one extreme by
+itself.  In each case, the distribution of Gross dramatically
+underestimates the distribution at the interface, at one extreme by
 40\% in the case of the spherical cavity
 (Figure~\ref{fig:high-density}d), and at the other extreme by 15\%
 in the test-particle scenario (Figure~\ref{fig:high-density}c).
 
 %% \begin{figure}
 %%   \includegraphics[width=\columnwidth]{figs/outer-16-04}
-%%   \caption{Density and correlation functions near the surface of a
+%%   \caption{Density and distribution functions near the surface of a
 %%     spherical cavity with diameter $16\sigma$ at a bulk filling
 %%     fraction of 0.4.}
 %%   \label{fig:outer-40}
 %% \end{figure}
 
-The symmetrically averaged correlation function (plotted
+The symmetrically averaged distribution function (plotted
 in the middle panels of Figure~\ref{fig:high-density}) shows considerably
 more structure near the interface at high density, and this structure
 varies considerably depending on the curvature of the hard surface.
@@ -751,15 +729,15 @@ which we derive in Section~\ref{sec:g-S}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion}
 We investigated several approximations to the contact value of the
-correlation function for inhomogeneous fluid distributions
+distribution function for inhomogeneous fluid distributions
 corresponding to flat, concave, and convex walls.  We
-defined and simulated two averages of the correlation function, an
+defined and simulated two averages of the distribution function, an
 asymmetric $A$ average centered at the location of one of the two
 spheres that is in contact, and a symmetric $S$ average centered at
 the point of contact of touching spheres.  For each average, we
 derived a functional form from FMT, and also found an approximation
 that has been used in the literature.  When compared with essentially
-exact Monte Carlo simulations, the $A$ correlation function derived
+exact Monte Carlo simulations, the $A$ distribution function derived
 from Fundamental Measure Theory in Section~\ref{sec:g-A} gives
 excellent results for each surface, at both high density and low
 density.  The other three approximations that we studied all showed
@@ -791,7 +769,7 @@ Section~\ref{sec:g-A}.
 
 $\mathbf{Appendix}$
 
-The expression for the asymmetric correlation function
+The expression for the asymmetric distribution function
 $g_\sigma^A(\rr)$ (Equation~\ref{eq:g-A-exact}) involves the
 functional derivative $\frac{\delta A_{HS}}{\delta
   \sigma(\mathbf{r})}$.  In this appendix we will explain how this
@@ -836,7 +814,7 @@ $\rr$ is
 This pattern will hold for each fundamental measure: because we are
 seeking the change in free energy when spheres at point~$\rr$ are
 expanded, the integral over density is eliminated.  To compute the
-correlation funtion $g_\sigma^A$, we convolve this delta function with
+distribution funtion $g_\sigma^A$, we convolve this delta function with
 the product of the density and a local derivative of $\Phi(\rr)$:
 \begin{align}
   \frac{\delta A_{HS}}{\delta \sigma(\rr)} &= \int \frac{\partial \Phi(\rr')}{\partial
