@@ -365,8 +365,11 @@ The virial formulation of thermodynamic properties is useful, but it
 requires an expansion of coeffients, which can be a nuisance
 computationally.  Carnahan and Starling (cite) were able to develop a
 rule for coefficient generation that approximates
-Eq.~\ref{eq:virial-coeff}, but that results in integers that one can use to make a geometric series.  Written in its analytic form, this series is a simple, easy to use, and accurate approximation of the pressure in a homogenous fluid as a function of
-density:
+Eq.~\ref{eq:virial-coeff}, but that results in integers that one can
+use to make a geometric series.  Written in its analytic form, this
+series is a simple, easy to use, and accurate approximation of the
+pressure in a homogenous fluid as a function of density (or packing
+fraction $\eta$):
 \begin{align}
   \frac{\beta P}{\rho}=\frac{1+\eta+\eta^2-\eta^3}{(1-\eta)^3}
 \end{align}
@@ -374,8 +377,8 @@ It also yields the free energy in the form
 \begin{align}
   \frac{\beta F^{ex}}{N}=\frac{\eta(4-3\eta)}{(1-\eta)^2}.
 \end{align}
-This equation is specifically very successful in predicting the pressure of the homogenous hard
-sphere fluid at different densities.
+This equation is specifically very successful in predicting the
+pressure of the homogenous hard sphere fluid at different densities.
 
 
 
@@ -387,7 +390,7 @@ equation of state.}
 
 We now return to analyzing the terms that make up the SAFT free energy:
 \begin{align}
-  F_{SAFT} = F_{ideal} + F_{hard~sphere} +  F_{dispersion} + F_{association}.
+  \iF_{SAFT} = F_{ideal} + F_{hard~sphere} +  F_{dispersion} + F_{association}.
 \end{align}
 
 Remember that the $F_{ideal}$ term treats particles that do not
@@ -396,7 +399,7 @@ this one term addresses any aspect of the system that is
 non-interactive, in the sense that every other term in $\iF_{SAFT}$ is
 designed to specifically deal with a different type of potential
 interaction among the particles.  Thus, $F_{ideal}$ is in a sense the
-most basic reference term in the system.  However, as I've stated 
+most basic reference term in the system.  However, as I've stated
 above, the second term, $F_{hard~sphere}$, which I will describe here,
 is also considered to be a reference system.
 
@@ -426,10 +429,12 @@ approximates the repulsion with a positive term porportional to
 $\frac{1}{r^{12}}$
 
 
-After deciding upon this form for the potential, one must turn to the much
-more difficult step of designing an appropriate free energy functional.  One of the first methods by
-which people attempted to deal with these interactions,  which is actually not limited to hard spheres, was to modify the form of the local density
-approximation free energy discussed above,
+After deciding upon this form for the potential, one must turn to the
+much more difficult step of designing an appropriate free energy
+functional.  One of the first methods by which people attempted to
+deal with these interactions, which is actually not limited to hard
+spheres, was to modify the form of the local density approximation
+free energy discussed above,
 \begin{align}
   F_{local~density}[n] = \int f(n(\rr)) d\rr
 \end{align}
@@ -441,55 +446,56 @@ weighting function:
   \label{eq:convolution-of-density}
   \bar{n}(\rr) = \int w(|\rr-\rr'|) n(\rr') d\rr'
 \end{align}
-and then integrating this density over space to get the total free
-energy, in the same fashion (NOT THE SAME LOOK AT EQUATION) as the
-local density approximation:
+and then using a function of this modified density as a weighting
+function in the local density approximation formulation of the free
+energy:
 \begin{align}
-  \iF[\rh] = \int \frac{f^{ex}(\bar{\rho})}{\bar{\rho}} \rh(\rr') d\rr'
+  \iF[n] = \int \frac{f^{ex}(\bar{n}(\rr))}{\bar{n}(\rr)} n(\rr) d\rr
 \end{align}
-Eq.~\ref{eq:convolution-of-density} allows one to shape the
-approximately interaction, in a sense, by changing the structure of
-the weighting function.  For example, if one were to choose for the
-weighting function the step function $\Theta(|\rr-\rr'|)$, than the
-modified density would incorporate in an equal way all the density
-within a sphere surrounding the particle.  This is an extremely simple
-example of a weighted density approximation.  Practical theories
-formulated in this manner become very complicated.  We introduce it
-here so that the reader knows what it is and also because the central
-idea described by Eq.~\ref{eq:convolution-of-density} is used in FMT
-as well.
+Eq.~\ref{eq:convolution-of-density} allows one to shape the nature of
+the interaction indirectly, by changing the structure of the weighting
+function.  For example, if one were to choose for the weighting
+function the step function $\Theta(|\rr-\rr'|)$, than the modified
+density would incorporate in an equal way all the density within a
+sphere surrounding the particle.  A functional constructed in this way
+would be a very oversimplified example of a weighted density
+approximation.  Practical theories formulated in this manner become
+very complicated.  We introduce it here so that the reader knows what
+it is and also because the central idea described by
+Eq.~\ref{eq:convolution-of-density} is used in Fundemental Measure
+Theory, which we will now describe, as well.
 
-Fundamental Measure Theory, created by Rosenfeld in 1989, also defines
-the free energy in terms of a series of convolutions of densities, but
-it is a considerable departure from the weighted density approximation
-theories.  It is based on an involved derivation worked out by Perkis
-and Yevik in (YEAR) of an equation of state for a homogeneous fluid.
-Like the derivation of the Virial Expansion and Carnahan-Starling
-Equation discussed above, this derivation also dealt with correlation
-functions and ultimately expressed thermodynamic properties in terms
-of homogeneous density.  Comparing this theory with the derivations of
-another theory call Scaled Particle Theory, which once again I will
-not explain but will say that it has to do conceptually with a system
-of spheres and a growing cavity in which they are not allowed to go,
-Rosenfeld recognized that the density sides of the Perkis-Yevick
-equations can be reformulated in terms of convolutions of functions
-that are constructed to describe the geometric properties of spheres.
-He then discovered that for inhomogeneous systems, he could write down
-the intrinsic free energy in terms of convolutions of densities with
-these functions in such a way that the Percis-Yevik correlation
-equations were reproduced in the limit of homogeneous density.  The
-derivation is certainly an involved (and brilliant) one, and there is
-actually another derivation to get to the same place introduced by
-(TARAZONA? ) in (YEAR) that is thought by some to be more elegant.
-However I don't use any ideas that are directly pulled from these
-derivations in my work, besides those that can be taken from the
-general characteristics (spherical nature) of the resulting Free
-Energy functional.
+Fundamental Measure Theory (FMT), created by Rosenfeld in 1989, also
+defines the free energy in terms of a series of convolutions of
+densities, but it is a considerable departure from the weighted
+density approximation theories.  It is based on an involved derivation
+worked out by Perkis and Yevik in (YEAR) of an equation of state for a
+homogeneous fluid.  Like the derivation of the Virial Expansion and
+Carnahan-Starling Equation discussed above, this derivation also dealt
+with correlation functions and ultimately expressed thermodynamic
+properties in terms of homogeneous density.  Rosenfeld compared this
+theory with the derivations of another theory call Scaled Particle
+Theory, which once again I will not explain but will say that it has
+to do conceptually with a system of spheres and a growing cavity in
+which they are not allowed to go.  He recognized that the density
+sides of the Perkis-Yevick equations can be reformulated in terms of
+densities and functions constructed to describe the geometric
+properties of spheres.  Rosenfeld then discovered that for
+inhomogeneous systems, he could write down the intrinsic free energy
+in terms of convolutions of densities with these spherical functions
+in such a way that the Percis-Yevik correlation equations were
+reproduced in the limit of homogeneous density.  The derivation is
+certainly an involved (and brilliant) one, and there is actually
+another derivation to get to the same place introduced by \fixme{tarazona?}
+in \fixme{year} that is thought by some to be more elegant.  However I don't
+use any ideas that are directly pulled from these derivations in my
+work, besides those that can be taken from the general characteristics
+(spherical nature) of the resulting Free Energy functional.
 
 The result of all this is an intrinsic free energy which has the form:
 \begin{align}
   \label{eq:F-FMT-form}
-  \iF_{hard~sphere}[n] = \int \Phi({n_i(\rr')})d\rr'
+  \iF_{hard~sphere}[n] = \int \Phi({n_i(\rr)})d\rr
 \end{align}
 The integrand $\Phi$ here is a local function of $n_i(\rr)$, which are
 the non-local convolutions of density with sphere-like weighting
@@ -514,7 +520,7 @@ sphere.  $n_2$ only allows for integration of densities on the surface
 of a sphere, but incorporates no density within or outside of it.
 $n_{2V}$ is a vector version of $n_2$, and the others are different
 versions of the same, modified to have different units.
-  
+
 The form of $\Phi({n_i(\rr)})$ is restricted to a certain extent by
 dimensional analysis (the units of each term have to be right!)
 throughout the derivation, but even given this the theory allows for a
@@ -524,23 +530,22 @@ equation of state, Rosenfeld constructed the form of his functional so
 that in the limit of homogeneous density, the free energy of the
 system approaches that given by the Perkis-Yevik equation of state.
 
-While the theory has been a resounding success (MAYBE MENTION HOW
-SUCCESSFUL IN BEGINNING OF SECTION), the use of the Perkis-Yevik
+While the theory has been a resounding success (\fixme{MAYBE MENTION
+  HOW SUCCESSFUL IN BEGINNING OF SECTION}, the use of the Perkis-Yevik
 equation of state as the underlying, homogeneous limit equation causes
-some problems.  For the hard sphere fluid this equation predicts a
-pressure that is too high as bulk freezing tempuratures are
-approached.  At the same time, the construction of FMT obeys a theorem
-called the 'contact value theorem,' which states that the pressure at
-a wall is equal to the temperature multiplied by the density in
-contact with that wall, $p=kT\rho_{contact}$.  This theorem is very
-important to our own work and I will discuss it in detail below, but I
-mention it now to say that the Perkis-Yevik equation consequently
-overestimates the density at contact at freezing bulk temperatures.
-This is problematic, since much of the reason we use classical density
-functional theory in analyzing inhomogeneous fluids in the first place
-is to estimate what happens at walls!
+problems.  The construction of FMT obeys a theorem called the 'contact
+value theorem,' which states that the pressure at a wall is equal to
+the temperature multiplied by the density in contact with that wall,
+$p=kTn_{contact}$. This theorem is very important in our own work, so
+I'll discuss it in detail below.  I mention it here though because for
+the hard sphere fluid, the Perkis-Yevik equation predicts a pressure
+that is too high as bulk freezing tempuratures are approached.  It
+consequently overestimates the density at contact at these
+tempuratures.  This is problematic, since much of the reason we use
+classical density functional theory in analyzing inhomogeneous fluids
+in the first place is to estimate what happens at walls!
 
-In (YEAR) Roth et al addressed this issue in their version of FMT
+In (\fixme{year}) Roth et al addressed this issue in their version of FMT
 which they named 'White Bear', anecdotally after a pub that they
 frequented while writing the theory.  They keep the same general form
 of Rosenfeld's FMT but adjust it so that in the limit of homogeneous
@@ -548,9 +553,9 @@ density it's free energy approaches that of the
 Mansoori-Carnahan-Starling-Leland equation, a modified version of the
 Carnahan-Starling equation of state, which we discussed above and
 which we use directly in our own work.  The Carnahan-Starling is more
-accurate in limiting cases than the Perkis-Yevik, so that the White
-Bear hard-sphere free energy functional, $F_{hard~sphere}$, is overall
-a more accurate one.  It is therefore the hard sphere free energy
+accurate in limiting cases than the Perkis-Yevik, so the White Bear
+hard-sphere free energy functional, $F_{hard~sphere}$, is overall a
+more accurate one.  It is therefore the hard sphere free energy
 reference system that we choose to use in our own work.
 
 Below is the entire energy functional written in terms of the
@@ -569,127 +574,97 @@ with integrands
 } , \label{eq:Phi3}
 \end{align}
 
-
-\section{The convolution theorem}
-
-One of the largest advantages to using Fundamental Measure Theory, and
-one that is not immediately obvious, is that the convolutions that
-combine to construct the functional allow for very efficient
-computation.  This is not very intuitive, since an integral of a
-convolution integral must integrate over two dimensions, e.g.
-\begin{align}
-\int(f\ast g)(\xx)d\xx = \int \int f(\yy)g(\xx-\yy)d\yy d\xx
-\end{align}
-so that it may seem that the size of the computation would scale as
-$N^2$, where $N$ is the size of the system.  It is true that in the
-case of FMT, the weighting functions cut off the integrals at the size
-on the order of a sphere of particle radius, but this can still be a
-large enough volume so that a double integral for which one of the
-volumes is this size and the other is the size of the whole system
-would be too costly for practical computation.  FMT is saved, however,
-by what is called the Convolution Theorem.  The Convolution Theorem
-states that when one takes the Fourier Transform on a spatial
-convolution of two functions (a double integral in space), the result
-is two separate integrals over k-space that are simply multiplied
-together.  (SHOW IN EQ FORM) When minimizing our functional, after
-taking a Fourier Transform of the convolutions, we have merely to
-integrate once over the one variable $\kk$.  Wait!  You may say.  This
-is a cheat, since the Fourier Transform is itself an integral, so at
-the end of the day we're still performing two integrals.  This would
-be true if it were not for the computational technique known as Fast
-Fourier Transforms, developed by (cite).  I won't explain how it works
-here, but it's effect is to perform the transform, which would
-normally have a computational cost on the order of N, with a
-computational cost on the order of $\ln N$ instead.  Thus, when we
-Fourier Transform the convolutions in the functional and proceed to
-take the single integral over the result (in k-space), the
-computational cost scales as $N \ln N$.  For large systems (we
-simulate systems with hundreds or even thousands of particles) this
-can certainly be the difference between practically possible and
-impossible computations.  The proof is short and pretty so I'll relate
-it here:
-\begin{align}
-\hat{h}(\kk) = \hat{f}(\kk)\hat{g}(\kk)
-\end{align}
-Is the convolution theorem.  Proof:
-\begin{align}
-h(\xx) &= (f\ast g)(x) = \int f(\yy)g(\xx-\yy)d\yy \\
-\hat{f}(\kk) &= \int f(\yy) exp(-i2\pi \kk \cdot \yy)d\yy \\
-\hat{g}(\kk) &= \int g(\yy) exp(-i2\pi \kk \cdot \yy)d\yy \\
-\int h(\rr) exp(-i2\pi \kk \cdot \zz) d\zz &= \int \int f(\yy) g(\zz-\yy) exp(-i2\pi \kk \cdot \zz) d\yy d\zz
-\end{align}
-because the two integrals are necessarily over all space,
-\begin{align}
-\xx &= \zz - \yy \\
-\hat{h}(\kk) &= \int \int f(\yy) exp(-i2\pi \kk \cdot \yy ) d\yy g(\xx) exp(-i2\pi \kk \cdot \xx) d\xx \\
-&= \hat{f}(\kk) \hat{g}(\kk)
-\end{align}
-
+\clearpage
+\newpage
 
 \section{Contact Value Theorem}
+The contact value theorem is used directly in our own work and a
+conceptual understanding of its origin will aid in the conceptual
+understanding of the functions that we've created.  A derivation of it
+is both justified and sort of awesome, so I dedicate this section to
+it.
 
-Fixed number of particles:
+We start by considering a thermodynamic system of a fixed number of
+particles.  The thermodynamic equations are:
 \begin{align}
 F &= U - TS \\
 dU &= TdS -pdV \\
-dF &= dU - TdS - SdT = -SdT - pdV
+dF &= dU - TdS - SdT = -SdT - pdV.
 \end{align}
-picture a fixed volume except a little protrusion into it, so call
-$F_{out}$ and $F_{flat}$.  So looking at partition functions:
+The volume of our system will be fixed except for a tiny
+(infinitesimally small) protrusion into it, jutting out from the wall,
+illustrated in Figure(\fixme{reference}).  We will allow the protrusion to
+either stick out or not, allowing the wall to either be flat and
+smooth there or protruding.  We'll call the free energy in the two
+different scenarios $F_{flat}$ and $F_{out}$, and investigate the
+difference between them, or in other words what happens as the system
+loses the bit of volume, dV.  The partition functions for these
+scenarios are
 \begin{align}
-Z_{flat} = \int_V... \int_V exp(-\phi \{\rr^N \})d\rr^N
-Z_{out} =  \int_{V-dV}... \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N
+Z_{flat} &= \int_V... \int_V exp(-\phi \{\rr^N \})d\rr^N \\
+Z_{out} &=  \int_{V-dV}... \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N
 \end{align}
-Writing $Z_{flat}$ in terms of $Z_{out}$:
+where $\phi \{\rr^N \}$ is the interaction energy between all the
+particles and where we have ignored the kinetic energy terms, since in
+both systems, which are at the same tempurature, these will be the
+same \fixme{is this definitely true?}, and will later cancel out.  We
+would like to write $Z_{flat}$ in terms of $Z_{out}$, so we'll
+spatially break up the $Z_{flat}$ intagral.  The first term will
+integrate over the same volume as $Z_{out}$.  The next set of terms
+will treat the integration for one particle within the bit of volume,
+interacting with all the other particles outside of the volume.  The
+terms after that will integrate for two of the particles within the
+bit of volume and all the remaining particles in the rest of the
+volume.  The series will continue on in this fashion, with three
+particles in the volume, then four, etc.:
 \begin{align}
 Z_{flat} = &\int_{V-dV}... \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N \notag \\
-+ &\int_V... \int_V \int_{V-dV} exp(-\phi \{ \rr^N \})d\rr^N \
-+ \int_V ... \int_{V-dV} \int_V exp(-\phi \{ \rr^N \})d\rr^N ... \notag \\
-+ &\int_V... \int_{V}\int_{V-dV} \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N \
-+ \int_V... \int_{V-dV}\int_V \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N ...
++ &\int_V... \int_V \int_{dV} exp(-\phi \{ \rr^N \})d\rr^N \
++ \int_V ... \int_{dV} \int_V exp(-\phi \{ \rr^N \})d\rr^N ... \notag \\
++ &\int_V... \int_{V}\int_{dV} \int_{dV} exp(-\phi \{\rr^N \})d\rr^N \
++ \int_V... \int_{dV}\int_V \int_{dV} exp(-\phi \{\rr^N \})d\rr^N ...
 \end{align}
-The term on the first line is just $Z_{out}$.  The terms on the second
-line treat one particle being in the bit of volume and the others
-being integrated over the rest of the volume.  Becuase every particle
-is identical, it doesn't matter which is in the little bit of volume,
-each of these terms is the same.  So they can be replaced by one of
-them multiplied by $N$.  The terms on the last line or any line after
-are of order 2 or higher in $dV$.  We will throw away these terms, and
-there are two arguments that allow us to do this.  The simplest one is
-that $dV$ is small, and so terms with a two $dV$s multiplied together
-will be small.  One must be careful with this, however, because one is
-really intagrating over the boltzmann factor over these volumes.  If
-the interaction potential between the particles is constructed so that
-they are highly attracted to eachother, than a state in which there
-are two particles in the bit of volume can have the same order of
-magnitude probability as the one in which there is just one.  In this
-case we would not be able to say for certain that these terms are so
-much smaller than the order 1 $dV$ terms on the seconds line that we
-could reasonably ignore them. Thus the validity of the derivation has
-to do with the size of your smallest measurement along the wall, and
-the nature of the attractive potentialbetween the particles.  In our
-case we deal with an interaction between hard spheres, which simply
-exclude other spheres from being too close to them.  Thus it's
-reasonable for us to imagine that if there is one hard sphere in the
-bit of volume, than there is only the one, and any terms that address
-the situation in which there are two in the bit of volume can be
-ignored.  After applying these areguments we have:
+The term on the first line is just $Z_{out}$.  Looking at the next set
+of terms, becuase every particle is identical it doesn't matter which
+of them is within the little bit of volume.  Every one of these terms
+will be the same, so they can be replaced by one of them multiplied by
+$N$.  We will throw away the terms that are of higher order in $dV$,
+and there are two arguments that allow us to do this.  The simplest
+one is that $dV$ is small, and so terms with two $dV$s multiplied
+together will be smaller.  One must be careful with this, however,
+because the integration is really of the boltzmann factor over these
+volumes.  If the interaction potential between the particles is
+constructed so that they are highly attracted to eachother, than a
+state in which there are two particles in the bit of volume can have
+the same order of magnitude probability as the one in which there is
+just one.  In this case we would not be able to say for certain that
+these terms are so much smaller than the order one $dV$ terms that we
+could reasonably ignore them. Thus the validity of the derivation
+depends upon the size of the smallest measurement one can make along
+the wall, and the nature of the attractive potential between the
+particles.  In our case we deal with an interaction between hard
+spheres, which simply exclude other spheres from being too close to
+them.  Thus it's reasonable for us to imagine that if there is one
+hard sphere in the bit of volume, than there is only the one, and any
+terms that address the situation in which there are two in the bit of
+volume can be ignored.  After applying these arguments we have:
 \begin{align}
   \label{eq:zflat}
-  Z_{flat} = Z_{out} + N \int_V... \int_V \int_{V-dV} exp(-\phi \{ \rr^N \})d\rr^N
+  Z_{flat} = Z_{out} + N \int_V... \int_V \int_{dV} exp(-\phi \{ \rr^N \})d\rr^N
 \end{align}
 
 Now we consider the statistical mechanical definition of the particle
 density,
 \begin{align}
-  n(\rr) = \frac{N \int_V... \int_V exp(-\phi \{ \rr^N \})d\rr^{N-1}}{\int_V... \int_V exp(-\phi \{ \rr^N \})d\rr^N}
+  %%n(\rr) &= \frac{N \int_V... \int_V exp(-\phi \{ \rr^N \})d\rr^{N-1}}{\int_V... \int_V exp(-\phi \{ \rr^N \})d\rr^N} \\
+  n(\rr) = \frac{N \int_V... \int_V exp(-\phi \{ \rr^N \})d\rr^{N-1}}{Z_{flat}}
 \end{align}
 Which is the sum of the boltzmann factors of all the states for which
 a particle is at position $\rr$, divided by the partition function for
 the system.  Comparing this with the right-most term in the
 Eq.~\ref{eq:zflat} we see that:
 \begin{align}
- N \int_V... \int_V \int_{V-dV} exp(-\phi \{ \rr^N \})d\rr^N  &= Z_{flat} \int_{dV} n(\rr) d\rr
+ N \int_V... \int_V \int_{dV} exp(-\phi \{ \rr^N \})d\rr^N  &= Z_{flat} \int_{dV} n(\rr) d\rr
  &\approx Z_{flat} n(\rr)dV
 \end{align}
 where on the right we make the approximation that because the volume
@@ -700,7 +675,8 @@ Z_{flat} = Z_{out} + Z_{flat} n(\rr)dV \\
 Z_{out} = Z_{flat} (1-n(\rr)dV)
 \end{align}
 
-We have
+Considering the change in the free energy when the system goes from a
+flattened wall to a wall with a tiny protrusion, we have
 \begin{align}
   dF = F_{out} - F_{flat} &= -kT \ln \left( \frac{Z_{out}}{Z_{flat}} \right) \notag \\
   &= -kT \ln \left( \frac{Z_{flat} (1-n(\rr)dV)}{Z_{flat}} \right) \notag \\
@@ -717,15 +693,104 @@ Eq.~\ref{eq:contact-value-theorem} is the standard formulation of the
 contact value theorem.
 
 
-Another equation for the particle density is:
-\begin{align}
-n(\rr) = \frac{\delta \iF}{\delta V_{ext}}
-\end{align}
+%% Another equation for the particle density is:
+%% \begin{align}
+%% n(\rr) = \frac{\delta \iF}{\delta V_{ext}}
+%% \end{align}
 
 \clearpage
 \newpage
 
-
-
-
 \section{Remaining terms in SAFT}
+Going back to the terms in the overall SAFT free energy functional,
+\begin{align}
+  \iF_{SAFT} = F_{ideal} + F_{hard~sphere} +  F_{dispersion} + F_{association},
+\end{align}
+we come to introducing the last two terms.  These are actually the
+only terms in which the functions that we've created show up, but
+ironically I'll spend the least amount of time introducing them.  This
+is because while the functions that we've created are included in
+them, they could also be included in entirely different, non-SAFT
+classical density functional theories, and their construction is
+dependent on the concepts associated with the preceding terms, not of
+$F_{dispersion}$ and $F_{association}$.
+
+
+\clearpage
+\newpage
+
+\section{The convolution theorem}
+
+Lastly within this introduction I will introduce a theorem, the
+convolution theorem, that is a sort of important side note to the rest
+of this text, primarily for the benefit of any new grad students that
+might be entering this line of research in the future.  This theorem
+motivates our preference of using density convolutions within our
+functionals.
+
+One of the largest advantages to using Fundamental
+Measure Theory, and one that is not immediately obvious, is that the
+convolutions that combine to construct the functional allow for very
+efficient computation.  This is not very intuitive, since an integral
+of a convolution integral must integrate over two dimensions, e.g.
+\begin{align}
+\int(f\ast g)(\xx)d\xx = \int \int f(\yy)g(\xx-\yy)d\yy d\xx
+\end{align}
+so that it may seem that the size of the computation would scale as
+$N^2$, where $N$ is the size of the system.  It is true that in the
+case of FMT, the weighting functions cut off the integrals at the size
+on the order of a sphere of particle radius, but this can still be a
+large enough volume so that a double integral for which one of the
+volumes is this size and the other is the size of the whole system
+would be too costly for practical computation.  FMT is saved, however,
+by what is called the Convolution Theorem.  The Convolution Theorem
+states that when one takes the Fourier Transform on a spatial
+convolution of two functions (a double integral in space), the result
+is two separate integrals over k-space that are simply multiplied
+together:
+\begin{align}
+\hat{h}(\kk) = \hat{f}(\kk)\hat{g}(\kk)
+\end{align}
+
+When minimizing our functional, after
+taking a Fourier Transform of the convolutions, we have merely to
+integrate once over the one variable $\kk$.  Wait!  You may say.  This
+is a cheat, since the Fourier Transform is itself an integral, so at
+the end of the day we're still performing two integrals.  This would
+be true if it were not for the computational technique known as Fast
+Fourier Transforms, developed by (cite).  I won't explain how it works
+here, but it's effect is to perform the transform, which would
+normally have a computational cost on the order of N, with a
+computational cost on the order of $\ln N$ instead.  Thus, when we
+Fourier Transform the convolutions in the functional and proceed to
+take the single integral over the result (in k-space), the
+computational cost scales as $N \ln N$.  For large systems (we
+simulate systems with hundreds or even thousands of particles) this
+can certainly be the difference between practically possible and
+impossible computations.  The proof is short and pretty so I'll relate
+it here.
+
+Say there is a function $h(\xx)$ such that
+\begin{align}
+  h(\xx) &= (f\ast g)(x) = \int f(\yy)g(\xx-\yy)d\yy
+\end{align}
+The fourier transforms are
+\begin{align}
+  \hat{f}(\kk) &= \int f(\yy) exp(-i2\pi \kk \cdot \yy)d\yy \\
+  \hat{g}(\kk) &= \int g(\yy) exp(-i2\pi \kk \cdot \yy)d\yy.
+\end{align}
+and
+\begin{align}
+  \hat{h}(\kk) = \int h(\rr) exp(-i2\pi \kk \cdot \zz) d\zz &= \int \int f(\yy) g(\zz-\yy) exp(-i2\pi \kk \cdot \zz) d\yy d\zz
+\end{align}
+because the two integrals are taken over all space, we can say that if
+\begin{align}
+\xx &= \zz - \yy
+\end{align}
+than
+\begin{align}
+\hat{h}(\kk) &= \int \int f(\yy) exp(-i2\pi \kk \cdot \yy ) d\yy g(\xx) exp(-i2\pi \kk \cdot \xx) d\xx \\
+&= \hat{f}(\kk) \hat{g}(\kk)
+\end{align}
+
+
