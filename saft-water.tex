@@ -27,8 +27,9 @@
 \newcommand\hughesetalcite{Hughes \emph{et al.}~\cite{hughes2013classical}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We present a modification to our recently published SAFT-based classical
-density functional theory for water.
+\section{Introduction}
+In this chapter we present a modification to our recently published
+SAFT-based classical density functional theory for water.
 %
 We have recently developed and tested a functional for the averaged
 radial distribution function at contact of the hard-sphere fluid
@@ -51,7 +52,6 @@ the vicinity of the hard solutes.
 We find an improvement of the partial radial distribution for a
 krypton atom in water when compared with experiment.
 
-\section{Introduction}
 
 Water, the universal solvent, is of critical practical importance, and
 a continuum description of water is in high demand for a solvation
@@ -60,8 +60,7 @@ models for water have built on the approach of classical
 density functional theory (DFT)~\cite{jeanmairet2013molecular,
   zhao2011molecular, zhao2011new, ramirez2005direct,
   ramirez2005density, levesque2012solvation, levesque2012scalar}.
-Classical DFT is based on a description of a fluid written as a free
-energy functional of the density distribution.  There are two general
+There are two general
 approaches used to construct a classical DFT for water.  The first is
 to choose a convenient functional form which is then fit to properties
 of the bulk liquid at a given temperature and pressure
@@ -85,14 +84,7 @@ equation of state~\cite{hughes2013classical, clark2006developing,
 %% arbitrary external potentials---such as potentials describing strong
 %% interactions with solutes or surfaces.
 
-A widely used family of models used in the development of classical
-density functionals is based on Statistical Associating Fluid Theory
-(SAFT)~\cite{chapman1989saft}.  SAFT is a theory based on a model of
-hard spheres with weak dispersion interactions and hydrogen-bonding
-association sites, which has been used to accurately model the
-equations of state of both pure fluids and mixtures over a wide range
-of temperatures and pressures~\cite{muller2001molecular,
-  tan2008recent}. The association contribution to the free energy uses
+The association contribution to the SAFT free energy uses
 Wertheim's first-order thermodynamic perturbation theory to describe
 an associating fluid as hard-spheres with strong associative
 interactions at specific sites on the surface of each
@@ -105,25 +97,24 @@ is known for the homogeneous hard-sphere fluid, it must be
 approximated for inhomogeneous systems, such as occur at liquid
 interfaces.
 
-In a recent paper, we examined the pair distribution function at
-contact in various inhomogeneous
+In Chapter~\ref{chapter:contact} we examined the pair distribution
+function at contact in various inhomogeneous
 configurations~\cite{schulte2012using}.  We tested the accuracy of
 existing approximations for the pair distribution function at
 contact~\cite{yu2002fmt-dft-inhomogeneous-associating,
-  gross2009density}, and derived a significantly improved
-approximation for the averaged distribution function at contact.  In
-this paper we apply this improved $g_\sigma^{HS}$ to the SAFT-based
-classical density functional for water developed by Hughes \emph{et
-  al.}~\cite{hughes2013classical}.  This functional was constructed to
+gross2009density}, and derived a significantly improved approximation
+for the averaged distribution function at contact.  In this chapter we
+apply this improved $g_\sigma^{HS}$ to the SAFT-based classical
+density functional for water developed by Hughes \emph{et
+al.}~\cite{hughes2013classical}.  This functional was constructed to
 reduce in the homogeneous limit to the 4-site optimal SAFT model for
 water developed by Clark \emph{et al.}~\cite{clark2006developing}.
 The DFT of \hughesetal\ uses the association free energy functional of
 Yu and Wu~\cite{yu2002fmt-dft-inhomogeneous-associating}, which is
 based on a $g_\sigma^{HS}$ that we have since found to be
-inaccurate~\cite{schulte2012using}.  In this paper, we will examine
-the result of using the improved functional for $g_\sigma^{HS}$
-developed in \hughesetal\ to construct an association free energy
-functional.
+inaccurate~\cite{schulte2012using}.  In this chapter, we will examine
+the result of using the improved functional for $g_\sigma^{HS}$ to
+construct an association free energy functional.
 
 \section{Method}
 
@@ -141,7 +132,7 @@ square-well dispersion interaction; this term contains one empirical
 parameter, $\lscale$, which is used to fit the surface tension of water near one
 atmosphere.  Finally, $F_{\text{assoc}}$ is the free energy
 contribution due to association, which is the term that we examine in
-this paper.
+this chapter.
 
 \subsection{Dispersion}
 The dispersion term in the free energy includes the van
@@ -158,7 +149,7 @@ The SAFT-VR dispersion free energy has the form~\cite{gil-villegas-1997-SAFT-VR}
   \label{eq:dispersion-term}
 \end{align}
 where $a_1$ and $a_2$ are the first two terms in a high-temperature
-perturbation expansion and $\beta=1/k_BT$.  The first term, $a_1$, is 
+perturbation expansion and $\beta=1/k_BT$.  The first term, $a_1$, is
 the mean-field dispersion interaction. The second term, $a_2$, describes the
 effect of fluctuations resulting from compression of the fluid due
 to the dispersion interaction itself, and is approximated
@@ -234,7 +225,7 @@ where
   \begin{cases}
     \frac{4}{\pi\sigma^2} \int n(\rr')\delta(\sigma - |\rr-\rr'|) d\rr' & \text{this work}\\
     4 n_0(\rr) \zeta(\rr) & \text{\hughesetal}
-  \end{cases} 
+  \end{cases}
 \end{align}
 is the density of bonding sites that could bond to the sites~$n_\text{site}(\rr)$, and
 \begin{align}
@@ -271,7 +262,7 @@ the hard spherical solute.
 \end{center}
 \caption{ Density profiles for a water around a single hard rod
   of radius 0.1~nm. The solid red profile is from the functional
-  developed in this paper and the dashed blue profile is the result
+  developed in this chapter and the dashed blue profile is the result
   from \hughesetal.  For scale, under the profiles
   is a cartoon of a string of hard spheres touching in one
   dimension. The horizontal black dotted line is the bulk density for
@@ -285,7 +276,7 @@ the hard spherical solute.
 We will first discuss the case of a single hard rod immersed in
 water. Figure~\ref{fig:density-single-rod} shows the density profile
 of water near a rod with radius~1~\AA.  The density computed using the
-functional of this paper is qualitatively similar to that from
+functional of this chapter is qualitatively similar to that from
 \hughesetal, with a comparable density at contact---consistent with
 having made only a moderate change in the free energy.  The first
 density peak near the surface is higher than that from \hughesetal,
@@ -303,7 +294,7 @@ rod surface.
 \end{center}
 \caption{Broken hydrogen bonds per nanometer for hard rods
   immeresed in water.  The solid red line uses the functional developed
-  in this paper while the dashed blue line uses the functional from
+  in this chapter while the dashed blue line uses the functional from
   \hughesetal. For large enough rods, the graph
   increases linearly for both functionals.}
 \label{fig:single-rod-broken-HB}
@@ -346,7 +337,7 @@ water~\cite{chandler2005}.
 \includegraphics[width=3.5in]{figs/sphere-broken-HB}
 \end{center}
 \caption{Broken hydrogen bonds for hard spheres immeresed in water.
-  The solid red line uses our the functional developd in this paper
+  The solid red line uses our the functional developd in this chapter
   while the dashed blue line is from
   \hughesetal.}
 \label{fig:spheres-broken-HB}
@@ -426,7 +417,7 @@ function of a krypton atom dissolved in water.
 
 \clearpage
 
-\section{Figures that are not included in the paper (but could be)}
+\section{Figures that are not included in the chapter (but could be)}
 
 \begin{figure}
 \begin{center}

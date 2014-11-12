@@ -1,8 +1,27 @@
+\label{chapter:intro}
+\fixme{the function we create is a functional, not a function}
 
-Talk about why need functionals to deal with inhomogenous situations.
-Then talk about how functional deriviatives are taken.
-
-\fixme{the function we create is really a functional, not a function}
+The standard approach in liquid state theory is to model a liquid as a
+hard-sphere reference fluid with attractive interactions that are
+treated perturbatively~\cite{hansen2006theory}.  Recent advances have
+extended these perturbative approaches to inhomogeneous density
+distributions---that is, liquid interfaces---through the use of
+classical density functional theory (DFT), in which the grand free
+energy is found by minimizing a free energy functional of the
+density~\cite{jain2007modified, gloor2007prediction,
+  gross2009density,
+  %felipe2001examination, gloor2002saft,
+  %gloor2004accurate, clark2006developing,
+  kahl2008modified,
+  % yu2002fmt-dft-inhomogeneous-associating,
+  %fu2005vapor-liquid-dft, bryk2006density,
+  hughes2013classical,
+  %segura1998comparison, felipe2001examination,
+  %gloor2002saft, gloor2004accurate, fu2005vapor-liquid-dft,
+  bryk2006density, clark2006developing, kahl2008modified,
+  gross2009density} In the following section I introduce the
+  theoretical origins of classical DFT, a basic understanding of which
+  is neccesary for anyone looking to work in liquid state theory.
 
 \section{Classical Density Functional Theory}
 
@@ -175,17 +194,25 @@ functional form of $\iF$.
 
 \section{Introduction to SAFT and explanation of first free energy term}
 
-\fixme{do more of an introduction to SAFT, taken from papers}
-
 Work on Classical Density Functional Theory for inhomogeneous fluids
 involves creating the intrinsic free energy functional of the density
 profile, $\iF[n]$.  This is comprised of a sum of terms that
 individually address different conceptual aspects of the system.
 Terms that treat different types of interaction between particles are
-added to a term that describes the reference system.  The functional
-that we use in our work is called the Statistical Associating Fluid
-Theory or SAFT free energy, and it is broken into the following terms:
+added to a term that describes the reference system.
 
+The free energy functional that we use in our work is one of a widely
+used family of models in the development of classical density
+functionals called Statistical Associating Fluid Theory
+(SAFT)~\cite{chapman1989saft}.  SAFT is a theory based on a model of
+hard spheres with weak dispersion interactions and hydrogen-bonding
+association sites, which has been used to accurately model the
+equations of state of both pure fluids and mixtures over a wide range
+of temperatures and pressures~\cite{muller2001molecular,
+tan2008recent}. We will discuss the concept of hard spheres in detail
+in following sections.
+
+A SAFT functional is broken into the following terms:
 \begin{align}
   \iF_{SAFT} = F_{ideal} + F_{hard sphere} + F_{dispersion} + F_{association}
 \end{align}
@@ -194,20 +221,19 @@ but write it down now to illustrate the general structure of the total
 functional.
 
 
-Although we work specifically with the very popular SAFT functionals
-in current development, our contributions described in the next
-chapters are applicable to many different types of fluid functionals.
-The next chapter details a function that we've created, the
-distribution function at contact $g_\sigma(\rr)$, which treats
-correlations between particles within a system, while the following
-chapter discusses it's use within a specific SAFT functional and it's
-effect upon that functional's results.  The chapter after that
-introduces another function, the pair distribution function
-$g^{(2)}_{HS}(\rr_1,\rr_2)$, that is closely related to the first.
-It's important for the reader to recognize that while we discuss these
-functions in terms of their place within the SAFT free energy, they
-and their conceptual founding are useful to other Classical Density
-Functional Theories.
+Although we work specifically with the SAFT functionals in current
+development, our contributions described in the next chapters are
+applicable to many different types of fluid functionals.  The next
+chapter details a functional that we've created, the distribution
+function at contact $g_\sigma(\rr)$, which treats correlations between
+particles within a system, while the following chapter discusses it's
+use within a specific SAFT functional and it's effect upon that
+functional's results.  The chapter after that introduces another
+function, the pair distribution function $g^{(2)}_{HS}(\rr_1,\rr_2)$,
+that is closely related to the first.  It's important for the reader
+to recognize that while we discuss these functions in terms of their
+place within the SAFT free energy, they and their conceptual founding
+are useful to other Classical Density Functional Theories.
 
 
 
@@ -286,7 +312,7 @@ Clasical Density Functional Theory.
 \section{Virial Equation, Mayer functions, and the Carnahan Starling Equation}
 
 The second term in the SAFT intrinsic free energy functional,
-$f_{hard~sphere}$, is generally refered to as a reference term and the
+$F_{hard~sphere}$, is generally refered to as a reference term and the
 specific functional that we use for this term is also used in many
 other density functional theories.  I'll introduce the functional and
 the theory behind it in some detail in the next section because it is
@@ -309,8 +335,10 @@ where
 \end{align}
 is the 'packing fraction'.  $\sigma$ here is the diameter of the
 spherical particles of the fluid.  The packing fraction is really just
-a more convenient way to refer to the density, where we give each particle the volume of a sphere and think in terms of how much volume is taken up by particles as opposed to how many there are.  We use it extensively
-throughout our work.
+a more convenient way to refer to the density, where we give each
+particle the volume of a sphere and think in terms of how much volume
+is taken up by particles as opposed to how many there are.  We use it
+extensively throughout our work.
 
 The expansion of Eq.~\ref{eq:virial-expansion} comes out of a
 formulation of the partition function that is most often expressed as
@@ -488,11 +516,12 @@ in terms of convolutions of densities with these spherical functions
 in such a way that the Percis-Yevik correlation equations were
 reproduced in the limit of homogeneous density.  The derivation is
 certainly an involved (and brilliant) one, and there is actually
-another derivation to get to the same place introduced by \fixme{tarazona?}
-in \fixme{year} that is thought by some to be more elegant.  However I don't
-use any ideas that are directly pulled from these derivations in my
-work, besides those that can be taken from the general characteristics
-(spherical nature) of the resulting Free Energy functional.
+another derivation to get to the same place introduced
+by \fixme{tarazona?}  in \fixme{year} that is thought by some to be
+more elegant.  However I don't use any ideas that are directly pulled
+from these derivations in my work, besides those that can be taken
+from the general characteristics (spherical nature) of the resulting
+Free Energy functional.
 
 The result of all this is an intrinsic free energy which has the form:
 \begin{align}
@@ -716,24 +745,9 @@ is because while the functions that we've created are included in
 them, they could also be included in entirely different, non-SAFT
 classical density functional theories, and their construction is
 dependent on the concepts associated with the preceding terms, not of
-$F_{dispersion}$ and $F_{association}$.
-
-SAFT,
-which is the
-basis of a number of recently developed classical density functionals.
-
-There has been considerable recent interest in using Statistical
-Associating Fluid Theory (SAFT) to construct classical density
-functionals to describe associating
-fluids\cite{\saftlocaldft,yu2002fmt-dft-inhomogeneous-associating,%
-  fu2005vapor-liquid-dft,bryk2006density}.  This approach has been
-successful in qualitatively describing the dependence of surface
-tension on temperature.
-
-The chain
-term describes the chain formation energy in polymeric fluids, while
-the association term describes the effects of hydrogen bonding, both
-of which can be large.
+$F_{dispersion}$ and $F_{association}$. The chain term describes the
+chain formation energy in polymeric fluids, while the association term
+describes the effects of hydrogen bonding, both of which can be large.
 
 \clearpage
 \newpage

@@ -15,48 +15,29 @@
 \newcommand{\jeffsays}[1]{{\color{red} [\cyan{Jeff:} \emph{#1}]}}
 \newcommand{\pahosays}[1]{{\color{red} [\blue{Paho:} \emph{#1}]}}
 
-We introduce an approximation for the pai'r distribution function of
-the inhomogeneous hard sphere fluid. Our approximation makes use of
-our recently published averaged pair distribution function at contact
-which has been shown to accurately reproduce the averaged pair
-distribution function at contact for inhomogeneous density
-distributions. This approach achieves greater computational efficiency
-than previous approaches by enabling the use of exclusively fixed-kernel
-convolutions and thus allowing an implementation using fast Fourier
-transforms. We compare results for our pair distribution approximation
-with two previously published works and Monte-Carlo simulation,
-showing favorable results.
-
 \section{Introduction}
+In this chapter we introduce an approximation for the pair
+distribution function of the inhomogeneous hard sphere fluid. Our
+approximation makes use of our recently published averaged pair
+distribution function at contact, detailed in
+chapter~\ref{chapter:contact} which has been shown to accurately
+reproduce the averaged pair distribution function at contact for
+inhomogeneous density distributions. This approach achieves greater
+computational efficiency than previous approaches by enabling the use
+of exclusively fixed-kernel convolutions and thus allowing an
+implementation using fast Fourier transforms. We compare results for
+our pair distribution approximation with two previously published
+works and Monte-Carlo simulation, showing favorable results.
 
-The standard approach in liquid state theory is to model a liquid as a
-hard-sphere reference fluid with attractive interactions that are
-treated perturbatively~\cite{hansen2006theory}.  Recent advances have
-extended these perturbative approaches to inhomogeneous density
-distributions---that is, liquid interfaces---through the use of
-classical density functional theory (DFT), in which the grand free
-energy is found by minimizing a free energy functional of the
-density~\cite{jain2007modified, gloor2007prediction,
-  gross2009density,
-  %felipe2001examination, gloor2002saft,
-  %gloor2004accurate, clark2006developing,
-  kahl2008modified,
-  % yu2002fmt-dft-inhomogeneous-associating,
-  %fu2005vapor-liquid-dft, bryk2006density,
-  hughes2013classical,
-  %segura1998comparison, felipe2001examination,
-  %gloor2002saft, gloor2004accurate, fu2005vapor-liquid-dft,
-  bryk2006density, clark2006developing,
-  kahl2008modified, gross2009density,
-  %yu2002fmt-dft-inhomogeneous-associating,
-  sundararaman2012computationally, marshall2013density}.  The
-perturbation theory treatment of intermolecular interactions relies on
-the pair distribution function of the reference fluid:
-$g_{HS}^{(2)}(\rr_1,\rr_2)$.  Unlike the radial distribution function of a
-homogeneous fluid, there does not currently exist a tractable form for
-the pair distribution function of an inhomogeneous hard-sphere fluid,
-suitable for use in constructing a density
-functional~\cite{gloor2007prediction, jain2007modified}.
+
+Within standard liquid state theory, the perturbation theory treatment
+of intermolecular interactions relies on the pair distribution
+function of the reference fluid: $g_{HS}^{(2)}(\rr_1,\rr_2)$.  Unlike
+the radial distribution function of a homogeneous fluid, there does
+not currently exist a tractable form for the pair distribution
+function of an inhomogeneous hard-sphere fluid, suitable for use in
+constructing a density functional~\cite{gloor2007prediction,
+jain2007modified}.
 
 At its core, thermodynamic perturbation theory (TPT), sometimes referred to
 as the high-temperature expansion, is an expansion of the
@@ -88,7 +69,7 @@ is a form that is more directly useful in the construction of
 classical density functionals---which are themselves expressed as a
 functional of the density.
 
-In this paper, we introduce a new contact value approach
+In this chapter, we introduce a new contact value approach
 (CVA) to approximating the hard-sphere pair distribution function
 which is suitable for use in the creation of classical density
 functionals based on thermodynamic perturbation theory. The resulting
@@ -623,12 +604,12 @@ homogeneous system can be computed using an approximation of the pair
 distribution for an inhomogeneous fluid, such as we have
 developed. The triplet distribution function of a homogeneous fluid
 with density $n$ is given by:
-\begin{multline}
-    g^{(3)}(\rr_1,\rr_2,\rr_3) =\\
+\begin{align}
+    g^{(3)}(\rr_1,\rr_2,\rr_3) =
     \frac{n_{\textrm{TP}(\rr_1)}(\rr_2)
       n_{\textrm{TP}(\rr_1)}(\rr_3)}{n^2}
     g^{(2)}_{\textrm{TP}(\rr_1)}(\rr_2,\rr_3)
-\end{multline}
+\end{align}
 where the $\textrm{TP}(\rr_1)$ subscript indicates quantities computed for
 the inhomogeneous density configuration in which one sphere (the
 ``test particle'') is fixed
