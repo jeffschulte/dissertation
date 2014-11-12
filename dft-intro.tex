@@ -1,5 +1,8 @@
 \label{chapter:intro}
-\fixme{the function we create is a functional, not a function}
+We now move away from systems biology and into my research in
+classical Density Functional Theory.  \fixme{Is there a nice way to do
+this transition smoothly?}
+
 
 The standard approach in liquid state theory is to model a liquid as a
 hard-sphere reference fluid with attractive interactions that are
@@ -343,14 +346,16 @@ extensively throughout our work.
 The expansion of Eq.~\ref{eq:virial-expansion} comes out of a
 formulation of the partition function that is most often expressed as
 a series of diagrams that have well defined rules of construction.  I
-won't explain the diagrams or their rules here, but Figure(REF) shows
-an example so that if the reader sees them somewhere she'll know what
-they are.  A single term (or diagram) in this expansion of the
-partition function is in fact a spatial integral of particle densities
-multiplied by a number of what are called Mayer Functions.  I'll give
-a loose outline of an explanation here, since a basic idea of where
-this expansion comes from should be useful to the reader.  The
-derivation starts with the partition function:
+won't explain the diagrams or their rules here, but
+Figure(\fixme{should I show some diagrams here?  Where should I get
+them from?  Would it be okay to just use inkscape or something to do
+it myself?}) shows an example so that if the reader sees them
+somewhere she'll know what they are.  A single term (or diagram) in
+this expansion of the partition function is in fact a spatial integral
+of particle densities multiplied by a number of what are called Mayer
+Functions.  I'll give a loose outline of an explanation here, since a
+basic idea of where this expansion comes from should be useful to the
+reader.  The derivation starts with the partition function:
 \begin{align}
   \Xi &= \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(-\beta \mathcal{H})d\rr^Nd\mathbf{p}^N \\
   &=\sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(-\beta (V_N + \phi(\rr))d\rr^Nd\mathbf{p}^N
@@ -393,8 +398,9 @@ where
 
 The virial formulation of thermodynamic properties is useful, but it
 requires an expansion of coeffients, which can be a nuisance
-computationally.  Carnahan and Starling (cite) were able to develop a
-rule for coefficient generation that approximates
+computationally.  Carnahan and
+Starling~\cite{carnahan1969equation,mansoori1971equilibrium} were able
+to develop a rule for coefficient generation that approximates
 Eq.~\ref{eq:virial-coeff}, but that results in integers that one can
 use to make a geometric series.  Written in its analytic form, this
 series is a simple, easy to use, and accurate approximation of the
@@ -495,33 +501,34 @@ it is and also because the central idea described by
 Eq.~\ref{eq:convolution-of-density} is used in Fundemental Measure
 Theory, which we will now describe, as well.
 
-Fundamental Measure Theory (FMT), created by Rosenfeld in 1989, also
-defines the free energy in terms of a series of convolutions of
-densities, but it is a considerable departure from the weighted
-density approximation theories.  It is based on an involved derivation
-worked out by Perkis and Yevik in (YEAR) of an equation of state for a
-homogeneous fluid.  Like the derivation of the Virial Expansion and
-Carnahan-Starling Equation discussed above, this derivation also dealt
-with correlation functions and ultimately expressed thermodynamic
-properties in terms of homogeneous density.  Rosenfeld compared this
-theory with the derivations of another theory call Scaled Particle
-Theory, which once again I will not explain but will say that it has
-to do conceptually with a system of spheres and a growing cavity in
-which they are not allowed to go.  He recognized that the density
-sides of the Perkis-Yevick equations can be reformulated in terms of
-densities and functions constructed to describe the geometric
-properties of spheres.  Rosenfeld then discovered that for
-inhomogeneous systems, he could write down the intrinsic free energy
-in terms of convolutions of densities with these spherical functions
-in such a way that the Percis-Yevik correlation equations were
-reproduced in the limit of homogeneous density.  The derivation is
-certainly an involved (and brilliant) one, and there is actually
-another derivation to get to the same place introduced
-by \fixme{tarazona?}  in \fixme{year} that is thought by some to be
-more elegant.  However I don't use any ideas that are directly pulled
-from these derivations in my work, besides those that can be taken
-from the general characteristics (spherical nature) of the resulting
-Free Energy functional.
+Fundamental Measure Theory (FMT), created by Rosenfeld in
+1989 \cite{rosenfeld1989free,rosenfeld1990free}, also defines the free
+energy in terms of a series of convolutions of densities, but it is a
+considerable departure from the weighted density approximation
+theories.  It is based on an involved derivation worked out by Perkis
+and Yevik of an equation of state for a homogeneous fluid.  Like the
+derivation of the Virial Expansion and Carnahan-Starling Equation
+discussed above, this derivation also dealt with correlation functions
+and ultimately expressed thermodynamic properties in terms of
+homogeneous density.  Rosenfeld compared this theory with the
+derivations of another theory call Scaled Particle Theory, which once
+again I will not explain but will say that it has to do conceptually
+with a system of spheres and a growing cavity in which they are not
+allowed to go.  He recognized that the density sides of the
+Perkis-Yevick equations can be reformulated in terms of densities and
+functions constructed to describe the geometric properties of spheres.
+Rosenfeld then discovered that for inhomogeneous systems, he could
+write down the intrinsic free energy in terms of convolutions of
+densities with these spherical functions in such a way that the
+Percis-Yevik correlation equations were reproduced in the limit of
+homogeneous density.  The derivation is certainly an involved (and
+brilliant) one, and there is actually another derivation to get to the
+same place introduced by Tarazona and
+Rosenfeld~\cite{tarazona1997,tarazona1999free,tarazona2000,tarazona2002fundamental}
+that is thought by some to be more elegant.  However I don't use any
+ideas that are directly pulled from these derivations in my work,
+besides those that can be taken from the general characteristics
+(spherical nature) of the resulting Free Energy functional.
 
 The result of all this is an intrinsic free energy which has the form:
 \begin{align}
@@ -561,33 +568,35 @@ equation of state, Rosenfeld constructed the form of his functional so
 that in the limit of homogeneous density, the free energy of the
 system approaches that given by the Perkis-Yevik equation of state.
 
-While the theory has been a resounding success (\fixme{MAYBE MENTION
-  HOW SUCCESSFUL IN BEGINNING OF SECTION}, the use of the Perkis-Yevik
-equation of state as the underlying, homogeneous limit equation causes
-problems.  The construction of FMT obeys a theorem called the 'contact
-value theorem,' which states that the pressure at a wall is equal to
-the temperature multiplied by the density in contact with that wall,
-$p=kTn_{contact}$. This theorem is very important in our own work, so
-I'll discuss it in detail below.  I mention it here though because for
-the hard sphere fluid, the Perkis-Yevik equation predicts a pressure
-that is too high as bulk freezing tempuratures are approached.  It
-consequently overestimates the density at contact at these
-tempuratures.  This is problematic, since much of the reason we use
-classical density functional theory in analyzing inhomogeneous fluids
-in the first place is to estimate what happens at walls!
+While the theory has been a resounding
+  success \cite{rosenfeld1989free,rosenfeld1990free,rosenfeld1997fundamental},
+  the use of the Perkis-Yevik equation of state as the underlying,
+  homogeneous limit equation causes problems.  The construction of FMT
+  obeys a theorem called the 'contact value theorem,' which states
+  that the pressure at a wall is equal to the temperature multiplied
+  by the density in contact with that wall, $p=kTn_{contact}$. This
+  theorem is very important in our own work, so I'll discuss it in
+  detail below.  I mention it here though because for the hard sphere
+  fluid, the Perkis-Yevik equation predicts a pressure that is too
+  high as bulk freezing tempuratures are approached.  It consequently
+  overestimates the density at contact at these tempuratures.  This is
+  problematic, since much of the reason we use classical density
+  functional theory in analyzing inhomogeneous fluids in the first
+  place is to estimate what happens at walls!
 
-In (\fixme{year}) Roth et al addressed this issue in their version of FMT
-which they named 'White Bear', anecdotally after a pub that they
-frequented while writing the theory.  They keep the same general form
-of Rosenfeld's FMT but adjust it so that in the limit of homogeneous
-density it's free energy approaches that of the
-Mansoori-Carnahan-Starling-Leland equation, a modified version of the
-Carnahan-Starling equation of state, which we discussed above and
-which we use directly in our own work.  The Carnahan-Starling is more
-accurate in limiting cases than the Perkis-Yevik, so the White Bear
-hard-sphere free energy functional, $F_{hard~sphere}$, is overall a
-more accurate one.  It is therefore the hard sphere free energy
-reference system that we choose to use in our own work.
+In 2002 Roth et al addressed this issue in their version of FMT which
+they named 'White Bear'\cite{roth2002whitebear,hansen2006density},
+anecdotally after a pub that they frequented while writing the theory.
+They keep the same general form of Rosenfeld's FMT but adjust it so
+that in the limit of homogeneous density it's free energy approaches
+that of the Mansoori-Carnahan-Starling-Leland equation, a modified
+version of the Carnahan-Starling equation of state, which we discussed
+above and which we use directly in our own work.  The
+Carnahan-Starling is more accurate in limiting cases than the
+Perkis-Yevik, so the White Bear hard-sphere free energy functional,
+$F_{hard~sphere}$, is overall a more accurate one.  It is therefore
+the hard sphere free energy reference system that we choose to use in
+our own work.
 
 Below is the entire energy functional written in terms of the
 fundamental measure, $n_i(\rr)$:
@@ -609,6 +618,11 @@ with integrands
 \newpage
 
 \section{Contact Value Theorem}
+\begin{figure}
+  \includegraphics[width=5cm]{contact_one}
+  \label{cartoon:bit-of-wall}
+\end{figure}
+
 The contact value theorem is used directly in our own work and a
 conceptual understanding of its origin will aid in the conceptual
 understanding of the functions that we've created.  A derivation of it
@@ -624,7 +638,7 @@ dF &= dU - TdS - SdT = -SdT - pdV.
 \end{align}
 The volume of our system will be fixed except for a tiny
 (infinitesimally small) protrusion into it, jutting out from the wall,
-illustrated in Figure(\fixme{reference}).  We will allow the protrusion to
+illustrated in Figure~\ref{cartoon:bit-of-wall}.  We will allow the protrusion to
 either stick out or not, allowing the wall to either be flat and
 smooth there or protruding.  We'll call the free energy in the two
 different scenarios $F_{flat}$ and $F_{out}$, and investigate the
