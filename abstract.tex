@@ -1,1 +1,75 @@
-We did some cDFT and then I simulated some minD.
+
+
+\fixme{I'm not sure about the I versus We language here.  What's
+  appropriate for an abstract?  I looked up an example online and that
+  person was using 'We'.} This thesis first reports on computational
+research in two different areas.  I first discuss the Min-protein
+system found within \emph{Escherichia coli}.  Followign this I discuss
+an investigation into improving free energy functionals that are used
+within Classical Density Functional Theory in order to model water
+%
+We begin by examining the dynamics of the Min-protein system within
+E. Coli, which aid in regulating the process of cell division by
+identifying the center of the cell.  While this system usually
+exhibits robust bipolar oscillations in a variety of cell shapes,
+recent experiments have shown that when the cells are mechanically
+deformed into wide, flattened out, irregular shapes, the spatial
+regularity of these oscillations breaks down. We employ widely used
+stochastic and deterministic models of the Min system to simulate
+cells with flattened shapes.  The deterministic model predicts strong
+bipolar oscillations, in contradiction with the experimentally
+observed behavior, while the stochastic model, which is based on the
+same reaction-diffusion equations, does predict spatially irregular
+oscillations as observed in experiment.  We further report simulations
+of symmetric but flattened cell shapes, and find that it is the
+flattening rather than the asymmetry of the cell shapes that causes
+the irregular oscillation behavior.
+%
+
+We begin our discussion of our Classical Density Functional Theory
+research by investigating the value of the distribution function of an
+inhomogeneous hard-sphere fluid at contact. This quantity plays a
+critical role in statistical associating fluid theory, which is the
+basis of a number of recently developed classical density functionals,
+including ones developed within my research group. We define two
+averaged values for the distribution function at contact and derive
+formulas for each of them from the White Bear version of the
+fundamental measure theory functional, using an assumption of
+thermodynamic consistency. We test these formulas, as well as two
+existing formulas, against Monte Carlo simulations and find excellent
+agreement between the Monte Carlo data and one of our averaged
+distribution functions.
+%
+
+We then modify our recently published statistical associating fluid
+theory-based classical density functional theory for water,
+incorporating this improved distribution function at contact.  We
+examine the effect of this alteration by studying two hard-sphere
+solutes and a Leonard jones approximation of a krypton-atom solute,
+and find improvement.
+%% We then modify our recently published statistical associating fluid
+%% theory-based classical density functional theory for water,
+%% incorporating this improved distribution function at contact.  Our
+%% function replaces another in the association term of our free energy,
+%% improving its description of hydrogen bonding. We examine the effect
+%% of this improvement by studying two hard solutes (a hard hydrophobic
+%% rod and a hard sphere) and a Lennard-Jones approximation of a krypton
+%% atom solute. The improved functional leads to a moderate change in the
+%% density profile and a large decrease in the number of hydrogen bonds
+%% broken in the vicinity of the hard solutes. We find an improvement of
+%% the partial radial distribution for a krypton atom in water when
+%% compared with experiment.
+%
+
+Finally, we introduce an approximation for the pair distribution
+function of the inhomogeneous hard sphere fluid. Our approximation
+makes use of the new distribution function at contact refered to
+above. This approach achieves greater computational efficiency than
+previous approaches by enabling the use of exclusively fixed-kernel
+convolutions, which allows for an implementation using fast Fourier
+transforms. We compare results for our pair distribution approximation
+with two previously published works and Monte Carlo simulation,
+showing favorable results.
+
+
+

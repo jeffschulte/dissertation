@@ -15,6 +15,30 @@
 \newcommand{\needsworknow}[1]{\textcolor{red}{[\emph{#1}]}}
 %\pacs{61.20.Ne, 61.20.Gy, 61.20.Ja}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% The standard approach in liquid state theory is to model a liquid as a
+%% hard-sphere reference fluid with attractive interactions that are
+%% treated perturbatively~\cite{hansen2006theory}.  Recent advances have
+%% extended these perturbative approaches to inhomogeneous density
+%% distributions---that is, liquid interfaces---through the use of
+%% classical density functional theory (DFT), in which the grand free
+%% energy is found by minimizing a free energy functional of the
+%% density~\cite{jain2007modified, gloor2007prediction,
+%%   gross2009density,
+%%   %felipe2001examination, gloor2002saft,
+%%   %gloor2004accurate, clark2006developing,
+%%   kahl2008modified,
+%%   % yu2002fmt-dft-inhomogeneous-associating,
+%%   %fu2005vapor-liquid-dft, bryk2006density,
+%%   hughes2013classical,
+%%   %segura1998comparison, felipe2001examination,
+%%   %gloor2002saft, gloor2004accurate, fu2005vapor-liquid-dft,
+%%   bryk2006density, clark2006developing, kahl2008modified,
+%%   gross2009density} In the following section I introduce the
+%%   theoretical origins of classical DFT, a basic understanding of which
+%%   is neccesary for anyone looking to work in liquid state theory.
+
+
 \section{Introduction}
 In this chapter we discuss our investigation into the value of the
 distribution function of an inhomogeneous hard-sphere fluid at
@@ -32,8 +56,10 @@ Carlo data and one of our averaged distribution functions.
 
 A key input to the SAFT functionals is the distribution function
 evaluated at contact, which is identical to the contact value of the
-cavity correlation function for hard spheres, and is required for both
-the chain and association terms in the SAFT free energy.
+cavity correlation function for hard spheres, and is required for the
+association term in the SAFT free energy, and as well for a term
+labeled the 'chain' term, which is used in some SAFT free energy
+functionals.
 
 Yu and Wu introduced in 2002 a functional for the association term of
 the free energy, which included a functional for the contact value of
@@ -49,7 +75,7 @@ SAFT-based functionals\cite{fu2005vapor-liquid-dft, bryk2006density}.
 %% thoroughly studied, and is well approximated by the White Bear version
 %% of the Fundamental-Measure Theory (FMT)
 %% functional\cite{roth2002whitebear}.
-Also, two functionals for the chain contribution have recently been
+Also, two functionals for the chain term have recently been
 introduced, one which uses the
 distribution function of Yu and Wu\cite{bryk2006density} and another which
 introduces a new approximation for the contact value of the
@@ -67,10 +93,10 @@ presenting a density functional based on the PCP-SAFT equation of
 state\cite{gross2009density}, Gross introduces the chain free energy
 in SAFT as
 \begin{align}
-  \frac{F_\textit{chain}}{kT} &= -(m-1) \int n(\rr) \left(\ln\left(n^A(\rr)
+  \frac{F_\textit{chain}}{kT} &= -(m-1) \int n(\rr) \left(\ln\left(n_A(\rr)
   g_\sigma^A(\rr) \right)-1\right) d\rr \label{eq:Achain}
 \end{align}
-where $n^A(\rr)$ is a weighted density defined as
+where $n_A(\rr)$ is a weighted density defined as
 \begin{align}
   n_A(\rr) &= \int n(\rr')
   \frac{\delta(\sigma -|\rr-\rr'|)}{4\pi\sigma^2} d\rr' \label{eq:nA}

@@ -1,30 +1,34 @@
 \label{chapter:intro}
 We now move away from systems biology and into my research in
-classical Density Functional Theory.  \fixme{Is there a nice way to do
-this transition smoothly?}
+classical Density Functional Theory.  This chapter gives a general
+introduction to the concepts that are used in the three projects to
+which I contributed.  I tried to write it as a primer for the
+following chapters, which discuss each of the three projects
+indiviually.  Hopefully a person with a graduate-level backround in
+general physics will, after reading this chapter, be able to
+understand the following ones.
 
-
-The standard approach in liquid state theory is to model a liquid as a
-hard-sphere reference fluid with attractive interactions that are
-treated perturbatively~\cite{hansen2006theory}.  Recent advances have
-extended these perturbative approaches to inhomogeneous density
-distributions---that is, liquid interfaces---through the use of
-classical density functional theory (DFT), in which the grand free
-energy is found by minimizing a free energy functional of the
-density~\cite{jain2007modified, gloor2007prediction,
-  gross2009density,
-  %felipe2001examination, gloor2002saft,
-  %gloor2004accurate, clark2006developing,
-  kahl2008modified,
-  % yu2002fmt-dft-inhomogeneous-associating,
-  %fu2005vapor-liquid-dft, bryk2006density,
-  hughes2013classical,
-  %segura1998comparison, felipe2001examination,
-  %gloor2002saft, gloor2004accurate, fu2005vapor-liquid-dft,
-  bryk2006density, clark2006developing, kahl2008modified,
-  gross2009density} In the following section I introduce the
-  theoretical origins of classical DFT, a basic understanding of which
-  is neccesary for anyone looking to work in liquid state theory.
+%% The standard approach in liquid state theory is to model a liquid as a
+%% hard-sphere reference fluid with attractive interactions that are
+%% treated perturbatively~\cite{hansen2006theory}.  Recent advances have
+%% extended these perturbative approaches to inhomogeneous density
+%% distributions---that is, liquid interfaces---through the use of
+%% classical density functional theory (DFT), in which the grand free
+%% energy is found by minimizing a free energy functional of the
+%% density~\cite{jain2007modified, gloor2007prediction,
+%%   gross2009density,
+%%   %felipe2001examination, gloor2002saft,
+%%   %gloor2004accurate, clark2006developing,
+%%   kahl2008modified,
+%%   % yu2002fmt-dft-inhomogeneous-associating,
+%%   %fu2005vapor-liquid-dft, bryk2006density,
+%%   hughes2013classical,
+%%   %segura1998comparison, felipe2001examination,
+%%   %gloor2002saft, gloor2004accurate, fu2005vapor-liquid-dft,
+%%   bryk2006density, clark2006developing, kahl2008modified,
+%%   gross2009density} In the following section I introduce the
+%%   theoretical origins of classical DFT, a basic understanding of which
+%%   is neccesary for anyone looking to work in liquid state theory.
 
 \section{Classical Density Functional Theory}
 
@@ -213,30 +217,30 @@ association sites, which has been used to accurately model the
 equations of state of both pure fluids and mixtures over a wide range
 of temperatures and pressures~\cite{muller2001molecular,
 tan2008recent}. We will discuss the concept of hard spheres in detail
-in following sections.
+in the following sections.
 
 A SAFT functional is broken into the following terms:
 \begin{align}
   \iF_{SAFT} = F_{ideal} + F_{hard sphere} + F_{dispersion} + F_{association}
 \end{align}
 We will discuss the meaning of these terms below in much more detail,
-but write it down now to illustrate the general structure of the total
+but write them down now to illustrate the general structure of the total
 functional.
 
 
-Although we work specifically with the SAFT functionals in current
-development, our contributions described in the next chapters are
-applicable to many different types of fluid functionals.  The next
-chapter details a functional that we've created, the distribution
-function at contact $g_\sigma(\rr)$, which treats correlations between
-particles within a system, while the following chapter discusses it's
-use within a specific SAFT functional and it's effect upon that
-functional's results.  The chapter after that introduces another
-function, the pair distribution function $g^{(2)}_{HS}(\rr_1,\rr_2)$,
-that is closely related to the first.  It's important for the reader
-to recognize that while we discuss these functions in terms of their
-place within the SAFT free energy, they and their conceptual founding
-are useful to other Classical Density Functional Theories.
+Although we work specifically with the SAFT functionals, our
+contributions described in the next chapters are applicable to many
+different types of fluid functionals.  The next chapter details a
+functional that we've created, the distribution function at contact
+$g_\sigma(\rr)$, which treats correlations between particles within a
+system, while the following chapter discusses it's use within a
+specific SAFT functional and it's effect upon that functional's
+results.  The chapter after that introduces another function, the pair
+distribution function $g^{(2)}_{HS}(\rr_1,\rr_2)$, that is closely
+related to the first.  It's important for the reader to recognize that
+while we discuss these functions in terms of their place within the
+SAFT free energy, they and their conceptual founding are useful to
+other Classical Density Functional Theories.
 
 
 
@@ -274,9 +278,9 @@ function of the density profile:
 \end{align}
 where $f(n(\rr))$ is the free energy per unit volume of a homogenoues
 fluid at a density $n(\rr)$.  In essence, each bit of volume becomes
-it's own thermodynamic system, with a free energy equal that of a
+it's own thermodynamic system, with a free energy equal to that of a
 homogenous density of particles at the local density, and the free
-energies from all the bits of volume are added up to get the total.
+energies from all these bits of volume are added up to get the total.
 The construction neglects any interaction between the particles, so
 that any spatial variation in the density will be due entirely to the
 varying external potential.  As an approximation for interacting
@@ -284,10 +288,10 @@ fluids, it does in fact apply to external potentials that modulate the
 density slowly over space, much more slowly than correlation lengths.
 It has thus been used in the past to construct entire intrinsic free
 energy functionals beyond the reference $F_{ideal}$ term (cite).  It
-breaks breaks down rather quickly, however, near hard walls for
-interacting systems, where often the spheres will stack up in 'layers'
-(should see some figure) and the local densities become greater than
-bulk freezing densities (cite).
+breaks down rather quickly, however, near hard walls for interacting
+systems, where often the spheres will stack up in 'layers' (should see
+some figure) and the local densities become greater than bulk freezing
+densities (cite).
 
 However, $F_{ideal}$ can be constructed exactly in this integral of
 local density fashion, so all we need to do is integrate the free
@@ -299,7 +303,7 @@ to basic thermodynamics and statistical mechanics, we have:
 where $Q_N$ is the partition function and $\Lambda$ is de Broglie
 thermal wavelength.  Using th Stirling approximation for $N!$, we have
 \begin{align}
-F^{id} = Nk_BT(\ln \Lambda^3 \rho - 1))
+F^{id} = Nk_BT(\ln \Lambda^3 \rho - 1)
 \end{align}
 Taking this as the free energy per unit volume and integrating, we
 have
@@ -345,17 +349,18 @@ extensively throughout our work.
 
 The expansion of Eq.~\ref{eq:virial-expansion} comes out of a
 formulation of the partition function that is most often expressed as
-a series of diagrams that have well defined rules of construction.  I
-won't explain the diagrams or their rules here, but
-Figure(\fixme{should I show some diagrams here?  Where should I get
-them from?  Would it be okay to just use inkscape or something to do
-it myself?}) shows an example so that if the reader sees them
-somewhere she'll know what they are.  A single term (or diagram) in
-this expansion of the partition function is in fact a spatial integral
-of particle densities multiplied by a number of what are called Mayer
-Functions.  I'll give a loose outline of an explanation here, since a
-basic idea of where this expansion comes from should be useful to the
-reader.  The derivation starts with the partition function:
+a series of diagrams that have well defined rules of construction.
+%% I won't explain the diagrams or their rules here, but
+%% Figure(\fixme{should I show some diagrams here?  Where should I get
+%% them from?  Would it be okay to just use inkscape or something to do
+%% it myself?}) shows an example so that if the reader sees them
+%% somewhere she'll know what they are.
+A single term (or diagram) in this expansion of the partition function
+is in fact a spatial integral of particle densities multiplied by a
+number of what are called Mayer Functions.  I'll give a loose outline
+of an explanation here, since a basic idea of where this expansion
+comes from should be useful to the reader.  The derivation starts with
+the partition function:
 \begin{align}
   \Xi &= \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(-\beta \mathcal{H})d\rr^Nd\mathbf{p}^N \\
   &=\sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(-\beta (V_N + \phi(\rr))d\rr^Nd\mathbf{p}^N
@@ -420,10 +425,6 @@ pressure of the homogenous hard sphere fluid at different densities.
 
 \section{$F_{hard~sphere}$, Fundemental Meaure Theory, and White Bear}
 
-\fixme{White Bear uses MCSL equation of state, which is the generalization to
-the multi component mixture of hard spheres of the Carnahan-Starling
-equation of state.}
-
 We now return to analyzing the terms that make up the SAFT free energy:
 \begin{align}
   \iF_{SAFT} = F_{ideal} + F_{hard~sphere} +  F_{dispersion} + F_{association}.
@@ -437,7 +438,7 @@ designed to specifically deal with a different type of potential
 interaction among the particles.  Thus, $F_{ideal}$ is in a sense the
 most basic reference term in the system.  However, as I've stated
 above, the second term, $F_{hard~sphere}$, which I will describe here,
-is also considered to be a reference system.
+is also considered to be a reference term.
 
 The potential interaction it describes is based on the fact that every
 particle has at it's core a 'hard-core' repulsion to any other
@@ -556,7 +557,7 @@ so that the density is integrated over the volume of a sphere of
 radius $\sigma/2$, but will make no contributions outside of this
 sphere.  $n_2$ only allows for integration of densities on the surface
 of a sphere, but incorporates no density within or outside of it.
-$n_{2V}$ is a vector version of $n_2$, and the others are different
+$\mathbf{n}_{2V}$ is a vector version of $n_2$, and the others are different
 versions of the same, modified to have different units.
 
 The form of $\Phi({n_i(\rr)})$ is restricted to a certain extent by
@@ -592,14 +593,14 @@ that in the limit of homogeneous density it's free energy approaches
 that of the Mansoori-Carnahan-Starling-Leland equation, a modified
 version of the Carnahan-Starling equation of state, which we discussed
 above and which we use directly in our own work.  The
-Carnahan-Starling is more accurate in limiting cases than the
+Carnahan-Starling equation is more accurate in limiting cases than the
 Perkis-Yevik, so the White Bear hard-sphere free energy functional,
 $F_{hard~sphere}$, is overall a more accurate one.  It is therefore
 the hard sphere free energy reference system that we choose to use in
 our own work.
 
 Below is the entire energy functional written in terms of the
-fundamental measure, $n_i(\rr)$:
+fundamental measures, $n_i(\rr)$:
 \begin{equation}
 F_\textit{hard~sphere}[n] = k_B T \int \left(\Phi_1(\rr) + \Phi_2(\rr) + \Phi_3(\rr)\right) d\rr \; ,
 \end{equation}
@@ -617,17 +618,18 @@ with integrands
 \clearpage
 \newpage
 
-\section{Contact Value Theorem}
-\begin{figure}
-  \includegraphics[width=5cm]{contact_one}
-  \label{cartoon:bit-of-wall}
-\end{figure}
-
 The contact value theorem is used directly in our own work and a
 conceptual understanding of its origin will aid in the conceptual
 understanding of the functions that we've created.  A derivation of it
 is both justified and sort of awesome, so I dedicate this section to
 it.
+
+\section{Contact Value Theorem}
+\begin{figure}
+  \includegraphics[width=5cm]{contact_one}
+  \caption{Maybe this?}
+  \label{fig:contact}
+\end{figure}
 
 We start by considering a thermodynamic system of a fixed number of
 particles.  The thermodynamic equations are:
@@ -638,8 +640,8 @@ dF &= dU - TdS - SdT = -SdT - pdV.
 \end{align}
 The volume of our system will be fixed except for a tiny
 (infinitesimally small) protrusion into it, jutting out from the wall,
-illustrated in Figure~\ref{cartoon:bit-of-wall}.  We will allow the protrusion to
-either stick out or not, allowing the wall to either be flat and
+illustrated in Figure~\ref{fig:contact}.  We will allow the protrusion
+to either stick out or not, allowing the wall to either be flat and
 smooth there or protruding.  We'll call the free energy in the two
 different scenarios $F_{flat}$ and $F_{out}$, and investigate the
 difference between them, or in other words what happens as the system
@@ -652,16 +654,16 @@ Z_{out} &=  \int_{V-dV}... \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N
 where $\phi \{\rr^N \}$ is the interaction energy between all the
 particles and where we have ignored the kinetic energy terms, since in
 both systems, which are at the same tempurature, these will be the
-same \fixme{is this definitely true?}, and will later cancel out.  We
-would like to write $Z_{flat}$ in terms of $Z_{out}$, so we'll
-spatially break up the $Z_{flat}$ intagral.  The first term will
-integrate over the same volume as $Z_{out}$.  The next set of terms
-will treat the integration for one particle within the bit of volume,
-interacting with all the other particles outside of the volume.  The
-terms after that will integrate for two of the particles within the
-bit of volume and all the remaining particles in the rest of the
-volume.  The series will continue on in this fashion, with three
-particles in the volume, then four, etc.:
+same, and will later cancel out.  We would like to write $Z_{flat}$ in
+terms of $Z_{out}$, so we'll spatially break up the $Z_{flat}$
+integral.  The first term will integrate over the same volume as
+$Z_{out}$.  The next set of terms will treat the integration for one
+particle within the bit of volume, interacting with all the other
+particles outside of the volume.  The terms after that will integrate
+for two of the particles within the bit of volume and all the
+remaining particles in the rest of the volume.  The series will
+continue on in this fashion, with three particles in the volume, then
+four, etc.:
 \begin{align}
 Z_{flat} = &\int_{V-dV}... \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N \notag \\
 + &\int_V... \int_V \int_{dV} exp(-\phi \{ \rr^N \})d\rr^N \
@@ -670,7 +672,7 @@ Z_{flat} = &\int_{V-dV}... \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N \notag \\
 + \int_V... \int_{dV}\int_V \int_{dV} exp(-\phi \{\rr^N \})d\rr^N ...
 \end{align}
 The term on the first line is just $Z_{out}$.  Looking at the next set
-of terms, becuase every particle is identical it doesn't matter which
+of terms, because every particle is identical it doesn't matter which
 of them is within the little bit of volume.  Every one of these terms
 will be the same, so they can be replaced by one of them multiplied by
 $N$.  We will throw away the terms that are of higher order in $dV$,
@@ -759,9 +761,9 @@ is because while the functions that we've created are included in
 them, they could also be included in entirely different, non-SAFT
 classical density functional theories, and their construction is
 dependent on the concepts associated with the preceding terms, not of
-$F_{dispersion}$ and $F_{association}$. The chain term describes the
-chain formation energy in polymeric fluids, while the association term
-describes the effects of hydrogen bonding, both of which can be large.
+$F_{dispersion}$ and $F_{association}$. The association term describes
+the effects of hydrogen bonding, and the dispersion term describes
+longer range interactions (such as Van der Waals).
 
 \clearpage
 \newpage
@@ -775,11 +777,11 @@ might be entering this line of research in the future.  This theorem
 motivates our preference of using density convolutions within our
 functionals.
 
-One of the largest advantages to using Fundamental
-Measure Theory, and one that is not immediately obvious, is that the
-convolutions that combine to construct the functional allow for very
-efficient computation.  This is not very intuitive, since an integral
-of a convolution integral must integrate over two dimensions, e.g.
+One of the largest advantages to using Fundamental Measure Theory, and
+one that is not immediately obvious, is that the convolutions that
+combine to construct a functional allow for very efficient
+computation.  This is not very intuitive, since an integral of a
+convolution integral must integrate over two dimensions, e.g.
 \begin{align}
 \int(f\ast g)(\xx)d\xx = \int \int f(\yy)g(\xx-\yy)d\yy d\xx
 \end{align}
@@ -799,18 +801,17 @@ together:
 \hat{h}(\kk) = \hat{f}(\kk)\hat{g}(\kk)
 \end{align}
 
-When minimizing our functional, after
-taking a Fourier Transform of the convolutions, we have merely to
-integrate once over the one variable $\kk$.  Wait!  You may say.  This
-is a cheat, since the Fourier Transform is itself an integral, so at
-the end of the day we're still performing two integrals.  This would
-be true if it were not for the computational technique known as Fast
-Fourier Transforms, developed by (cite).  I won't explain how it works
-here, but it's effect is to perform the transform, which would
-normally have a computational cost on the order of N, with a
-computational cost on the order of $\ln N$ instead.  Thus, when we
-Fourier Transform the convolutions in the functional and proceed to
-take the single integral over the result (in k-space), the
+When minimizing our functional, after taking a Fourier Transform of
+the convolutions, we have merely to integrate once over the one
+variable $\kk$.  Wait!  You may say.  This is a cheat, since the
+Fourier Transform is itself an integral, so at the end of the day
+we're still performing two integrals.  This would be true if it were
+not for the computational technique known as Fast Fourier Transforms.
+I won't explain how it works here, but it's effect is to perform the
+transform, which would normally have a computational cost on the order
+of N, with a computational cost on the order of $\ln N$ instead.
+Thus, when we Fourier Transform the convolutions in the functional and
+proceed to take the single integral over the result (in k-space), the
 computational cost scales as $N \ln N$.  For large systems (we
 simulate systems with hundreds or even thousands of particles) this
 can certainly be the difference between practically possible and
@@ -828,7 +829,7 @@ The fourier transforms are
 \end{align}
 and
 \begin{align}
-  \hat{h}(\kk) = \int h(\rr) exp(-i2\pi \kk \cdot \zz) d\zz &= \int \int f(\yy) g(\zz-\yy) exp(-i2\pi \kk \cdot \zz) d\yy d\zz
+  \hat{h}(\kk) = \int h(\zz) exp(-i2\pi \kk \cdot \zz) d\zz &= \int \int f(\yy) g(\zz-\yy) exp(-i2\pi \kk \cdot \zz) d\yy d\zz
 \end{align}
 because the two integrals are taken over all space, we can say that if
 \begin{align}
