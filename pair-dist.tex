@@ -1,3 +1,4 @@
+\label{chapter:pair}
 %\newcommand{\red}[1]{{\bf \color{red} #1}}
 %\newcommand{\green}[1]{{\bf \color{green} #1}}
 %\newcommand{\blue}[1]{{\bf \color{blue} #1}}
@@ -236,10 +237,9 @@ Because it cannot be written as a single-site convolution, this
 approach is particularly computationally demanding when applied to
 systems featuring inhomogeneity in more than one dimension.
 
-In a previous paper~\cite{schulte2012using}, we introduce a
-functional that gives a good approximation for the pair distribution
-function averaged over positions $\rr_2$ that are in contact with
-$\rr_1$, defined as:
+In Chapter~\ref{chapter:contact}, we introduce a functional that gives
+a good approximation for the pair distribution function averaged over
+positions $\rr_2$ that are in contact with $\rr_1$, defined as:
 \begin{align}
   g_\sigma(\rr_1) &\equiv \frac{ \int g^{(2)}(\rr_1,\rr_2) \delta(\sigma -|\rr_1-\rr_2|)n(\rr_2)
     d\rr_2 }{ \tilde{n}(\rr_1)  }
@@ -248,7 +248,7 @@ where the weighted density $\tilde{n}(\rr_1)$ is defined by:
 \begin{align}
   \tilde{n}(\rr) &\equiv \int n(\rr') \delta(\sigma -|\rr - \rr'|)d\rr'.
 \end{align}
-In \cite{schulte2012using} we use the contact-value theorem to derive the exact formula:
+In Chapter~\ref{chapter:contact} we use the contact-value theorem to derive the exact formula:
 \begin{align}
   g_\sigma(\rr)% &= \frac{\ncontact(\rr)}{n_A(\rr)} \\
   &= \frac12 \frac{1}{k_BT n(\rr) \tilde{n}(\rr)} \frac{\delta
@@ -302,7 +302,7 @@ $g_{\sigma}(\rr)$ evaluated at the two points:
   g^{(2)}(\rr_1,\rr_2) = \frac{g(r_{12}; g_\sigma(\rr_1)) +
     g(r_{12}; g_\sigma(\rr_2))}{2}. \label{eq:g2-our-mean}
 \end{align}
-This Contact Value Approach for $g^{(2)}(\rr_1,\rr_2)$ is
+This CVA for $g^{(2)}(\rr_1,\rr_2)$ is
 constructed to reproduce the exact value for the integral:
 \begin{align}
   F_1^{\text{contact}} &= \tfrac12 \iint
@@ -387,7 +387,7 @@ more efficient than existing methods.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\columnwidth]{figs/short-range-ghs-alt}
+  \includegraphics[width=13cm]{figs/short-range-ghs-alt}
   \caption{Plot of the hard-sphere radial distribution function of the
     homogeneous fluid at several values for packing fraction $\eta$. The
     blue lines show our separable fit, the black dots show the true
@@ -654,12 +654,12 @@ are omitted.
 All methods tested perform similarly over their range of validity.
 
 \begin{figure}
-  \begin{subfigure}{1.0\columnwidth}
+  \begin{subfigure}{.9\columnwidth}
     \includegraphics[width=\columnwidth]{figs/dadz-3-2.pdf}
     \vspace{-0.8cm}
     \caption{Sticky hard-sphere fluid}\label{fig:dadz-delta}
   \end{subfigure}
-  \begin{subfigure}{1.0\columnwidth}
+  \begin{subfigure}{.9\columnwidth}
     \includegraphics[width=\columnwidth]{figs/dadz-square-well-3.pdf}
     \vspace{-0.8cm}
     \caption{Hard-core square well fluid}\label{fig:dadz-square-well}
@@ -731,3 +731,5 @@ and is a significant improvement over existing approximations near
 contact.  But most importantly, the computational cost of using the
 CVA in a classical density functional scales much more favorably than
 existing methods in high resolution computations.
+
+\clearpage

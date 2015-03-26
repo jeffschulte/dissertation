@@ -42,24 +42,33 @@
 \section{Introduction}
 In this chapter we discuss our investigation into the value of the
 distribution function of an inhomogeneous hard-sphere fluid at
-contact.  This quantity plays a critical role in SAFT.  We define two
-averaged values for the distribution function at contact, and derive
-formulas for each of them from the White Bear version of the FMT
-functional, using an assumption of thermodynamic consistency. We have
-tested these formulas, as well as two existing formulas against Monte
-Carlo simulations, and have found excellent agreement between the Monte
-Carlo data and one of our averaged distribution functions.
+contact.  This is a function that contains information about how
+densities at two positions, separated by a distance of one diameter so
+that spheres located at the positions are in contact, are correlated
+with each other.  I will define it in more detail below.  It plays a
+critical role in SAFT, since the %% since the SAFT model is based on interaction
+%% sites that will `turn on' when spheres are in contact with eachother.
+ability to accurately estimate contact between spheres dictates the
+ability to accurately estimate when interaction sites on the surface
+of those spheres are overlapping, which is how interaction in SAFT
+takes place.  We define two averaged values for the distribution
+function at contact, and derive formulas for each of them from the
+White Bear version of the FMT functional, using an assumption of
+thermodynamic consistency. We have tested these formulas, as well as
+two existing formulas against Monte Carlo simulations, and have found
+excellent agreement between the Monte Carlo data and one of our
+averaged distribution functions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The following are papers that use a SAFT-based classical DFT with at
 % least some of the terms purely local
 
-A key input to the SAFT functionals is the distribution function
-evaluated at contact, which is identical to the contact value of the
-cavity correlation function for hard spheres, and is required for the
-association term in the SAFT free energy, and as well for a term
-labeled the 'chain' term, which is used in some SAFT free energy
-functionals.
+A key input to the SAFT free energy functionals is the distribution
+function evaluated at contact, which is identical to the contact value
+of the cavity correlation function for hard spheres, and is required
+for the association term in the SAFT free energy, and as well for a
+term labeled the `chain' term, which is used in SAFT free energy
+functionals for polymers.
 
 Yu and Wu introduced in 2002 a functional for the association term of
 the free energy, which included a functional for the contact value of
@@ -121,18 +130,19 @@ the association free energy as
   X_i(\rr) &= \frac{1}{1 + \sum_j \frac{n_0(\rr) g_\sigma^{S}(\rr)}{\zeta(\rr)}
                                  X_j(\rr)\kappa_{ij} \left(e^{\beta
                                    \epsilon_{ij}}-1\right)}.
-  \label{eq:X}
+  \label{eq:Aassoctwo}
 \end{align}
 where $X_i(\rr)$ is the fraction of interaction sites of type $i$ at
 position $\rr$ that are unoccupied, $n_0(\rr)$ is a weighted density
 defined in Equation~\ref{eq:n0}, $\zeta(\rr)$ is a nonlocal measure of
-the density gradient defined in Equation~\ref{eq:zeta}, and
-$g_\sigma^S(\rr)$ is a form of the distribution function at contact,
-which we define in Equation~\ref{eq:gS}.  In Section~\ref{sec:yuwu} I
-present the approximation to $g_\sigma^S(\rr)$ introduced by Yu and
-Wu.  Given these differing approaches, it seems valuable to examine
-this property of the hard-sphere fluid through direct simulation, in
-order to establish the advantages and disadvantages of each approach.
+the density gradient defined in Equation~\ref{eq:zeta} and discussed
+in Section~\ref{sec:hard-sphere}, and $g_\sigma^S(\rr)$ is a form of
+the distribution function at contact, which we define in
+Equation~\ref{eq:gS}.  In Section~\ref{sec:yuwu} I present the
+approximation to $g_\sigma^S(\rr)$ introduced by Yu and Wu.  Given
+these differing approaches, it seems valuable to examine this property
+of the hard-sphere fluid through direct simulation, in order to
+establish the advantages and disadvantages of each approach.
 
 Although these recent works have introduced approximate functionals
 for the contact value of the distribution function for an
@@ -161,7 +171,8 @@ surfaces.
 We define our terms using the two-particle density
 $n^{(2)}(\rr_1,\rr_2)$, which gives the probability per unit volume
 squared of finding one particle at position $\rr_1$ and the other at
-position $\rr_2$.  The pair distribution function is defined by
+position $\rr_2$.  The pair distribution function is defined in terms
+of the pair density (See Eq~\ref{eq:n-particle-density}):
 \begin{align}
   g(\rr_1,\rr_2) &\equiv \frac{n^{(2)}(\rr_1,\rr_2)}{n(\rr_1)n(\rr_2)}
 \end{align}
@@ -174,18 +185,18 @@ simple, but it is desirable for reasons of computational efficiency to
 construct classical density functionals using only one-center
 convolutions.  Moreover, a local function is helpful when defining
 functionals based on perturbation theory, such as those in
-Equations~\ref{eq:Achain}-\ref{eq:X}.  This leads
-us to seek a \emph{local} value for $g_\sigma$ that is dependent upon
-only one position variable $\rr$.  There are two reasonable options
-for defining such a local function: a symmetric formulation such as
-that used in Equations~\ref{eq:Aassoc}-\ref{eq:X} (which we refer to
-as $S$) and an asymmetric formulation such as that used in
-Equation~\ref{eq:Achain} (which we refer to as $A$).
+Equations~\ref{eq:Achain}-\ref{eq:X}.  This leads us to seek
+a \emph{local} value for $g_\sigma$ that is dependent upon only one
+position variable $\rr$.  There are two reasonable options for
+defining such a local function: a symmetric formulation such as that
+used in Equation~\ref{eq:Aassoc} (which we refer to as $S$) and an
+asymmetric formulation such as that used in Equation~\ref{eq:Achain}
+(which we refer to as $A$).
 
 For the symmetric $S$ case, the distribution function at contact is
 given by:
 \begin{align}
-  g^S_\sigma(\rr) &= \frac{1}{n_0(\rr)^2}\int n^{(2)}(\rr - \rr', \rr
+  g^S_\sigma(\rr) \equiv \frac{1}{n_0(\rr)^2}\int n^{(2)}(\rr - \rr', \rr
   + \rr')
   \frac{\delta(\sigma/2 -|\rr'|)}{\pi\sigma^2}d\rr' \label{eq:gS}
 \end{align}
@@ -198,9 +209,10 @@ illustrated in Figure~\ref{fig:n0}.
   n_0(\rr) &= \int n(\rr')\frac{\delta(\sigma/2 -|\rr-\rr'|)}{\pi\sigma^2} d\rr'
   \label{eq:n0}
 \end{align}
-This functional $n_0(\rr)$ gives a density averaged over all spheres that touch at
-the position $\rr$.  Together, $n_0(\rr)$ and $g_\sigma^S(\rr)$ are
-used in the association free energy given in Equations~\ref{eq:Aassoc}-\ref{eq:X}.
+This functional $n_0(\rr)$ gives a density averaged over all spheres
+that touch at the position $\rr$.  Together, $n_0(\rr)$ and
+$g_\sigma^S(\rr)$ are used in the association free energy given in
+Equations~\ref{eq:Aassoc}-\ref{eq:Aassoctwo}.
 
 \begin{figure}
 \begin{center}
@@ -225,7 +237,7 @@ used in the association free energy given in Equations~\ref{eq:Aassoc}-\ref{eq:X
 In contrast, the asymmetrically averaged $A$ distribution function is
 given by
 \begin{align}
-  g^A_\sigma(\rr) &= \frac{1}{n(\rr)n_A(\rr)}
+  g^A_\sigma(\rr) \equiv \frac{1}{n(\rr)n_A(\rr)}
   \int n^{(2)}(\rr, \rr + \rr')
   \frac{\delta(\sigma -|\rr'|)}{4\pi\sigma^2}d\rr' \label{eq:gA}
 \end{align}
@@ -397,7 +409,7 @@ energy on hard sphere radius:
   F_{HS} &= Nk_BT \frac{4\eta - 3\eta^2}{(1-\eta)^2}
 \end{align}
 where $\eta \equiv \frac{\pi}{6} \sigma^3 n$ is the filling fraction.
-we compute the pressure using the total force with
+We compute the pressure using the total force with
 respect to a changing radius of all the spheres.
 To find the pressure, we divide this force by $4\pi \sigma^2$, which
 is the SAS area of a single hard sphere, illustrated in Figure~\ref{fig:nA}.
@@ -439,18 +451,17 @@ $g_\sigma^A(\rr)$ as was done in the previous section:
   &= \frac{1}{n(\rr) n_A(\rr)}\frac{1}{ k_BT 4\pi \sigma^2}\frac12 \frac{\delta
     F_{HS}}{\delta \sigma(\mathbf{r})} \label{eq:g-A-exact}
 \end{align}
-where $\sigma(\mathbf{r})$ is the diameter of spheres located at position $\rr$.
-Details regarding the evaluation of the functional derivative
-$\frac{\delta F_{HS}}{\delta \sigma(\mathbf{r})}$
-are discussed in the Appendix.
+where $\sigma(\mathbf{r})$ is the diameter of spheres located at
+position $\rr$.  Details regarding the evaluation of the functional
+derivative $\frac{\delta F_{HS}}{\delta \sigma(\mathbf{r})}$ are
+discussed in Appendix~\ref{chapter:appendix}.
 Equation~\ref{eq:g-A-exact} is an exact expression for
 $g_\sigma^A(\rr)$ as defined in Equation~\ref{eq:gA}.  However, since
-We do not know the exact hard-sphere free energy, we approximate
-$F_{HS}$ using FMT.
-The equation for $g_\sigma^A$ found using FMT requires finding
-convolutions of local derivatives of the free energy, making this
-formulation computationally somewhat more expensive than the free
-energy itself.
+we do not know the exact hard-sphere free energy, we approximate
+$F_{HS}$ using FMT.  The equation for $g_\sigma^A$ found using FMT
+requires finding convolutions of local derivatives of the free energy,
+making this formulation computationally somewhat more expensive than
+the free energy itself.
 
 \derivation{
   \end{widetext}
@@ -578,29 +589,28 @@ measure the contact value of the distribution function for several
 simple inhomogeneous configurations.  For each configuration, we
 compute the mean density, and the contact values of the distribution
 function, averaged as defined in Equations~\ref{eq:gA} and
-\ref{eq:gS}.  We compare these with the functionals presented in
+\ref{eq:gS}.  We compare these with the four functionals presented in
 sections~\ref{sec:g-A} to~\ref{sec:yuwu}.  We constructed our
 functionals using both the original White Bear
 functional~\cite{roth2002whitebear} as well as the mark II version of
 the White Bear functional~\cite{hansen2006density}, but the results
-were essentially indistinguishable on our plots, so we exclusively
-show the results due to the original White Bear functional.
+were visually indistinguishable on our plots, so we exclusively show
+the results due to the original White Bear functional.
 
 We simulate the inhomogeneous hard sphere fluid at four hard-wall
-interfaces.  The first and simplest is a flat hard wall.  I
-then study two convex hard surfaces.  One is an excluded sphere with
+interfaces.  The first and simplest is a flat hard wall.  We then
+study two convex hard surfaces.  One is an excluded sphere with
 diameter $2\sigma$, which corresponds to a ``test particle''
 simulation with one of a hard sphere at the origin with diameter
-$\sigma$.  The
-second is an excluded sphere with diameter $6\sigma$,
+$\sigma$.  The second is an excluded sphere with diameter $6\sigma$,
 which demonstrates behavior typical of mildly convex hard surfaces.
 Finally, we study a concave surface given by a hard cavity in which
 our fluid is free to move up to a diameter of $16\sigma$, which
 demonstrates behavior typical of mildly concave surfaces.  In each
-case, we performed a low-density (filling fraction 0.1) and high-density
-(filling fraction 0.4) simulation.  We performed additional
-computations over a wider range of curvatures and densities, but
-chose these as typical examples.
+case, we performed a low-density (filling fraction 0.1) and
+high-density (filling fraction 0.4) simulation.  We performed
+additional computations over a wider range of curvatures and
+densities, but chose these to present as typical examples.
 
 
 %% \begin{figure}
@@ -622,23 +632,21 @@ chose these as typical examples.
   %%   (b)\includegraphics[width=8cm]{figs/inner-12-10} &
   %%   (d)\includegraphics[width=8cm]{figs/outer-16-01}
   %% \end{tabular}
-  \caption{ (Color online) Density and distribution function in systems
-    with a ``low density'' bulk filling fraction of 0.1.  The
-    subplots each show a different system: (a) next to a flat hard wall, (b)
-    around a hard sphere with an excluded diameter of $6\sigma$, (c)
-    around a hard sphere with an excluded diameter of $2\sigma$, and
-    (d) within a spherical cavity with an included diameter of $16\sigma$.
-    In the top and middle panels of each subfigure respectively are the
-    asymmetrically averaged distribution function $g_\sigma^A$ (defined
-    in Equation~\ref{eq:gA}) and the symmetrically averaged
-    distribution function $g_\sigma^S$ (defined in
-    Equation~\ref{eq:gS}).  The results of Monte Carlo, our
-    functional, and one previously published
-    functional\cite{gross2009density,
-      yu2002fmt-dft-inhomogeneous-associating} are compared in each
-    case.  The bottom panels show the density computed with
-    Monte Carlo and with DFT.}
-  \label{fig:low-density}
+  \caption{Density and distribution function in
+  systems with a ``low density'' bulk filling fraction of 0.1.  The
+  subplots each show a different system: (a) next to a flat hard wall,
+  (b) around a hard sphere with an excluded diameter of $6\sigma$, (c)
+  around a hard sphere with an excluded diameter of $2\sigma$, and (d)
+  within a spherical cavity with an included diameter of $16\sigma$.
+  In the top and middle panels of each subfigure respectively are the
+  asymmetrically averaged distribution function $g_\sigma^A$ (defined
+  in Equation~\ref{eq:gA}) and the symmetrically averaged distribution
+  function $g_\sigma^S$ (defined in Equation~\ref{eq:gS}).  The
+  results of Monte Carlo, our functional, and one previously published
+  functional\cite{gross2009density,
+  yu2002fmt-dft-inhomogeneous-associating} are compared in each case.
+  The bottom panels show the density computed with Monte Carlo and
+  with DFT.}  \label{fig:low-density}
 \end{figure*}
 
 \subsection{Low density}
@@ -664,7 +672,7 @@ interface by a significant margin.  We note that the theoretical
 curves extend into the region from which the fluid is excluded.  This
 value corresponds to the distribution function that would be observed
 in the vanishingly unlikely scenario in which there was a sphere
-present at that location.  Naturally, we am unable to observe this
+present at that location.  Naturally, we are unable to observe this
 quantity in our Monte Carlo simulations.
 
 The $g_\sigma^S$ distribution function (plotted
@@ -694,7 +702,7 @@ slightly larger errors in our prediction.
   %%   (b)\includegraphics[width=8cm]{figs/inner-12-40} &
   %%   (d)\includegraphics[width=8cm]{figs/outer-16-04}
   %% \end{tabular}
-  \caption{ (Color online) Density and distribution function in systems
+  \caption{Density and distribution function in systems
     with a ``high density'' bulk filling fraction of 0.4.  The
     subplots each show a different system: (a) next to a flat hard wall, (b)
     around a hard sphere with an excluded diameter of $6\sigma$, (c)
@@ -728,21 +736,21 @@ The discrepancies are largest in the case of the spherical cavity
 (Figure~\ref{fig:high-density}d), in which the DFT considerably
 underestimates the range of the density oscillations.
 
-The asymmetric version of the distribution function (plotted
-in the top panels of Figure~\ref{fig:high-density}) once again displays
-relatively smooth behavior with a few small
-oscillations near the interface, and a somewhat elevated value within
-a diameter of the hard surface, with the magnitude of this elevation
-somewhat different in each configuration.  As was the case at low
-density, our distribution function $g_\sigma^A$ matches very closely
-the Monte Carlo data, reproducing quite well the structure near the
-interface in each configuration, although in the spherical cavity there is a small, but significant
-discrepancy, comparable to the discrepancy found in the density
-itself.  In each case, the distribution of Gross dramatically
-underestimates the distribution at the interface, at one extreme by
-40\% in the case of the spherical cavity
-(Figure~\ref{fig:high-density}d), and at the other extreme by 15\%
-in the test-particle scenario (Figure~\ref{fig:high-density}c).
+The asymmetric version of the distribution function (plotted in the
+top panels of Figure~\ref{fig:high-density}) once again displays
+relatively smooth behavior with a few small oscillations near the
+interface, and a somewhat elevated value within a diameter of the hard
+surface, with the magnitude of this elevation somewhat different in
+each configuration.  As was the case at low density, our distribution
+function $g_\sigma^A$ matches very closely the Monte Carlo data,
+reproducing quite well the structure near the interface in each
+configuration, although in the spherical cavity there is a small, but
+significant discrepancy, comparable to the discrepancy found in the
+density itself.  In each case, the distribution of Gross dramatically
+underestimates the value at the interface, at one extreme by 40\% in
+the case of the spherical cavity (Figure~\ref{fig:high-density}d), and
+at the other extreme by 15\% in the test-particle scenario
+(Figure~\ref{fig:high-density}c).
 
 %% \begin{figure}
 %%   \includegraphics[width=\columnwidth]{figs/outer-16-04}
@@ -788,132 +796,3 @@ we recommend that creators of SAFT-based classical density functionals
 consider using the $g_\sigma^A$ functional defined in
 Section~\ref{sec:g-A}.
 
-
-
-%% \begin{figure}
-%% \includegraphics[width=\columnwidth]{figs/gHS-vs-n}
-%% \caption{A comparison of the various approximations to the contact
-%%   density in the homogeneous limit.  As expected, they are all
-%%   identical, and we won't include this plot in the paper (but it's
-%%   here to verify that our code is working).}
-%% \label{fig:gHS-vs-n}
-%% \end{figure}
-
-%% \begin{figure}
-%% \includegraphics[width=\columnwidth]{figs/free-energy}
-%% \caption{A comparison of the various approximations to the free energy
-%%   in the homogeneous limit.  Note that the White Bear functional uses
-%%   a modified form of the Carnahan equation of state.  As expected,
-%%   these are all identical, and we won't include this plot in the paper
-%%   (but it's here to verify that our code is working).}
-%% \label{fig:free-energy}
-%% \end{figure}
-
-$\mathbf{Appendix~to~Chapter~\ref{chapter:contact}}$
-
-The expression for the asymmetric distribution function
-$g_\sigma^A(\rr)$ (Equation~\ref{eq:g-A-exact}) involves the
-functional derivative $\frac{\delta F_{HS}}{\delta
-  \sigma(\mathbf{r})}$.  In this appendix we will explain how this
-derivative is evaluated.  We begin by applying the chain rule in the
-following way:
-  \begin{align}
-    \frac{\delta F_{HS}}{\delta \sigma(\mathbf{r})} &=
-    \int \left(
-    \sum_\alpha
-    \frac{\delta F_{HS}}{\delta n_\alpha(\mathbf{r}')}
-    \frac{\delta n_\alpha(\mathbf{r}')}{\delta \sigma(\mathbf{r})}
-    \right) d\mathbf{r}'
-  \end{align}
-This expression requires us to evaluate $\frac{\delta F_{HS}}{\delta
-  n_\alpha(\mathbf{r}')}$ and $\frac{\delta
-  n_\alpha(\mathbf{r}')}{\delta \sigma(\mathbf{r})}$.  The former is
-straightforward, given Equations~\ref{eq:Phi1}-\ref{eq:Phi3}, and we
-will write no more about it.  The functional derivatives of the
-fundamental measures, however, require a bit more subtlety, and we
-will address them here.
-
-We begin with the derivative of $n_3$, the filling fraction, which we
-will discuss in somewhat more detail than the remainder, which are
-similar in nature.  Because the diameter $\sigma(\rr)$ is the diameter
-of a sphere \emph{at position~$\rr$}, we write the fundamental measure
-$n_3(\rr')$ as
-\begin{align}
-  n_3(\rr') &= \int n(\rr'') \Theta\left(\frac{\sigma(\rr'')}{2}
-  -\left|\rr' - \rr''\right|\right)
-  d\rr''
-\end{align}
-where we note that $\sigma(\rr'')$ and $n(\rr'')$ are the diameter and
-density, respectively, of spheres centered at position~$\rr''$.  Thus the
-derivative with respect to the diameter of spheres at position
-$\rr$ is
-\begin{align}
-  \frac{\delta n_3(\rr')}{\delta \sigma(\rr)} &= \frac 12 \int n
-  (\rr'') \delta\left(\frac{\sigma(\rr'')}{2} -\left|\rr' - \rr''\right|\right)
-  \delta(\rr-\rr'') d\rr'' \\ &= n (\rr) \delta(\sigma(\rr)/2
-  -\left|\rr' - \rr\right|)
-\end{align}
-This pattern will hold for each fundamental measure: because we are
-seeking the change in free energy when spheres at point~$\rr$ are
-expanded, the integral over density is eliminated.  To compute the
-distribution funtion $g_\sigma^A$, we convolve this delta function with
-the product of the density and a local derivative of $\Phi(\rr)$:
-\begin{align}
-  \frac{\delta F_{HS}}{\delta \sigma(\rr)} &= \int \frac{\partial \Phi(\rr')}{\partial
-    n_3(\rr')}n(\rr') \delta(\sigma/2-|\rr'-\rr|)d\rr'
-  + \cdots
-\end{align}
-As we shall see, there are only four convolution kernels, leading to
-four additional convolutions beyond those required for FMT.
-
-The functional derivative of $n_2$ introduces our second convolution
-kernel, which is a derivative of the delta function.
-\begin{align}
-  %n_2(\rr') &= \int n(\rr'') \delta(\sigma(\rr'')/2 -\left|\rr' - \rr''\right|) d \rr''\\
-  \frac{\delta n_2(\rr')}{\delta \sigma(\rr)} &= \frac 12 n(\rr) \delta'(\sigma(\rr)/2 -\left|\rr' - \rr\right|)
-\end{align}
-The derivatives of the remaining scalar densities $n_1$ and $n_0$ reduce to
-sums of the terms above:
-\begin{align}
-  %n_1(\rr') &= \int \mathbf{dr''} \frac{n(\rr'')}{2\pi \sigma(\rr'')}
-  %\delta(\sigma(\rr'')/2 -\left|\rr' - \rr''\right|) \\
-  \frac{\delta n_1(\rr')}{\delta \sigma(\rr)}
-  = \frac{n(\rr)}{4\pi
-    \sigma(\rr)}\delta'(\sigma(\rr)/2 -\left|\rr' - \rr\right|) 
-  -
-  \frac{n(\rr)}{2\pi
-    \sigma(\rr)^2}\delta(\sigma(\rr)/2 -\left|\rr' - \rr\right|)
-\end{align}
-and
-\begin{align}
-  %n_0(\rr') &= \int \mathbf{dr''} \frac{n(\rr'')}{\pi \sigma(\rr'')^2}
-  %\delta(\sigma(\rr'')/2 -\left|\rr' - \rr''\right|) \\
-  \frac{\delta n_0(\rr')}{\delta \sigma(\rr)}
-  = \frac{n(\rr)}{2\pi
-    \sigma(\rr)^2}\delta'(\sigma(\rr)/2 -\left|\rr' - \rr\right|)
-  -
-  2 \frac{n(\rr)}{\pi
-    \sigma(\rr)^3}\delta(\sigma(\rr)/2 -\left|\rr' - \rr\right|)
-\end{align}
-
-The vector-weighted densities $\mathbf{n}_{V1}$ and $\mathbf{n}_{V2}$
-give terms analogous to those of $n_1$ and $n_2$:
-\begin{align}
-  %\mathbf{n}_{V2}(\rr') &= \int n(\rr') \delta(\sigma(\rr'')/2 -\left|\rr' - \rr''\right|)
-  %  \frac{\rr'-\rr''}{|\rr'-\rr''|} d \rr''\\
-  \frac{\delta \mathbf{n}_{V2}(\rr')}{\delta \sigma(\rr)} = -\frac 12 n(\rr) \delta'(\sigma(\rr)/2 -\left|\rr' - \rr\right|)
-    \frac{\rr-\rr'}{|\rr-\rr'|}
-\end{align}
-\begin{align}
-  %\mathbf{n}_{V1}(\rr') &= \int d\rr'' \frac{n(\rr'')}{2\pi \sigma(\rr'')}
-  %\delta(\sigma(\rr'')/2 -\left|\rr' - \rr''\right|) \frac{\rr'-\rr''}{|\rr'-\rr''|}\\
-  \frac{\delta \mathbf{n}_{V1}(\rr')}{\delta \sigma(\rr)}
-  = -\frac{n(\rr)}{4\pi
-    \sigma(\rr)}\delta'(\sigma(\rr)/2 -\left|\rr' - \rr\right|) \frac{\rr-\rr'}{|\rr-\rr'|}
-  \\ +
-  \frac{n(\rr)}{2\pi
-    \sigma(\rr)^2}\delta(\sigma(\rr)/2 -\left|\rr' - \rr\right|) \frac{\rr-\rr'}{|\rr-\rr'|}
-\end{align}
-Thus there are four convolution kernels used in computing $g_\sigma^A$:
-one scalar and one vector delta function, and one scalar and one
-vector derivative of the delta function.

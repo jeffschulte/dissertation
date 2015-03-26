@@ -1,12 +1,12 @@
 \label{chapter:intro}
 We now move away from systems biology and into my research in
-classical Density Functional Theory.  This chapter gives a general
+classical Density Functional Theory.  This chapter provides a general
 introduction to the concepts that are used in the three projects to
 which I contributed.  I tried to write it as a primer for the
 following chapters, which discuss each of the three projects
-indiviually.  Hopefully a person with a graduate-level backround in
-general physics will, after reading this chapter, be able to
-understand the following ones.
+individually.  It is intended to be accessible to physicists with no
+familiarity with the theory of liquids, and should provide the
+backround needed for the following chapters.
 
 %% The standard approach in liquid state theory is to model a liquid as a
 %% hard-sphere reference fluid with attractive interactions that are
@@ -32,85 +32,122 @@ understand the following ones.
 
 \section{Classical Density Functional Theory}
 
-A classical statistical ensemble is a collection of an arbitrary
-number of classical systems of particles that have the same
-macroscopic properties and internal restrictions, but have positions
-and momenta that are otherwise distributed randomly.  In the canonical
-ensemble, the number of particles $N$, the total volume of the system
-$V$, and the tempurature $T$ are constant.  In this ensemble the free
-energy, defined as $F = U - TS$, where $U$ is the internal energy and
-$S$ is the entropy of the system, is at a minimum in thermodynamic
-equilibrium. In the grand canonical ensemble, the number of particles
-is allowed to vary while $V$, $T$ and the chemical potential $\mu$ are
-constant.  In this ensemble it is the grand potential, defined as
-$\Omega = F - \mu N$, that is at a minimum in thermodynamic
-equilibrium.
+
+%% Classical Density Functional Theory is a theory created to model
+%% distributions of densities in inhomogeneous situatons.
+
+
+A classical statistical ensemble is a collection of microstates that
+share certain macroscopic properties, but have an otherwise
+appropriately random distribution of positions and momenta.  In the
+canonical ensemble, the number of particles $N$, the total volume of
+the system $V$, and the temperature $T$ are constant.  In this
+ensemble the free energy, defined as $F = U - TS$, where $U$ is the
+internal energy and $S$ is the entropy of the system, is minimized in
+thermodynamic equilibrium. In the grand canonical ensemble, the number
+of particles is allowed to vary while $V$, $T$ and the chemical
+potential $\mu$ are constant.  In this ensemble it is the grand
+potential, defined as $\Omega = F - \mu N$, that is at a minimum in
+thermodynamic equilibrium.
 
 In the case of inhomogenous fluids, a treatment of the inhomogenous
-external potential $\phi(\rr)$ restricts the positions of the
+external potential $\phi(\rr)$ affects the positions of the
 particles in the system and stands in the place of the volume $V$ in
 the thermodynamic equations.  In such a system, a change in the
 internal energy is
 \begin{align}
-  \delta U = T\delta S + \int \rho^{(1)}(\rr)\delta \phi(\rr)d(\rr) + \mu \delta N
+  \delta U = T\delta S + \int \delta n(\rr)\phi(\rr)d\rr + \mu \delta N
 \end{align}
-where $\rho^{(1)}$ is the 'one particle density'.
-$\rho^{(1)}(\rr)d\rr$ is the average number of particles at $\rr$
-within a volume $d\rr$.  One can calculate $\rho^{(1)}(\rr)$ by taking
-the one-particle limit of the n-particle density of the grand
-canonical ensemble,
+where $n(\rr)$, which I will refer to as the `density profile',
+is discussed in the next subsection.
+
+\subsection{Discussion of the density profile $n(\rr)$}
+Because our work deals very heavily with the concepts associated with
+particle density, it's worthwhile to discuss these concepts
+specifically.
+
+One can define $n(\rr)d\rr$ as the average number of particles at
+$\rr$ within a volume $d\rr$.  I'll define it throughout this document
+in this fashion (as one does when working in Classcal DFT), but the
+reader should be aware that during the DFT process, this definition is
+not always strictly accurate.  As I'll discuss below, one of the steps
+of Classical DFT is to minimize the grand potential function, and
+during this process, $n(\rr)$ is actually often a `trial density
+profile' or `possible density profile' as opposed to teh physical
+equilibrium density profile.  However, after the function has been
+minimized and a thermodynamic solution has been reached, $n(\rr)d\rr$
+is indeed the average number of particles found in the volume $d\rr$
+in thermal equilibrium.  For our purposes, we can always define in
+this way.
+
+The density profile $n(\rr)$ is actually the one particle limit of a
+more general multi-particle density.  In the grand canonical ensemble,
+this multi-particle density can be calculated as
 \begin{align}
   \label{eq:n-particle-density}
-  \rho_N^{(n)}(\rr^n)=\frac{1}{\Xi}\sum^{\infty}_{N=n}\frac{exp(N\beta \mu)}{\Lambda^3 (N-n)!} \
-  \int exp(-\beta V_N)d\rr^{(N-n)}.
+  n^{(m)}(\{\rr^n\})=\frac{1}{\Xi}\sum^{\infty}_{N=n}\frac{\exp(N\beta \mu)}{\Lambda^3 (N-n)!} \
+  \int \exp(-\beta V_N)d\rr^{(N-n)}.
 \end{align}
-$\rho_N^{(n)}(\rr^n)$ has the general form of a statistical mechanical
+$n^{(m)}(\{\rr^n\})$ has the general form of a statistical mechanical
 probability, with an integration over possible states of Boltzmann
 factors divided by the grand canonical partition function,
 \begin{align}
-  \Xi = \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int\int exp(\beta \mathcal{H})d\rr^Nd\mathbf{p}^N.
+  \Xi = \sum_{N=0}^{\infty}\frac{\exp(N\beta\mu)}{h^{3N}N!}\int\int \exp(\beta \mathcal{H})d\rr^Nd\mathbf{p}^N.
 \end{align}
 $V_N$ in Eq.~\ref{eq:n-particle-density} is the total interaction
 potential between all of the particles in the system, and the spatial
 integral is taken over all the potential positions of the particles
-\emph{other} than the $n$ particles at positions $\rr^n$.  The
-$exp(N\beta \mu)$ term accounts for the chemical potential's
+\emph{other} than the superscript $m$ particles at positions $\rr^n$.
+Chapters~\ref{chapter:contact} and \ref{chapter:pair} refer to the two
+particle limit of this function, the `pair density' profile,
+$n^{(2)}(\rr^n)$.  The $\exp(N\beta \mu)$ term in
+Eq.~\ref{eq:n-particle-density} accounts for the chemical potential's
 regulation of the average number of particles in the system.  When
 implementing density functional theory, one adjusts $\mu$ in order to
-restrict the system's average number of particles,
+constrain the system's average number of particles,
 \begin{align}
-  \int_{system} \rho_N^{(1)}(\rr)d\rr = \langle N \rangle
+  \int_{system} n(\rr)d\rr = \langle N \rangle
 \end{align}
 to be a desired value.
+
+\subsection{Summary of derivation of Classical Density Functional Theory}
+Using Classical DFT involves creating free energy functionals of the
+density profile, finding the density profile that minimizes the grand
+potential energy, and then of course running test after test to see
+how things went.  I could just write that this is what we do and then
+define the terms, but I'd like to give an idea of \emph{why} we do
+these things, so I'll discuss in this subsection a derivation of the
+theory.  While the theory was originally derived and published in 1965
+by Mermin~\cite{mermin1965thermal}, I use here the notation of
+Hansen~\cite{hansen2006theory}.
 
 The probability density, which is closely related to the n-particles
 density, is $f_0(\rr^N,\mathbf{p}^N;N)$.
 $f_0(\rr^N,\mathbf{p}^N;N)d\rr^N$ is the probability that there are
 $N$ particles in the system and that those particles are found within
 the infinitesimal range of positions $\rr^N$ and momenta
-$\mathbf{p}^N$.  It's definition is
+$\mathbf{p}^N$.  Its definition is
 \begin{align}
   \label{eq:prob-density}
-  \mathit{f}_0(\rr^N,\mathbf{p}^N;N) = \frac{exp(-\beta(\mathcal{H}-N\mu))}{\Xi}
+  \mathit{f}_0(\rr^N,\mathbf{p}^N;N) = \frac{\exp(-\beta(\mathcal{H}-N\mu))}{\Xi}
 \end{align}
-where $\Xi$ is once again the partition
-function.
+where $\Xi$ is once again the grand canonical partition function.
 
-Classical Density Functional Theory assumes that the Hamiltonian can
-be split into linearly combined parts:
+Classical DFT assumes that the Hamiltonian can be split into linearly
+combined parts:
 \begin{align}\label{eq:hamiltonian}
-  \mathcal{H}(\rr^N,\mathbf{p}^N) = K_N(\mathbf{p}^N) + V_N(\rr^N) + \Phi(\rr^N)
+  \mathcal{H}(\rr^N,\mathbf{p}^N) = K_N(\mathbf{p}^N) + V_N(\rr^N) + \sum^N_{i=1}\phi(\rr_i)
 \end{align}
 The three terms on the right are the kinetic energy, potential
 interaction between particles, and external potential, respectively.
 The kinetic energy is a function of only the momenta of the particles,
-and the two potentials of only their positions.
+and the two potentials are functions of only their positions.
 
 Substituing this for the Hamiltonian term in Eq.~\ref{eq:prob-density}
 and taking the natural logarithm, we have:
 \begin{align}
   \label{eq:log-of-f}
-  \ln \mathit{f}_0 = \beta\Omega - \beta K_N - \beta V_N - \beta \Phi_N + N\beta \mu
+  \ln \mathit{f}_0 = \beta\Omega - \beta K_N - \beta V_N - \beta \sum^N_{i=1}\phi(\rr_i) + N\beta \mu
 \end{align}
 where we have used the relation
 \begin{align}
@@ -119,78 +156,77 @@ where we have used the relation
 which is the basic connection between thermodynamics and statistical
 mechanics in the grand canonical ensemble.
 
-Because the external potential $\Phi(\rr)$ and $\mu$ are both constant
-and $\rho^{(1)}(\rr)$ is the average ensemble equilibrium density at
-$\rr$, the two right most terms are
+Eq.~\ref{eq:log-of-f} is true for each microstate.  We can relate this
+equation to the density profile by averaging over all the micro states
+in an ensemble.  Because the external potential
+$\sum^N_{i=1}\phi(\rr_i)$ and $\mu$ are both constant and $n(\rr)$ is
+the average ensemble equilibrium density at $\rr$, the two right most
+terms average to
 \begin{align}
-  \langle \Phi_N \rangle = \int \rho^{(1)}(\rr)\phi(\rr)d\rr \
-  and \
-  \langle N\mu \rangle = \mu \int \rho^{(1)}(\rr) d\rr
+  \langle \Phi_N \rangle = \int n(\rr)\phi(\rr)d\rr \
+  \quad\text{and}\quad \
+  \langle N\mu \rangle = \mu \int n(\rr) d\rr
 \end{align}
-
-Using these relations and switching terms around in
-Eq.~\ref{eq:log-of-f} results in the equation
+Using these relations, taking the average of Eq.~\ref{eq:log-of-f},
+and switching terms around results in the equation
 \begin{align} \label{eq:intrinsic-free-two}
   \langle K_N + V_N + k_BT \ln \mathit{f}_0 \rangle \
-  = \Omega - \int \rho^{(1)}(\rr)\phi(\rr)d\rr + \mu \int \rho^{(1)}(\rr)d\rr
+  = \Omega - \int n(\rr)\phi(\rr)d\rr + \mu \int n(\rr)d\rr
 \end{align}
 
 The thermodynamic definition of the grand potential gives us $F =
 \Omega + \mu N$.  From this we can see that the right hand side of
 Eq.~\ref{eq:intrinsic-free-two} is analougous to the free energy of
 the inhomogenous system minus the energy due to the external
-potential.  We call this function the 'intrinsic free energy' $\iF$
+potential.  We call this function the `intrinsic free energy' $\iF$
 since it only includes the interaction energy between the particles
-within the system:
+within the system (but not the external potential):
 
 \begin{align}
   \label{eq:intrinsic-free-three}
-  \iF = \Omega - \int \rho^{(1)}(\rr)\phi(\rr)d\rr + \mu \int \rho^{(1)}(\rr)d\rr \
+  \iF = \Omega - \int n(\rr)\phi(\rr)d\rr + \mu \int n(\rr)d\rr \
   = \langle K_N + V_N + k_BT \ln \mathit{f}_0 \rangle
 \end{align}
 
-It can be shown that for a given $\mu$, $T$, and defined function
-$V_N$ describing the potential interaction between particles, there is
-a one-to-one relation between the external potential function and the
-equilibrium density profile $\rho^{(1)}$ at thermodynamic equilibrium.
-The grand canonical density function $f_0$ (Eq.~\ref{eq:prob-density})
-for a given function $V_N$, $\mu$, and $T$ is a function of only the
-external potential, so as a result it is completely determined by
-$\rho^{(1)}$.  $V_N$ is also wholly determined by $\rho^{(1)}$ and
-$K_N$ is determined by tempurature.  Thus the right hand side of
-Eq.~\ref{eq:intrinsic-free-three} is a function of only the external
-potential and therefore also of only $\rho^{(1)}$, which means that
-for a given $\mu$, $T$, and defined function $V_N$, $\iF$ is wholly
-determined by $\rho^{(1)}$.
+It can be shown~\cite{mermin1965thermal,hansen2006theory} that for a
+given $\mu$, $T$, and defined function $V_N$ describing the potential
+interaction between particles, there is a one-to-one relation between
+the external potential function and the equilibrium density profile
+$n(\rr)$ at thermodynamic equilibrium.  The grand canonical density
+function $f_0$ (Eq.~\ref{eq:prob-density}) for a given function $V_N$,
+$\mu$, and $T$ is a function of only the external potential, so as a
+result it is completely determined by $n^{(1)}$.  $V_N$ is also wholly
+determined by $n^{(1)}$ and $K_N$ is determined by temperature.  Thus
+the right hand side of Eq.~\ref{eq:intrinsic-free-three} is a function
+of only the external potential and therefore also of only $n^{(1)}$,
+which means that for a given $\mu$, $T$, and defined function $V_N$,
+$\iF$ is wholly determined by $n(\rr)$.
 
 Thanks to all of this, we can write
 \begin{align}
-  \Omega_{\phi}[n] = \iF[n] + \int n(\rr)\phi(\rr)d\rr - \mu\int n(\rr)d\rr
+  \Omega_{\phi}[n(\rr)] = \iF[n(\rr)] + \int n(\rr)\phi(\rr)d\rr - \mu\int n(\rr)d\rr
 \end{align}
 where $n(\rr)$ is a density profile that we will adjust systematically
-in order to minimize $\Omega_{\phi}[n]$.  When $\Omega_{\phi}[n]$ is
-minimized, it becomes the minimized grand potential of the system, and
-the density profile $n(\rr)$ of the system is the density profile in
-thermodynamic equilibrium, $\rho^{(1)}$.  It is finding this density
-profile in thermodynamic equilibrium, and then the properties that can
-be derived from it, that is the ultimate goal of Classical Density
-Functional Theory.  Throughout the rest of this dissertation I will be
-using $n(\rr)$ to refer to the particle density of the system, and the
-reader should understand that it is a function that is meant to be
-adjusted in order to minimize the grand potential energy function.
+in order to minimize $\Omega_{\phi}[n(\rr)]$.  The function $n(\rr)$
+that minimizes $\Omega_{\phi}[n(\rr)]$ it becomes the
+minimized grand potential of the system, and the density profile
+$n(\rr)$ of the system is the density profile in thermodynamic
+equilibrium.  It is finding this density profile in thermodynamic
+equilibrium, and then the properties that can be derived from it, that
+is the ultimate goal of Classical Density Functional Theory.
 
-We begin the process of Classical Density Functional Theory by
-designing the functional form of the intrinisic free energy $\iF$.
-This is the major theoretical part of the process.  We then decide
-upon an external potential $\phi(\rr)$ that defines the external
-restrictions of the system, set the tempurature $T$ and chemical
+We begin the process of Classical DFT by designing the functional form
+of an approximation for the intrinisic free energy $\iF$.  This is the
+major theoretical part of the process.  We then decide upon an
+external potential $\phi(\rr)$ that defines the external restrictions
+of the system we wish to examine, set the temperature $T$ and chemical
 potential $\mu$, and systematically adjust the density profile until
 we have found the global minimum of this grand potential.  I won't
 discuss the process of finding the density profile that minimizes the
-grand potential in this dissertation, primarily because the algorithms
-that do this were all in place before I joined the lab!  My work is
-centered around the first part of the process, namely constructing the
-functional form of $\iF$.
+grand potential in this dissertation, except to say that it is
+performed with standard methods such as conjugate gradient
+minimization.  My research has been centered around the first part of
+the process, namely constructing the functional form for $\iF$.
 
 
 
@@ -203,25 +239,25 @@ functional form of $\iF$.
 
 Work on Classical Density Functional Theory for inhomogeneous fluids
 involves creating the intrinsic free energy functional of the density
-profile, $\iF[n]$.  This is comprised of a sum of terms that
-individually address different conceptual aspects of the system.
+profile, $\iF[n(\rr)]$.  This is typically written as a sum of terms
+that individually address different conceptual aspects of the system.
 Terms that treat different types of interaction between particles are
-added to a term that describes the reference system.
+added to the free energy of a reference system.
 
-The free energy functional that we use in our work is one of a widely
-used family of models in the development of classical density
+The free energy functional that we use in much of our work is one of a
+widely used family of models in the development of classical density
 functionals called Statistical Associating Fluid Theory
-(SAFT)~\cite{chapman1989saft}.  SAFT is a theory based on a model of
-hard spheres with weak dispersion interactions and hydrogen-bonding
-association sites, which has been used to accurately model the
-equations of state of both pure fluids and mixtures over a wide range
-of temperatures and pressures~\cite{muller2001molecular,
+(SAFT)~\cite{chapman1989saft}.  SAFT is a theory for liquids based on
+a model of hard spheres with weak dispersion interactions and
+hydrogen-bonding association sites, which has been used to accurately
+model the equations of state of both pure fluids and mixtures over a
+wide range of temperatures and pressures~\cite{muller2001molecular,
 tan2008recent}. We will discuss the concept of hard spheres in detail
 in the following sections.
 
 A SAFT functional is broken into the following terms:
 \begin{align}
-  \iF_{SAFT} = F_{ideal} + F_{hard sphere} + F_{dispersion} + F_{association}
+  \iF_{SAFT} = F_{ideal} + F_{hard sphere} + F_{association} + F_{chain} + F_{dispersion}
 \end{align}
 We will discuss the meaning of these terms below in much more detail,
 but write them down now to illustrate the general structure of the total
@@ -229,88 +265,93 @@ functional.
 
 
 Although we work specifically with the SAFT functionals, our
-contributions described in the next chapters are applicable to many
-different types of fluid functionals.  The next chapter details a
-functional that we've created, the distribution function at contact
-$g_\sigma(\rr)$, which treats correlations between particles within a
-system, while the following chapter discusses it's use within a
-specific SAFT functional and it's effect upon that functional's
-results.  The chapter after that introduces another function, the pair
-distribution function $g^{(2)}_{HS}(\rr_1,\rr_2)$, that is closely
-related to the first.  It's important for the reader to recognize that
-while we discuss these functions in terms of their place within the
-SAFT free energy, they and their conceptual founding are useful to
-other Classical Density Functional Theories.
+contributions described in the
+chapters~\ref{chapter:contact},~\ref{chapter:saft},
+and~\ref{chapter:pair} are applicable to many different types of fluid
+functionals.  Chapter~\ref{chapter:contact} details a functional that
+we've created, the distribution function at contact $g_\sigma(\rr)$,
+which accurately describes correlations between particles within a
+system, while chapter~\ref{chapter:saft} discusses its use within a
+specific SAFT functional and its effect upon that functional's
+results.  Chapter~\ref{chapter:pair} introduces another function, the
+pair distribution function $g^{(2)}_{HS}(\rr_1,\rr_2)$, that is
+closely related to the first.  While we discuss these functions in
+terms of their place within the SAFT free energy, they and their
+conceptual basics are also applicable to other Classical DFT.
 
-
-
-The first two terms, $F_{ideal}$ and $F_{hard~sphere}$, are typically
-thought of as the functional's reference system terms.  The
-$F_{ideal}$ is ubiquitous, and treats particles that have no
+The first two terms in the SAFT free energy, $F_{ideal}$ and
+$F_{hard~sphere}$, describe the hard-sphere reference system.  The
+$F_{ideal}$ is ubiquitous, and describes particles that have no
 interactions between them.  While the $F_{hard~sphere}$ term does
-treat particle interactions, the type of interaction it treats is so
-basic and simple that this term is also seen as a reference term and
-is incorporated into many very different functionals.  I give a
-detailed introduction to the particular functional that we use for the
-$F_{hard~sphere}$ term below (that of the White Bear free energy),
-because while we don't actually modify it in our implementation of
-inhomogenous SAFT, we do draw heavily from its ideas when creating our
-functions.  The rest of the terms in $\iF$ address different types of
-interactions between particles.  SAFT itself departs from other
-theories in these last two terms.  In inhomogenous fluids, each one of
-these terms is itself a functional of the density profile.
+treat particle interactions, it is so large that it cannot be treated
+perturbatively, so it is used as a reference term and is incorporated
+into many very different functionals.  I will discuss it more
+thoroughly in Section~\ref{sec:hard-sphere}, but I'll state briefly
+that it is defined to describe a potential between particles that is
+everywhere zero, except at a distance of one diameter or less, for
+which the potential becomes infinite.  Section~\ref{sec:hard-sphere}
+gives a detailed introduction to the particular functional that we use
+for the $F_{hard~sphere}$ term below (that of the White Bear free
+energy), because while we don't actually modify it in our
+implementation of inhomogenous SAFT, we do draw heavily from its ideas
+when creating our functions.  The rest of the terms in $\iF$ address
+different types of attractions between particles.  SAFT itself departs
+from other theories in these last two terms.  Each of these terms is
+itself a functional of the density profile.
 
 
 The first term in the SAFT functional is the ideal free energy term
-$F_{ideal}$, and it treats a system of particles that do not interact
-with eachother.  This is an obvious place to start if one is to build
+$F_{ideal}$, which treats a system of particles that do not interact
+with each other.  This is an obvious place to start if one is to build
 the description of particle interaction terms upon a reference system.
-It's lack of interaction actually causes this term to be the only one
+Its lack of interaction actually causes this term to be the only one
 that we can construct exactly, with no approximations.  To see why, we
-point out that a system of non-interacting particles is able to
-satisfy what is usually called the the local density approximation
-(although we shouldn't call it this here because for non-interacting
-particles it's not an approximation!)  The idea is that the free
-energy functional can be written as an integral of a completely local
+observe that a system of non-interacting particles is able to satisfy
+what is usually called the the local density approximation (although
+we shouldn't call it this here because for non-interacting particles
+it's not an approximation!).  The idea is that the free energy
+functional can be written as an integral of a completely local
 function of the density profile:
 \begin{align}
-  \iF_{local~density}[n] = \int f(n(\rr)) d\rr
+  \iF_{local~density}[n(\rr)] = \int f(n(\rr)) d\rr
 \end{align}
 where $f(n(\rr))$ is the free energy per unit volume of a homogenoues
 fluid at a density $n(\rr)$.  In essence, each bit of volume becomes
-it's own thermodynamic system, with a free energy equal to that of a
-homogenous density of particles at the local density, and the free
-energies from all these bits of volume are added up to get the total.
-The construction neglects any interaction between the particles, so
-that any spatial variation in the density will be due entirely to the
-varying external potential.  As an approximation for interacting
-fluids, it does in fact apply to external potentials that modulate the
-density slowly over space, much more slowly than correlation lengths.
-It has thus been used in the past to construct entire intrinsic free
-energy functionals beyond the reference $F_{ideal}$ term (cite).  It
-breaks down rather quickly, however, near hard walls for interacting
-systems, where often the spheres will stack up in 'layers' (should see
-some figure) and the local densities become greater than bulk freezing
-densities (cite).
+its own thermodynamic system, with a free energy equal to that of a
+homogenous density of particles at the same local density, and the
+free energies from all these bits of volume are added up to get the
+total.  The construction neglects any interaction between the
+particles, so that any spatial variation in the density will be
+entirely due to the varying external potential.  As an approximation
+for interacting fluids, it does in fact apply to external potentials
+that modulate the density slowly over space, much more slowly than
+correlation lengths.  It has thus been used in the past to construct
+portions of the intrinsic free energy functionals beyond the reference
+$F_{ideal}$ term.  It breaks down rather quickly, however, near hard
+walls for interacting systems, where often the spheres will stack up
+in `layers' and the local densities become greater than bulk freezing
+densities.
 
-However, $F_{ideal}$ can be constructed exactly in this integral of
-local density fashion, so all we need to do is integrate the free
-energy of an ideal homogenous system at the local density.  Going back
-to basic thermodynamics and statistical mechanics, we have:
+However, $F_{ideal}$ can be constructed exactly in this local density
+form, so all we need to do is integrate the free energy of an ideal
+homogenous system at the local density.  Going back to basic
+thermodynamics and statistical mechanics, we have:
 \begin{align}
-  F = -k_BT \ln Q_N = -k_BT \ln (\frac{V}{N!\Lambda^3})
+  F = -k_BT \ln Q_N = -k_BT \ln \left(\frac{V^N}{N!\Lambda^{3N}}\right)
 \end{align}
-where $Q_N$ is the partition function and $\Lambda$ is de Broglie
-thermal wavelength.  Using th Stirling approximation for $N!$, we have
+where $Q_N$ is the ordinary canonical partition function and $\Lambda$
+is the de Broglie thermal wavelength, $\Lambda~=~\left(\frac{2\pi\beta
+h^2}{m}\right)^{1/2}$.  Using the Stirling approximation for $N!$, we
+have
 \begin{align}
-F^{id} = Nk_BT(\ln \Lambda^3 \rho - 1)
+F^{id} = Nk_BT(\ln \Lambda^3 n - 1)
 \end{align}
-Taking this as the free energy per unit volume and integrating, we
+Taking this as the free energy divided by volume and integrating, we
 have
 \begin{align}
   F_{ideal}[n] = \frac{1}{\beta}\int d\rr n(\rr)(\ln (\Lambda^3 n(\rr))-1)
 \end{align}
-This will be our reference $F_{ideal}$ term, as is common within
+This will be the reference $F_{ideal}$ term, which is commonly used in
 Clasical Density Functional Theory.
 
 \clearpage
@@ -319,33 +360,34 @@ Clasical Density Functional Theory.
 \section{Virial Equation, Mayer functions, and the Carnahan Starling Equation}
 
 The second term in the SAFT intrinsic free energy functional,
-$F_{hard~sphere}$, is generally refered to as a reference term and the
-specific functional that we use for this term is also used in many
-other density functional theories.  I'll introduce the functional and
-the theory behind it in some detail in the next section because it is
-so widely used and, more importantly, because an understanding of the
-ideas involved is neccesary for an understanding of our own work.
+$F_{hard~sphere}$, is also part of the reference system.  The specific
+hard sphere free energy functional that we use for this term is widely
+used in the field.  I'll introduce the functional and the theory
+behind it in some detail in Section~\ref{sec:hard-sphere} because it
+is so widely used and, more importantly, because an understanding of
+the ideas involved is neccesary for an understanding of our own work.
 Before describing the term itself, however, I'll explain in this
 section some important things that lead up to this theory, namely the
-Virial equation, Mayer functions, and the Carnahan Starling Equation.
+Virial equation, Mayer functions, and the grand Carnahan Starling
+Equation.
 
 The Virial Equation applies to homogeneous fluids.  It equates a
 thermodynamic, intensive quantity (likes the pressure) to an expansion
-of the homogeneous density of the fluid.  It's standard form is
+of the homogeneous density $n$ of the fluid.  Its standard form is
 \begin{align}
   \label{eq:virial-expansion}
-  \frac{\beta P}{\rho} = 1 + \sum_{i=1}^{\infty}\beta_i\eta^i.
+  \frac{\beta P}{n} = 1 + \sum_{i=1}^{\infty}\beta_i\eta^i.
 \end{align}
 where
 \begin{align}
-  \eta = \frac{\pi \rho \sigma^3}{6}
+  \eta \equiv \frac{\pi n \sigma^3}{6}
 \end{align}
-is the 'packing fraction'.  $\sigma$ here is the diameter of the
+is the `packing fraction'.  Here $\sigma$ is the diameter of the
 spherical particles of the fluid.  The packing fraction is really just
 a more convenient way to refer to the density, where we give each
-particle the volume of a sphere and think in terms of how much volume
-is taken up by particles as opposed to how many there are.  We use it
-extensively throughout our work.
+particle the volume of a sphere and think in terms of how much of the
+volume is occupied by particles.  We use this dimensionless measure of
+density extensively throughout our work.
 
 The expansion of Eq.~\ref{eq:virial-expansion} comes out of a
 formulation of the partition function that is most often expressed as
@@ -357,99 +399,98 @@ a series of diagrams that have well defined rules of construction.
 %% somewhere she'll know what they are.
 A single term (or diagram) in this expansion of the partition function
 is in fact a spatial integral of particle densities multiplied by a
-number of what are called Mayer Functions.  I'll give a loose outline
-of an explanation here, since a basic idea of where this expansion
-comes from should be useful to the reader.  The derivation starts with
-the partition function:
+number of what are called Mayer Functions.  The derivation starts with
+the partition function,
 \begin{align}
-  \Xi &= \sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(-\beta \mathcal{H})d\rr^Nd\mathbf{p}^N \\
-  &=\sum_{N=0}^{\infty}\frac{exp(N\beta\mu)}{h^{3N}N!}\int...\int exp(-\beta (V_N + \phi(\rr))d\rr^Nd\mathbf{p}^N
+  \Xi &= \sum_{N=0}^{\infty}\frac{\exp(N\beta\mu)}{h^{3N}N!}\int...\int \exp(-\beta \mathcal{H})d\rr^Nd\mathbf{p}^N \\
+  &=\sum_{N=0}^{\infty}\frac{\exp(N\beta\mu)}{h^{3N}N!}\int...\int \exp(-\beta (V_N + K_N + \sum_i\phi(\rr_i))d\rr^Nd\mathbf{p}^N
 \end{align}
 where $V_N$ is the interaction potential between all the particles in
-the system and $\phi(\rr)$ is the external potential.  If the the
-interaction potential can be written as a summation of pairwise
-superposable interactions, i.e.
+the system, $K_N$ is the total kinetic energy, and $\phi(\rr)$ is the
+external potential.  If the the interaction potential can be written
+as a summation of pairwise superposable interactions, i.e.
 \begin{align}
-  V_N = \sum_{i<j}^{all~particles} v(i,j)
+  V_N = \sum_{i<j}^{all~particles} v(\rr_i,\rr_j)
 \end{align}
  than the partition function can be written as
 \begin{align}
-  \Xi = \sum_{N=0}^{\infty}\frac{1}{N!}\int... \int \left(\overset{N}{\underset{i<j}{\Pi}} f(i,j)\right)
-  \left( \overset{N}{\underset{i=1}{\Pi}} \frac{exp(\beta (\mu - \phi(\rr)))}{\Lambda^3}\right)d\rr^N
+  \Xi = \sum_{N=0}^{\infty}\frac{1}{N!}\int... \int \left(\overset{N}{\underset{i<j}{\Pi}} (1+f(i,j))\right)
+  \left( \overset{N}{\underset{i=1}{\Pi}} \frac{\exp(\beta (\mu - \phi(\rr)))}{\Lambda^3}\right)d\rr^N
 \end{align}
-where $f(i,j)=exp(-\beta v(i,j))$ is the Mayer function between two
-particles.  With the help of the diagrams, one can take the natural
-logarithm of the partition function to get the grand potential, and
-then derivatives to find what are called direct correlation functions
-(which I won't explain here). The use of an identity yields a
-relationship between the chemical potential and the density,
-\begin{align}
-  \beta \mu = \beta \mu^{id} - \sum_{i=1}^{\infty}\beta_i\rho^i.
-\end{align}
-Then the use of the relation from thermodynamics,
-\begin{align}
-  \left(\frac{\partial P}{\partial \rho}\right)_T \
-  = \rho \left(\frac{\partial \mu}{\partial \rho}\right)_T,
-\end{align}
-allows one to express the pressure as
+where $f(i,j)=\exp(-\beta v(i,j))-1$ is the Mayer function between two
+particles.  Because the $f(i,j)$ are small, we can expand $\Xi$ as a
+power series in the $f(i,j)$. The diagrams mentioned above aid in
+keeping track of terms in the expansion and taking the logarithm of
+$\Xi$.  One of the results is an equation of the form
+
+%%  The diagrams iagrams,
+%% one can take the natural logarithm of the partition function to get
+%% the grand potential, and then derivatives to find what are called
+%% direct correlation functions (which I won't explain here). The use of
+%% an identity yields a relationship between the chemical potential and
+%% the density,
+%% \begin{align}
+%%   \beta \mu = \beta \mu^{id} - \sum_{i=1}^{\infty}\beta_i\rho^i.
+%% \end{align}
+%% Then the use of the relation from thermodynamics,
+%% \begin{align}
+%%   \left(\frac{\partial P}{\partial \rho}\right)_T \
+%%   = \rho \left(\frac{\partial \mu}{\partial \rho}\right)_T,
+%% \end{align}
+%% allows one to express the pressure as
 \begin{align}
   \frac{\beta P}{\rho} = 1 + \sum_{i=1}^{\infty}\beta_i\eta^i
 \end{align}
-where
-\begin{align}
-  \label{eq:virial-coeff}
-  \beta_i = (\frac{6}{\pi \sigma^3})^i B_{i+1}.
-\end{align}
+where the $\beta_i$ are explicit functions of the $f(i,j)$.
 
 The virial formulation of thermodynamic properties is useful, but it
 requires an expansion of coeffients, which can be a nuisance
-computationally.  Carnahan and
+computationally, particularly since it tends to converge only slowly.
+Carnahan and
 Starling~\cite{carnahan1969equation,mansoori1971equilibrium} were able
-to develop a rule for coefficient generation that approximates
-Eq.~\ref{eq:virial-coeff}, but that results in integers that one can
-use to make a geometric series.  Written in its analytic form, this
-series is a simple, easy to use, and accurate approximation of the
-pressure in a homogenous fluid as a function of density (or packing
+to develop a rule for coefficient generation that give approximations
+to the $\beta_i$, but that results in integers that one can use to
+make a geometric series.  Written in its analytic form, this series is
+a simple, easy to use, and accurate approximation of the pressure in a
+homogenous hard-sphere fluid as a function of density (or packing
 fraction $\eta$):
 \begin{align}
-  \frac{\beta P}{\rho}=\frac{1+\eta+\eta^2-\eta^3}{(1-\eta)^3}
+  \frac{\beta P}{n}=\frac{1+\eta+\eta^2-\eta^3}{(1-\eta)^3}
 \end{align}
-It also yields the free energy in the form
+Integrating this pressure yields the excess free energy:
 \begin{align}
   \frac{\beta F^{ex}}{N}=\frac{\eta(4-3\eta)}{(1-\eta)^2}.
 \end{align}
 This equation is specifically very successful in predicting the
 pressure of the homogenous hard sphere fluid at different densities.
 
-
-
 \section{$F_{hard~sphere}$, Fundemental Meaure Theory, and White Bear}
+\label{sec:hard-sphere}
 
 We now return to analyzing the terms that make up the SAFT free energy:
 \begin{align}
   \iF_{SAFT} = F_{ideal} + F_{hard~sphere} +  F_{dispersion} + F_{association}.
 \end{align}
-
 Remember that the $F_{ideal}$ term treats particles that do not
-interact with one another.  In fact,
-this one term addresses any aspect of the system that is
-non-interactive, in the sense that every other term in $\iF_{SAFT}$ is
-designed to specifically deal with a different type of potential
-interaction among the particles.  Thus, $F_{ideal}$ is in a sense the
-most basic reference term in the system.  However, as I've stated
-above, the second term, $F_{hard~sphere}$, which I will describe here,
-is also considered to be a reference term.
+interact with one another.  In fact, this one term addresses any
+aspect of the system that is non-interactive, in the sense that every
+other term in $\iF_{SAFT}$ specifically deals with a different type of
+potential interaction among the particles.  Thus, $F_{ideal}$ is in a
+sense the most basic reference term in the system.  However, when
+using perturbation theory, the second term, $F_{hard~sphere}$, which I
+will describe here, is also treated as part of the reference system,
+because it is large and cannot be treated as a small perturbation.
 
 The potential interaction it describes is based on the fact that every
-particle has at it's core a 'hard-core' repulsion to any other
-particle.  In other words, as two particles approach each other in
-space, there is a sudden, sharp spike in potential that prevents the
-two particles from 'overlapping'.  The forces here can be complicated,
-deriving from nuclear forces and the exclusion principle, but our
+atom has at its core a `hard-core' repulsion to any other atom.  In
+other words, as two particles approach each other in space, there is a
+sudden, sharp spike in potential energy that prevents the two
+particles from `overlapping'.  The forces here can be complicated,
+deriving from electrostatics and the exclusion principle, but our
 classical theories seek to approximate these in simple ways.
 
 The hard sphere potential interaction is characterised by an
-impenetrable spherical volume that is centered at a particles'
+impenetrable spherical volume that is centered at a particle's
 position.  The potential between two of these hard spheres
 discontinuously jumps from zero to infinity when the spheres are a
 distance apart that is equal to their combined radii:
@@ -463,8 +504,8 @@ that we use is not the only commonly used method for treating the
 hard-core repulsion between particles.  The Leonard-Jones potential,
 for example, another widely used potential energy description,
 approximates the repulsion with a positive term porportional to
-$\frac{1}{r^{12}}$
-
+$\frac{1}{r^{12}}$.  However, analytical and continuum theories of
+liquids are most commonly based on the hard-sphere reference system.
 
 After deciding upon this form for the potential, one must turn to the
 much more difficult step of designing an appropriate free energy
@@ -473,7 +514,7 @@ deal with these interactions, which is actually not limited to hard
 spheres, was to modify the form of the local density approximation
 free energy discussed above,
 \begin{align}
-  F_{local~density}[n] = \int f(n(\rr)) d\rr
+  F_\textit{WDA}[n] = \int f(n(\rr)) d\rr
 \end{align}
 to incorporate information about the particle densities immediately
 surrounding each point.  They did this by redefining the density at
@@ -483,7 +524,7 @@ weighting function:
   \label{eq:convolution-of-density}
   \bar{n}(\rr) = \int w(|\rr-\rr'|) n(\rr') d\rr'
 \end{align}
-and then using a function of this modified density as a weighting
+and then using a function of this weighted density as a weighting
 function in the local density approximation formulation of the free
 energy:
 \begin{align}
@@ -495,51 +536,50 @@ function.  For example, if one were to choose for the weighting
 function the step function $\Theta(|\rr-\rr'|)$, than the modified
 density would incorporate in an equal way all the density within a
 sphere surrounding the particle.  A functional constructed in this way
-would be a very oversimplified example of a weighted density
-approximation.  Practical theories formulated in this manner become
-very complicated.  We introduce it here so that the reader knows what
-it is and also because the central idea described by
-Eq.~\ref{eq:convolution-of-density} is used in Fundemental Measure
-Theory, which we will now describe, as well.
+would be an oversimplified example of a `Weighted Density
+Approximation' (WDA).  WDA theories become very complicated, and will
+often include a weighted function that is itself a function of the
+density\cite{curtin1985weighted}.%% We introduce them here so that the
+%% knows what it is and also because the central idea described by
+%% Eq.~\ref{eq:convolution-of-density} is used in Fundemental Measure
+%% Theory, which we will now describe, as well.
 
 Fundamental Measure Theory (FMT), created by Rosenfeld in
 1989 \cite{rosenfeld1989free,rosenfeld1990free}, also defines the free
 energy in terms of a series of convolutions of densities, but it is a
 considerable departure from the weighted density approximation
 theories.  It is based on an involved derivation worked out by Perkis
-and Yevik of an equation of state for a homogeneous fluid.  Like the
-derivation of the Virial Expansion and Carnahan-Starling Equation
-discussed above, this derivation also dealt with correlation functions
-and ultimately expressed thermodynamic properties in terms of
-homogeneous density.  Rosenfeld compared this theory with the
-derivations of another theory call Scaled Particle Theory, which once
-again I will not explain but will say that it has to do conceptually
-with a system of spheres and a growing cavity in which they are not
-allowed to go.  He recognized that the density sides of the
-Perkis-Yevick equations can be reformulated in terms of densities and
-functions constructed to describe the geometric properties of spheres.
-Rosenfeld then discovered that for inhomogeneous systems, he could
-write down the intrinsic free energy in terms of convolutions of
-densities with these spherical functions in such a way that the
-Percis-Yevik correlation equations were reproduced in the limit of
-homogeneous density.  The derivation is certainly an involved (and
-brilliant) one, and there is actually another derivation to get to the
-same place introduced by Tarazona and
-Rosenfeld~\cite{tarazona1997,tarazona1999free,tarazona2000,tarazona2002fundamental}
-that is thought by some to be more elegant.  However I don't use any
-ideas that are directly pulled from these derivations in my work,
-besides those that can be taken from the general characteristics
-(spherical nature) of the resulting Free Energy functional.
+and Yevik of an equation of state for the homogeneous hard-sphere
+fluid.  Like the derivation of the Virial Expansion and
+Carnahan-Starling Equation discussed above, this derivation also dealt
+with correlation functions and ultimately expressed thermodynamic
+properties in terms of homogeneous density.  Rosenfeld compared this
+theory with the derivations of another theory call Scaled Particle
+Theory, which has to do conceptually with a system of spheres and a
+growing cavity in which they are not allowed to go.  He recognized
+that the density portion of the Perkis-Yevick equations can be
+reformulated in terms of densities and functions constructed to
+describe the geometric properties of spheres.  Rosenfeld then
+discovered that for inhomogeneous systems, he could write down the
+intrinsic free energy in terms of convolutions of densities with these
+spherical functions in such a way that the Percis-Yevik correlation
+equations were reproduced in the limit of homogeneous density.  For
+the derivation of this functional, which is not directly related to
+our research, see Rosenfeld's original
+publication \cite{rosenfeld1989free}, or alternatively see the
+derivation of Tarazona and
+Rosenfeld~\cite{tarazona1997,tarazona1999free,tarazona2000,tarazona2002fundamental},
+which gets to the same functional through different means.
 
 The result of all this is an intrinsic free energy which has the form:
 \begin{align}
   \label{eq:F-FMT-form}
-  \iF_{hard~sphere}[n] = \int \Phi({n_i(\rr)})d\rr
+  \iF_\textit{hard~sphere}[n] = \int \Phi({n_i(\rr)})d\rr
 \end{align}
 The integrand $\Phi$ here is a local function of $n_i(\rr)$, which are
-the non-local convolutions of density with sphere-like weighting
-functions discussed above.  In FMT they are referred to as
-'fundamental measures'.  They are defined as:
+the convolutions of density with weighting functions that are
+geometrically related to spheres.  In FMT the weighted densities are
+referred to as `fundamental measures'.  They are defined as:
 \begin{align}
   n_3(\rr) &= \int n(\rr') \Theta(\sigma/2 -\left|\rr - \rr'\right|)
   d\rr' \label{eq:FMn3} \\
@@ -551,53 +591,57 @@ functions discussed above.  In FMT they are referred to as
   n_1 &= \frac{n_2}{2\pi \sigma} , \quad
   n_0 = \frac{n_2}{\pi \sigma^2} \label{eq:FMrest}
 \end{align}
+where $\sigma$ is the hard-sphere diameter.
+
 We can see the spherical nature of the theory by inspecting the $n_i$.
 The $n_3(\rr)$ weighting function is a step function that is designed
 so that the density is integrated over the volume of a sphere of
-radius $\sigma/2$, but will make no contributions outside of this
+diameter $\sigma$, but will make no contributions outside of this
 sphere.  $n_2$ only allows for integration of densities on the surface
 of a sphere, but incorporates no density within or outside of it.
-$\mathbf{n}_{2V}$ is a vector version of $n_2$, and the others are different
-versions of the same, modified to have different units.
+$\mathbf{n}_{2V}$ is a vector version of $n_2$ and is also the
+gradient of $n_3$.  The others are different versions of the same,
+modified to have different units.
 
 The form of $\Phi({n_i(\rr)})$ is restricted to a certain extent by
 dimensional analysis (the units of each term have to be right!)
-throughout the derivation, but even given this the theory allows for a
-certain amount of freedom in it's design.  Since his derivation of FMT
-was originally based on concepts in the Perkis-Yevik derivation of the
-equation of state, Rosenfeld constructed the form of his functional so
-that in the limit of homogeneous density, the free energy of the
-system approaches that given by the Perkis-Yevik equation of state.
+throughout the derivation, but even given this constraint the theory
+allows for a certain amount of freedom in its design.  Since his
+derivation of FMT was originally based on concepts in the Perkis-Yevik
+derivation of the equation of state, Rosenfeld constructed the form of
+his functional so that in the limit of homogeneous density, the free
+energy of the system approaches that given by the Perkis-Yevik
+equation of state.
 
 While the theory has been a resounding
   success \cite{rosenfeld1989free,rosenfeld1990free,rosenfeld1997fundamental},
   the use of the Perkis-Yevik equation of state as the underlying,
   homogeneous limit equation causes problems.  The construction of FMT
-  obeys a theorem called the 'contact value theorem,' which states
+  obeys a theorem called the `contact value theorem,' which states
   that the pressure at a wall is equal to the temperature multiplied
   by the density in contact with that wall, $p=kTn_{contact}$. This
   theorem is very important in our own work, so I'll discuss it in
   detail below.  I mention it here though because for the hard sphere
   fluid, the Perkis-Yevik equation predicts a pressure that is too
-  high as bulk freezing tempuratures are approached.  It consequently
-  overestimates the density at contact at these tempuratures.  This is
+  high as the bulk freezing density are approached.  It consequently
+  overestimates the density at contact at these temperatures.  This is
   problematic, since much of the reason we use classical density
   functional theory in analyzing inhomogeneous fluids in the first
   place is to estimate what happens at walls!
 
-In 2002 Roth et al addressed this issue in their version of FMT which
-they named 'White Bear'\cite{roth2002whitebear,hansen2006density},
-anecdotally after a pub that they frequented while writing the theory.
-They keep the same general form of Rosenfeld's FMT but adjust it so
-that in the limit of homogeneous density it's free energy approaches
-that of the Mansoori-Carnahan-Starling-Leland equation, a modified
-version of the Carnahan-Starling equation of state, which we discussed
-above and which we use directly in our own work.  The
-Carnahan-Starling equation is more accurate in limiting cases than the
-Perkis-Yevik, so the White Bear hard-sphere free energy functional,
-$F_{hard~sphere}$, is overall a more accurate one.  It is therefore
-the hard sphere free energy reference system that we choose to use in
-our own work.
+In 2002 Roth \emph{et} al. addressed this issue in their version of
+FMT which they named `White
+Bear'\cite{roth2002whitebear,hansen2006density}, anecdotally after a
+pub that they frequented while developing the theory.  They keep the
+same general form of Rosenfeld's FMT but adjust it so that in the
+limit of homogeneous density the free energy approaches that of the
+Mansoori-Carnahan-Starling-Leland equation, a modified version of the
+Carnahan-Starling equation of state, which we discussed above and
+which we use directly in our own work.  The Carnahan-Starling equation
+is more accurate at high density than the Perkis-Yevik, so the White
+Bear hard-sphere free energy functional, $F_{hard~sphere}$, is overall
+a more accurate one.  It is therefore the hard sphere free energy
+reference system that we choose to use in our own work.
 
 Below is the entire energy functional written in terms of the
 fundamental measures, $n_i(\rr)$:
@@ -618,26 +662,33 @@ with integrands
 \clearpage
 \newpage
 
+\section{Contact Value Theorem}
+
 The contact value theorem is used directly in our own work and a
 conceptual understanding of its origin will aid in the conceptual
 understanding of the functions that we've created.  A derivation of it
 is both justified and sort of awesome, so I dedicate this section to
 it.
 
-\section{Contact Value Theorem}
-\begin{figure}
-  \includegraphics[width=5cm]{contact_one}
-  \caption{Maybe this?}
-  \label{fig:contact}
-\end{figure}
-
 We start by considering a thermodynamic system of a fixed number of
-particles.  The thermodynamic equations are:
+particles in contact with a hard wall of arbitrary shape.  The
+thermodynamic equations are:
 \begin{align}
 F &= U - TS \\
 dU &= TdS -pdV \\
 dF &= dU - TdS - SdT = -SdT - pdV.
 \end{align}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=7cm]{contact_one}
+\end{center}
+\caption{A cartoon of our hypothetical system.  The wall of the system
+   is either flat or includes a small protrusion that juts out into
+   the volume.}
+\label{fig:contact}
+\end{figure}
+
 The volume of our system will be fixed except for a tiny
 (infinitesimally small) protrusion into it, jutting out from the wall,
 illustrated in Figure~\ref{fig:contact}.  We will allow the protrusion
@@ -648,28 +699,28 @@ difference between them, or in other words what happens as the system
 loses the bit of volume, dV.  The partition functions for these
 scenarios are
 \begin{align}
-Z_{flat} &= \int_V... \int_V exp(-\phi \{\rr^N \})d\rr^N \\
-Z_{out} &=  \int_{V-dV}... \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N
+Z_{flat} &= \int_V... \int_V \exp(-\phi \{\rr^N \})d\rr^N \\
+Z_{out} &=  \int_{V-dV}... \int_{V-dV} \exp(-\phi \{\rr^N \})d\rr^N
 \end{align}
-where $\phi \{\rr^N \}$ is the interaction energy between all the
-particles and where we have ignored the kinetic energy terms, since in
-both systems, which are at the same tempurature, these will be the
-same, and will later cancel out.  We would like to write $Z_{flat}$ in
-terms of $Z_{out}$, so we'll spatially break up the $Z_{flat}$
-integral.  The first term will integrate over the same volume as
-$Z_{out}$.  The next set of terms will treat the integration for one
-particle within the bit of volume, interacting with all the other
-particles outside of the volume.  The terms after that will integrate
-for two of the particles within the bit of volume and all the
-remaining particles in the rest of the volume.  The series will
-continue on in this fashion, with three particles in the volume, then
-four, etc.:
+where $\phi (\{\rr^N \})$ is the interaction energy between all the
+particles and where we have ignored the kinetic energy terms and
+momentum integrals, since in both systems, which are at the same
+tempurature, these will be the same, and will later cancel out.  We
+would like to write $Z_{flat}$ in terms of $Z_{out}$, so we'll
+spatially break up the $Z_{flat}$ integral.  The first term will
+integrate over the same volume as $Z_{out}$.  The next set of terms
+will treat the integration for one particle within the bit of volume,
+interacting with all the other particles outside of the volume.  The
+terms after that will integrate for two of the particles within the
+bit of volume and all the remaining particles in the rest of the
+volume.  The series will continue on in this fashion, with three
+particles in the volume, then four, etc.:
 \begin{align}
-Z_{flat} = &\int_{V-dV}... \int_{V-dV} exp(-\phi \{\rr^N \})d\rr^N \notag \\
-+ &\int_V... \int_V \int_{dV} exp(-\phi \{ \rr^N \})d\rr^N \
-+ \int_V ... \int_{dV} \int_V exp(-\phi \{ \rr^N \})d\rr^N ... \notag \\
-+ &\int_V... \int_{V}\int_{dV} \int_{dV} exp(-\phi \{\rr^N \})d\rr^N \
-+ \int_V... \int_{dV}\int_V \int_{dV} exp(-\phi \{\rr^N \})d\rr^N ...
+Z_{flat} = &\int_{V-dV}... \int_{V-dV} \exp(-\phi \{\rr^N \})d\rr^N \notag \\
++ &\int_{V-dV}... \int_{V-dV} \int_{dV} \exp(-\phi \{ \rr^N \})d\rr^N \
++ \int_{V-dV} ... \int_{dV} \int_{V-dV} \exp(-\phi \{ \rr^N \})d\rr^N ... \notag \\
++ &\int_{V-dV}... \int_{V-dV}\int_{dV} \int_{dV} \exp(-\phi \{\rr^N \})d\rr^N \
++ \int_{V-dV}... \int_{dV}\int_{V-dV} \int_{dV} \exp(-\phi \{\rr^N \})d\rr^N ...
 \end{align}
 The term on the first line is just $Z_{out}$.  Looking at the next set
 of terms, because every particle is identical it doesn't matter which
@@ -681,63 +732,66 @@ one is that $dV$ is small, and so terms with two $dV$s multiplied
 together will be smaller.  One must be careful with this, however,
 because the integration is really of the boltzmann factor over these
 volumes.  If the interaction potential between the particles is
-constructed so that they are highly attracted to eachother, than a
-state in which there are two particles in the bit of volume can have
+constructed so that they are highly attracted to each other, then a
+state in which there are two particles in the bit of volume may have
 the same order of magnitude probability as the one in which there is
 just one.  In this case we would not be able to say for certain that
 these terms are so much smaller than the order one $dV$ terms that we
 could reasonably ignore them. Thus the validity of the derivation
 depends upon the size of the smallest measurement one can make along
 the wall, and the nature of the attractive potential between the
-particles.  In our case we deal with an interaction between hard
-spheres, which simply exclude other spheres from being too close to
-them.  Thus it's reasonable for us to imagine that if there is one
-hard sphere in the bit of volume, than there is only the one, and any
-terms that address the situation in which there are two in the bit of
-volume can be ignored.  After applying these arguments we have:
+particles.  In our case and for physically reasonable interactions we
+deal with an interaction between hard spheres, which exclude other
+spheres from being too close to them.  Thus it's reasonable for us to
+imagine, given that $dV$ is an arbitrarily small volume, that if there
+is one hard sphere in the bit of volume, then there is only the one,
+and any terms that address the situation in which there are two in the
+bit of volume can be ignored.  After applying these arguments we have:
 \begin{align}
   \label{eq:zflat}
-  Z_{flat} = Z_{out} + N \int_V... \int_V \int_{dV} exp(-\phi \{ \rr^N \})d\rr^N
+  Z_{flat} = Z_{out} + N \int_{V-dV}... \int_{V-dV} \int_{dV} \exp(-\phi (\{ \rr^N \}))d\rr^N
 \end{align}
 
 Now we consider the statistical mechanical definition of the particle
 density,
 \begin{align}
   %%n(\rr) &= \frac{N \int_V... \int_V exp(-\phi \{ \rr^N \})d\rr^{N-1}}{\int_V... \int_V exp(-\phi \{ \rr^N \})d\rr^N} \\
-  n(\rr) = \frac{N \int_V... \int_V exp(-\phi \{ \rr^N \})d\rr^{N-1}}{Z_{flat}}
+  n(\rr) = \frac{N \int_{V}... \int_{V} \exp(-\phi (\{ \rr^N \}))d\rr^{N-1}}{Z_{flat}}
 \end{align}
-Which is the sum of the boltzmann factors of all the states for which
+which is the sum of the boltzmann factors of all the states for which
 a particle is at position $\rr$, divided by the partition function for
 the system.  Comparing this with the right-most term in the
 Eq.~\ref{eq:zflat} we see that:
 \begin{align}
- N \int_V... \int_V \int_{dV} exp(-\phi \{ \rr^N \})d\rr^N  &= Z_{flat} \int_{dV} n(\rr) d\rr
+ N \int_{V-dV}... \int_{V-dV} \int_{dV} \exp(-\phi \{ \rr^N \})d\rr^N  &= Z_{flat} \int_{dV} n(\rr) d\rr \\
  &\approx Z_{flat} n(\rr)dV
 \end{align}
-where on the right we make the approximation that because the volume
-is small $n(\rr)$ is constant over it.
-Thus we have
+where we make the approximation that because the volume is arbitrarily
+small $n(\rr)$ is constant over it.  Thus we have
 \begin{align}
 Z_{flat} = Z_{out} + Z_{flat} n(\rr)dV \\
 Z_{out} = Z_{flat} (1-n(\rr)dV)
 \end{align}
-
-Considering the change in the free energy when the system goes from a
-flattened wall to a wall with a tiny protrusion, we have
+Now we'll consider the change in the free energy when the system goes
+from one in which a tiny protrusion sticks out from the wall, to one
+in which the wall is flat, so that the $dV$ during the change will be
+positive:
 \begin{align}
-  dF = F_{out} - F_{flat} &= -kT \ln \left( \frac{Z_{out}}{Z_{flat}} \right) \notag \\
-  &= -kT \ln \left( \frac{Z_{flat} (1-n(\rr)dV)}{Z_{flat}} \right) \notag \\
-  &= -kT \ln \left( 1-n(\rr)dV \right) \notag \\
-  &= kTn(\rr)dV
+  dF = F_{flat} - F_{out} &= - kT\ln(Z_{flat}) + kT \ln(Z_{out})  \notag \\
+  &= kT \ln \left( \frac{Z_{flat} (1-n(\rr)dV)}{Z_{flat}} \right) \notag \\
+  &= kT \ln \left( 1-n(\rr)dV \right) \notag \\
+  &= -kTn(\rr)dV
 \end{align}
-Then relating back to thermodynamics:
+Then relating this back to thermodynamics:
 \begin{align}
-  pdV &= dF = ktn(\rr)dV \\
+  dF &= -pdV = -kTn(\rr)dV \\
   \label{eq:contact-value-theorem}
-  p &= ktn(\rr)
+  p &= kTn(\rr)
 \end{align}
 Eq.~\ref{eq:contact-value-theorem} is the standard formulation of the
-contact value theorem.
+contact value theorem.  It tells us that the pressure on a hard wall
+is directly proportional to the density of the particles that are in
+contact with it.
 
 
 %% Another equation for the particle density is:
@@ -754,16 +808,23 @@ Going back to the terms in the overall SAFT free energy functional,
 \begin{align}
   \iF_{SAFT} = F_{ideal} + F_{hard~sphere} +  F_{dispersion} + F_{association},
 \end{align}
-we come to introducing the last two terms.  These are actually the
-only terms in which the functions that we've created show up, but
-ironically I'll spend the least amount of time introducing them.  This
-is because while the functions that we've created are included in
-them, they could also be included in entirely different, non-SAFT
-classical density functional theories, and their construction is
-dependent on the concepts associated with the preceding terms, not of
-$F_{dispersion}$ and $F_{association}$. The association term describes
-the effects of hydrogen bonding, and the dispersion term describes
-longer range interactions (such as Van der Waals).
+we come to the last two terms.  These terms describe attractive
+interactions, and are the focus of
+Chapters~\ref{chapter:contact},~\ref{chapter:saft},
+and~\ref{chapter:pair}.  Instead of discussing them all here, I'll
+describe them in the context of those chapters.
+
+
+%% These are actually the
+%% only terms in which the functions that we've created show up, but
+%% ironically I'll spend the least amount of time introducing them.  This
+%% is because while the functions that we've created are included in
+%% them, they could also be included in entirely different, non-SAFT
+%% classical density functional theories, and their construction is
+%% dependent on the concepts associated with the preceding terms, not of
+%% $F_{dispersion}$ and $F_{association}$. The association term describes
+%% the effects of hydrogen bonding, and the dispersion term describes
+%% longer range interactions (such as Van der Waals).
 
 \clearpage
 \newpage
@@ -771,65 +832,81 @@ longer range interactions (such as Van der Waals).
 \section{The convolution theorem}
 
 Lastly within this introduction I will introduce a theorem, the
-convolution theorem, that is a sort of important side note to the rest
-of this text, primarily for the benefit of any new grad students that
-might be entering this line of research in the future.  This theorem
-motivates our preference of using density convolutions within our
-functionals.
+convolution theorem, that is of practical importance to the rest of
+this text.  This theorem motivates our preference of using density
+convolutions within our functionals.
 
 One of the largest advantages to using Fundamental Measure Theory, and
-one that is not immediately obvious, is that the convolutions that
-combine to construct a functional allow for very efficient
-computation.  This is not very intuitive, since an integral of a
-convolution integral must integrate over two dimensions, e.g.
+one that may not be immediately obvious, is that the convolutions that
+combine to construct this functional allow for very efficient
+computation. 
+%% \begin{align}
+%% \int(f\ast g)(\xx)d\xx = \iint f(\yy)g(\xx-\yy)d\yy d\xx.
+%% \end{align}
+For an example, let's look at a free energy term,
 \begin{align}
-\int(f\ast g)(\xx)d\xx = \int \int f(\yy)g(\xx-\yy)d\yy d\xx
+F = \iint n(\rr_1)n(\rr_2)w(|\rr_1-\rr_2|)d\rr_1 d\rr_2,
+\label{eq:F}
 \end{align}
-so that it may seem that the size of the computation would scale as
-$N^2$, where $N$ is the size of the system.  It is true that in the
-case of FMT, the weighting functions cut off the integrals at the size
-on the order of a sphere of particle radius, but this can still be a
-large enough volume so that a double integral for which one of the
-volumes is this size and the other is the size of the whole system
-would be too costly for practical computation.  FMT is saved, however,
-by what is called the Convolution Theorem.  The Convolution Theorem
-states that when one takes the Fourier Transform on a spatial
-convolution of two functions (a double integral in space), the result
-is two separate integrals over k-space that are simply multiplied
-together:
+in which particles interact according to the weighting function $w$,
+which depends on the distance between two particles.  The White Bear
+free energy is composed of integrals similar to this.  It may seem at
+first glance that the size of the computational calculation of this
+double integral would scale as $N^2$, where $N$ is the number of grid
+points in the system.  It is true that in the case of FMT, the
+weighting functions cut off the integrals at a size on the order of a
+sphere of particle radius, but this can still be a large enough volume
+so that a double integral for which one of the volumes is this size
+and the other is the size of the whole system is likely be too costly
+for practical computation.  FMT is saved, however, by what is called
+the convolution theorem, combined with the Fast Fourier Transform
+algorithm.  The convolution theorem states that when one takes the
+Fourier transform of a spatial convolution of two functions, the
+result in k-space is simply the product of the two functions:
 \begin{align}
-\hat{h}(\kk) = \hat{f}(\kk)\hat{g}(\kk)
+h(\xx) &= (f\ast g)(\xx) = \int f(\yy)g(\xx-\yy)d\yy\\
+\hat{h}(\kk) &= \hat{f}(\kk)\hat{g}(\kk)
 \end{align}
-
-When minimizing our functional, after taking a Fourier Transform of
-the convolutions, we have merely to integrate once over the one
-variable $\kk$.  Wait!  You may say.  This is a cheat, since the
-Fourier Transform is itself an integral, so at the end of the day
-we're still performing two integrals.  This would be true if it were
-not for the computational technique known as Fast Fourier Transforms.
-I won't explain how it works here, but it's effect is to perform the
-transform, which would normally have a computational cost on the order
-of N, with a computational cost on the order of $\ln N$ instead.
-Thus, when we Fourier Transform the convolutions in the functional and
-proceed to take the single integral over the result (in k-space), the
-computational cost scales as $N \ln N$.  For large systems (we
-simulate systems with hundreds or even thousands of particles) this
-can certainly be the difference between practically possible and
-impossible computations.  The proof is short and pretty so I'll relate
-it here.
+The Fast Fourier Transform algorithm allows one to take Fourier
+transforms for a complete range of wave vectors $\kk$ at a cost of
+$N \ln N$, as opposed to $N^2$, even though it may seem that a
+separate integral at every value of $\kk$ would necessary.  Writing
+Eq~\ref{eq:F} as
+\begin{align}
+F &= \int n(\rr_1)\bar{n}(\rr_1)d\rr_1\\
+\bar{n}(\rr_1) &= \int n(\rr_2)w(|\rr_1-\rr_2|)d\rr_2
+\end{align}
+The convolution theorem allows us to state that
+\begin{align}
+\hat{\bar{n}}(\kk) &= \hat{n}(\kk)\hat{w}(\kk)
+\end{align}
+So if we take the Fourier transforms of $n(\rr)$ and $w(\rr)$ for all
+$\kk$ values (which computationally scales as $N \ln N$), multiply to
+get $\hat{\bar{n}}$, and then take the Fourier transform of
+$\hat{\bar{n}}$ to get $\bar{n}$ (which once again scales as $N \ln
+N$), we can arrive back at the equation
+\begin{align}
+F &= \int n(\rr_1)\bar{n}(\rr_1)d\rr_1\\
+\end{align}
+having only every taken $N \ln N$ time.  This integral can be done in
+real space (computationally scaling as simply $N$), and Voila!  We're
+able to perform a double integral in real space in an $N \ln N$ amout
+of time.  For large systems this can certainly be the difference
+between practically possible and impossible computations.  The proof
+is short and pretty so I'll relate it here.
 
 Say there is a function $h(\xx)$ such that
 \begin{align}
-  h(\xx) &= (f\ast g)(x) = \int f(\yy)g(\xx-\yy)d\yy
+  h(\xx) &= (f\ast g)(\xx) = \int f(\yy)g(\xx-\yy)d\yy
 \end{align}
-The fourier transforms are
+The Fourier transforms of the two input functions are
 \begin{align}
-  \hat{f}(\kk) &= \int f(\yy) exp(-i2\pi \kk \cdot \yy)d\yy \\
-  \hat{g}(\kk) &= \int g(\yy) exp(-i2\pi \kk \cdot \yy)d\yy.
+  \hat{f}(\kk) &= \int f(\yy) \exp(-\kk \cdot \yy)d\yy \\
+  \hat{g}(\kk) &= \int g(\yy) \exp(-\kk \cdot \yy)d\yy.
 \end{align}
 and
 \begin{align}
-  \hat{h}(\kk) = \int h(\zz) exp(-i2\pi \kk \cdot \zz) d\zz &= \int \int f(\yy) g(\zz-\yy) exp(-i2\pi \kk \cdot \zz) d\yy d\zz
+  \hat{h}(\kk) = \int h(\zz) \exp(-\kk \cdot \zz) d\zz &= \int \int f(\yy) g(\zz-\yy) \exp(-\kk \cdot \zz) d\yy d\zz
 \end{align}
 because the two integrals are taken over all space, we can say that if
 \begin{align}
@@ -837,8 +914,13 @@ because the two integrals are taken over all space, we can say that if
 \end{align}
 than
 \begin{align}
-\hat{h}(\kk) &= \int \int f(\yy) exp(-i2\pi \kk \cdot \yy ) d\yy g(\xx) exp(-i2\pi \kk \cdot \xx) d\xx \\
+\hat{h}(\kk) &= \iint f(\yy) \exp(-\kk \cdot \yy ) d\yy g(\xx) \exp(-\kk \cdot \xx) d\xx \\
 &= \hat{f}(\kk) \hat{g}(\kk)
 \end{align}
 
+
+This concludes the general introduction to the Classical DFT and
+liquid state concepts that are used throughout my research.  The
+following three chapters describe three of my research projects
+individually.
 

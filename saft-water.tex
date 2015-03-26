@@ -1,3 +1,4 @@
+\label{chapter:saft}
 \def\re{\text{Re}}
 \def\im{\text{Im}}
 \def\ket#1{\vert #1 \rangle}
@@ -28,13 +29,13 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
-In this chapter we present a modification to our recently published
-SAFT-based classical density functional theory for water.
-%
-We have recently developed and tested a functional for the averaged
-radial distribution function at contact of the hard-sphere fluid
-that is dramatically more accurate at interfaces than earlier
-approximations.
+In this chapter we present a modification to a SAFT-based classical
+density functional theory for water that was recently published by my
+research group\cite{hughes2013classical}.  In
+Chapter~\ref{chapter:contact} we developed and tested a functional for
+the averaged radial distribution function at contact of the
+hard-sphere fluid that is dramatically more accurate at interfaces
+than earlier approximations.
 %
 We now incorporate this improved functional into the association term
 of our free energy functional for water, improving its description of
@@ -98,9 +99,9 @@ approximated for inhomogeneous systems, such as occur at liquid
 interfaces.
 
 In Chapter~\ref{chapter:contact} we examined the pair distribution
-function at contact in various inhomogeneous
-configurations~\cite{schulte2012using}.  We tested the accuracy of
-existing approximations for the pair distribution function at
+function at contact in various inhomogeneous configurations.  We
+tested the accuracy of existing approximations for the pair
+distribution function at
 contact~\cite{yu2002fmt-dft-inhomogeneous-associating,
 gross2009density}, and derived a significantly improved approximation
 for the averaged distribution function at contact.  In this chapter we
@@ -108,7 +109,7 @@ apply this improved $g_\sigma^{HS}$ to the SAFT-based classical
 density functional for water developed by Hughes \emph{et
 al.}~\cite{hughes2013classical}.  This functional was constructed to
 reduce in the homogeneous limit to the 4-site optimal SAFT model for
-water developed by Clark \emph{et al.}~\cite{clark2006developing}.
+water developed by Clark \emph{et} al.~\cite{clark2006developing}.
 The DFT of \hughesetal\ uses the association free energy functional of
 Yu and Wu~\cite{yu2002fmt-dft-inhomogeneous-associating}, which is
 based on a $g_\sigma^{HS}$ that we have since found to be
@@ -139,8 +140,8 @@ The dispersion term in the free energy includes the van
 der Waals attraction and any orientation-independent
 interactions. Following \hughesetal, we use a dispersion term based on
 the SAFT-VR approach\cite{gil-villegas-1997-SAFT-VR}, which has two
-free parameters (taken from Clark~\emph{et
-  al}\cite{clark2006developing}): an interaction energy $\epsilondisp$
+free parameters (taken from Clark~\emph{et}
+  al.~\cite{clark2006developing}): an interaction energy $\epsilondisp$
 and a length scale $\lambdadisp R$.
 
 The SAFT-VR dispersion free energy has the form~\cite{gil-villegas-1997-SAFT-VR}
@@ -155,7 +156,7 @@ effect of fluctuations resulting from compression of the fluid due
 to the dispersion interaction itself, and is approximated
 using the local compressibility approximation (LCA), which
 assumes the energy fluctuation is simply related to the
-compressibility of a hard-sphere reference fluid\cite{barker1976liquid}.
+compressibility of a hard-sphere reference fluid~\cite{barker1976liquid}.
 
 The form of $a_1$ and $a_2$ for SAFT-VR is given in
 reference~\cite{gil-villegas-1997-SAFT-VR}, expressed in terms
@@ -207,10 +208,10 @@ where the factor of four comes from the four hydrogen bond sites, the
 fundamental measure $n_0(\rr)$ is the average density contacting point
 $\rr$, and $\zeta(\xx)$ is a dimensionless measure of the density
 inhomogeneity from Yu and
-Wu~\cite{yu2002fmt-dft-inhomogeneous-associating}.  The functional
-$X(\rr)$ is the fraction of association sites \emph{not}
-hydrogen-bonded, which is determined for our 4-site model by the
-quadratic equation
+Wu~\cite{yu2002fmt-dft-inhomogeneous-associating}, defined in
+Eq~\ref{eq:zeta}.  The functional $X(\rr)$ is the fraction of
+association sites \emph{not} hydrogen-bonded, which is determined for
+our 4-site model by the quadratic equation
 \begin{align}
   X(\xx) &= \frac{\sqrt{1 + 2n_\text{site}'(\rr)
       \kappaassoc g^\textit{SW}_\sigma(\xx)
@@ -235,15 +236,15 @@ is the density of bonding sites that could bond to the sites~$n_\text{site}(\rr)
 \end{align}
 %This is equation 77 of gil-villegas-1997-SAFT-VR
 where $g^\textit{HS}_\sigma$ is the correlation function evaluated at
-contact for a hard-sphere fluid with a square-well dispersion
-potential, and $a_1$ and $a_2$ are the two terms in the dispersion
-free energy defined below Eq.~\ref{eq:dispersion-term}.  The radial distribution function of the square-well
-fluid $g^\textit{SW}_\sigma$ is written as a perturbative correction
-to the hard-sphere radial distribution function
-$g^\textit{HS}_\sigma$.  The functional of \hughesetal\ uses the
-$g_\sigma^\textit{HS}$ from Yu and Wu
+contact for a hard-sphere fluid, and $a_1$ and $a_2$ are the two terms
+in the dispersion free energy given in Eq.~\ref{eq:dispersion-term}.
+The radial distribution function of the square-well fluid
+$g^\textit{SW}_\sigma$ is constructed as a perturbative correction to
+the hard-sphere radial distribution function $g^\textit{HS}_\sigma$.
+The functional of \hughesetal\ uses the $g_\sigma^\textit{HS}$ from Yu
+and Wu
 \cite{yu2002fmt-dft-inhomogeneous-associating}.  In this work, we use
-the $g_\sigma^\textit{HS}$ derived by Schulte~\emph{et~al.}~\cite{schulte2012using}.
+the $g_\sigma^\textit{HS}$ derived in Chapter~\ref{chapter:contact}.
 
 As in \hughesetal, we use Clark's five empirical parameters, and fit
 the calculated surface tension to experimental surface tension at
@@ -281,12 +282,12 @@ functional of this chapter is qualitatively similar to that from
 having made only a moderate change in the free energy.  The first
 density peak near the surface is higher than that from \hughesetal,
 and the peak has a kink at the top.  This reflects the improved
-accuracy of the $g_\sigma^\textit{HS}$ from \hughesetal, since beyond
-the first peak water molecules are unable to touch---or hydrogen bond
-to---molecules at the surface of the hard rod. This is illustrated
-under the profiles in Figure~\ref{fig:density-single-rod} by a cartoon
-of adjacent hard spheres that are increasingly distant from the hard
-rod surface.
+accuracy of the $g_\sigma^\textit{HS}$ compared with \hughesetal,
+since beyond the first peak water molecules are unable to touch---or
+hydrogen bond to---molecules at the surface of the hard rod. This is
+illustrated under the profiles in Figure~\ref{fig:density-single-rod}
+by a cartoon of adjacent hard spheres that are increasingly distant
+from the hard rod surface.
 
 \begin{figure}
 \begin{center}
@@ -404,39 +405,15 @@ minimum in $g_{Kr-O}(r)$ when compared with that of \hughesetal \
 
 We have modified the classical DFT for water developed by
 Hughes~\emph{et al.}~\cite{hughes2013classical} with the more accurate
-radial distribution function at contact developed by Schulte~\emph{et
-  al.}~\cite{schulte2012using}, which affects the predicted hydrogen
+radial distribution function at contact developed in
+Chapter~\ref{chapter:contact}, which affects the predicted hydrogen
 bonding between water molecules.  We found that while this
 modification has a relatively mild effect on the free energy and
-density profiles, it predicts fewer broken hydrogen bonds around
-hard hydrophobic solutes and at aqueous interfaces.
+density profiles, it predicts fewer broken hydrogen bonds around hard
+hydrophobic solutes and at aqueous interfaces.
 %
 The improved functional does indeed show better agreement with
 experiment when used to compute the partial radial distribution
 function of a krypton atom dissolved in water.
 
 \clearpage
-
-\section{Figures that are not included in the chapter (but could be)}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=3.5in]{figs/single-rod-X-plot}
-\end{center}
-\caption{ The average number of hydrogen bonds per molecule at
-  distances from the center of hard rods of various
-  radii. The solid lines are the results from using the assymetric
-  $g_{\sigma}^A$, while the dotted lines are from Yu and Wu's $g_{\sigma}^{HS}$.}
-\label{fig:single-rod-X}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=3.5in]{figs/spheres-X-plot}
-\end{center}
-\caption{ The average number of hydrogen bonds per molecule at
-  distances from the center of spherical cavities of various
-  radii. The solid lines are the results from using the assymetric
-  $g_{\sigma}^A$, while the dotted lines are from Yu and Wu's $g_{\sigma}$.}
-\label{fig:spheres-X}
-\end{figure}
