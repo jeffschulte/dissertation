@@ -904,17 +904,18 @@ The Fourier transforms of the two input functions are
   \hat{f}(\kk) &= \int f(\yy) \exp(-\kk \cdot \yy)d\yy \\
   \hat{g}(\kk) &= \int g(\yy) \exp(-\kk \cdot \yy)d\yy.
 \end{align}
-and
+and the Fourier transform of $h$ is
 \begin{align}
-  \hat{h}(\kk) = \int h(\zz) \exp(-\kk \cdot \zz) d\zz &= \int \int f(\yy) g(\zz-\yy) \exp(-\kk \cdot \zz) d\yy d\zz
+  \hat{h}(\kk) = \int h(\zz) \exp(-\kk \cdot \zz) d\zz &= \int \left(\int f(\yy) g(\zz-\yy)d\yy\right)  \exp(-\kk \cdot \zz) d\zz
 \end{align}
-because the two integrals are taken over all space, we can say that if
+because the two integrals are taken over all space, we can use a
+change of variables to
 \begin{align}
-\xx &= \zz - \yy
+\xx \equiv \zz - \yy
 \end{align}
-than
+and then reorder the integrals to find
 \begin{align}
-\hat{h}(\kk) &= \iint f(\yy) \exp(-\kk \cdot \yy ) d\yy g(\xx) \exp(-\kk \cdot \xx) d\xx \\
+\hat{h}(\kk) &= \int f(\yy) \exp(-\kk \cdot \yy ) d\yy \int g(\xx) \exp(-\kk \cdot \xx) d\xx \\
 &= \hat{f}(\kk) \hat{g}(\kk)
 \end{align}
 
